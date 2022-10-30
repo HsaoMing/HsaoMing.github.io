@@ -47,7 +47,19 @@ sudo apt install qt5-default
 
 To build [protobuf](https://developers.google.cn/protocol-buffers/) from source, [bazel](https://bazel.build/), git and g++ are needed.
 
+Commonly, git and g++ are already installed. 
 
+Download file from [https://github.com/bazelbuild/bazel/releases](https://github.com/bazelbuild/bazel/releases). 
+
+```bash
+wget https://github.com/bazelbuild/bazel/releases/download/4.2.3/bazel-4.2.3-installer-linux-x86_64.sh
+
+./bazel-version-installer-linux-x86_64.sh --user
+```
+
+
+
+https://github.com/bazelbuild/bazel/releases/download/4.2.3/bazel-4.2.3-installer-linux-x86_64.sh
 
 https://github.com/protocolbuffers/protobuf/releases/download/v21.8/protobuf-cpp-3.21.8.tar.gz
 
