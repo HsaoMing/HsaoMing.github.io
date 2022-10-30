@@ -35,12 +35,17 @@ wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
 tar -xvf eigen-3.4.0.tar.gz
 ```
 
-#### Qt5
+#### Auto install
 
-[Qt5](https://wiki.qt.io/Install_Qt_5_on_Ubuntu) will be installed after type the following command.
+Qt5, GSL and Boost will be installed after type the following command.
 
 ```bash
+# Qt5
 sudo apt install qt5-default
+# GSL
+sudo apt-get install libgsl0-dev
+# Boost
+sudo apt-get install libboost-all-dev
 ```
 
 #### Protobuf
@@ -57,9 +62,37 @@ wget https://github.com/bazelbuild/bazel/releases/download/4.2.3/bazel-4.2.3-ins
 ./bazel-version-installer-linux-x86_64.sh --user
 ```
 
+Download protobuf.
 
+```bash
+git clone https://github.com/protocolbuffers/protobuf.git
+cd protobuf
+git submodule update --init --recursive
+```
 
-https://github.com/bazelbuild/bazel/releases/download/4.2.3/bazel-4.2.3-installer-linux-x86_64.sh
+At last, build the C++ Protobuf runtime and the Protocol Buffer compiler (protoc) execute the following.
 
-https://github.com/protocolbuffers/protobuf/releases/download/v21.8/protobuf-cpp-3.21.8.tar.gz
+```bash
+bazel build :protoc :protobuf
+```
+
+#### MKL
+
+Set up the repository.
+
+```bash
+# download the key to system keyring
+wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+| gpg --dearmor | sudo tee /usr/share/keyrings/oneapi-archive-keyring.gpg > /dev/null
+
+# add signed entry to apt sources and configure the APT client to use Intel repository:
+echo "deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
+```
+
+Update packages list and install MKL.
+
+```bash
+sudo apt update
+sudo apt install intel-oneapi-mkl
+```
 
