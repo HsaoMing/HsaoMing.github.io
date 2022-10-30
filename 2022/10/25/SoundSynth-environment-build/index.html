@@ -14,7 +14,7 @@
 <meta property="og:description" content="SoundSynthThe project is from https:&#x2F;&#x2F;github.com&#x2F;ztzhang&#x2F;SoundSynth, this article is used to record the construction of the environment. EnvironmentsUbuntu18.04 in VMware. BuildMost software can be in">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-10-25T11:36:40.000Z">
-<meta property="article:modified_time" content="2022-10-29T15:22:10.412Z">
+<meta property="article:modified_time" content="2022-10-30T07:50:47.128Z">
 <meta property="article:author" content="HsaoMing">
 <meta property="article:tag" content="environment">
 <meta name="twitter:card" content="summary">
@@ -109,18 +109,26 @@
 <h4 id="Eigen3"><a href="#Eigen3" class="headerlink" title="Eigen3"></a>Eigen3</h4><p>Eigen3 is a header only library, so there is no building involved. </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz</span><br><span class="line">tar -xvf eigen-3.4.0.tar.gz</span><br></pre></td></tr></table></figure>
 
-<h4 id="Qt5"><a href="#Qt5" class="headerlink" title="Qt5"></a>Qt5</h4><p><a target="_blank" rel="noopener" href="https://wiki.qt.io/Install_Qt_5_on_Ubuntu">Qt5</a> will be installed after type the following command.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install qt5-default</span><br></pre></td></tr></table></figure>
+<h4 id="Auto-install"><a href="#Auto-install" class="headerlink" title="Auto install"></a>Auto install</h4><p>Qt5, GSL and Boost will be installed after type the following command.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Qt5</span></span><br><span class="line">sudo apt install qt5-default</span><br><span class="line"><span class="comment"># GSL</span></span><br><span class="line">sudo apt-get install libgsl0-dev</span><br><span class="line"><span class="comment"># Boost</span></span><br><span class="line">sudo apt-get install libboost-all-dev</span><br></pre></td></tr></table></figure>
 
 <h4 id="Protobuf"><a href="#Protobuf" class="headerlink" title="Protobuf"></a>Protobuf</h4><p>To build <a target="_blank" rel="noopener" href="https://developers.google.cn/protocol-buffers/">protobuf</a> from source, <a target="_blank" rel="noopener" href="https://bazel.build/">bazel</a>, git and g++ are needed.</p>
 <p>Commonly, git and g++ are already installed. </p>
 <p>Download file from <a target="_blank" rel="noopener" href="https://github.com/bazelbuild/bazel/releases">https://github.com/bazelbuild/bazel/releases</a>. </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/bazelbuild/bazel/releases/download/4.2.3/bazel-4.2.3-installer-linux-x86_64.sh</span><br><span class="line"></span><br><span class="line">./bazel-version-installer-linux-x86_64.sh --user</span><br></pre></td></tr></table></figure>
 
+<p>Download protobuf.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/protocolbuffers/protobuf.git</span><br><span class="line"><span class="built_in">cd</span> protobuf</span><br><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure>
 
+<p>At last, build the C++ Protobuf runtime and the Protocol Buffer compiler (protoc) execute the following.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bazel build :protoc :protobuf</span><br></pre></td></tr></table></figure>
 
-<p><a target="_blank" rel="noopener" href="https://github.com/bazelbuild/bazel/releases/download/4.2.3/bazel-4.2.3-installer-linux-x86_64.sh">https://github.com/bazelbuild/bazel/releases/download/4.2.3/bazel-4.2.3-installer-linux-x86_64.sh</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/protocolbuffers/protobuf/releases/download/v21.8/protobuf-cpp-3.21.8.tar.gz">https://github.com/protocolbuffers/protobuf/releases/download/v21.8/protobuf-cpp-3.21.8.tar.gz</a></p>
+<h4 id="MKL"><a href="#MKL" class="headerlink" title="MKL"></a>MKL</h4><p>Set up the repository.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># download the key to system keyring</span></span><br><span class="line">wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB</span><br><span class="line">| gpg --dearmor | sudo <span class="built_in">tee</span> /usr/share/keyrings/oneapi-archive-keyring.gpg &gt; /dev/null</span><br><span class="line"></span><br><span class="line"><span class="comment"># add signed entry to apt sources and configure the APT client to use Intel repository:</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main&quot;</span> | sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/oneAPI.list</span><br></pre></td></tr></table></figure>
+
+<p>Update packages list and install MKL.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install intel-oneapi-mkl</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
