@@ -9,13 +9,19 @@ tags:
 
 ### SoundSynth
 
-The project is from [https://github.com/ztzhang/SoundSynth](https://github.com/ztzhang/SoundSynth), this article is used to record the construction of the environment.
+The project is from [https://github.com/ztzhang/SoundSynth](https://github.com/ztzhang/SoundSynth), this article is used to record the construction of the environment. 
+
+Get "SoundSynth" by executing the following. 
+
+```bash
+git clone https://github.com/ztzhang/SoundSynth.git
+```
 
 ### Environments
 
 Ubuntu18.04 in VMware.
 
-### Build
+### Building Modal Sound
 
 Most software can be installed by apt.
 
@@ -50,31 +56,16 @@ sudo apt install libboost-all-dev
 
 #### Protobuf
 
-To build [protobuf](https://developers.google.cn/protocol-buffers/) from source, [bazel](https://bazel.build/), git and g++ are needed.
-
-Commonly, git and g++ are already installed. 
-
-Download file from [https://github.com/bazelbuild/bazel/releases](https://github.com/bazelbuild/bazel/releases). 
+Install protobuf by source code.
 
 ```bash
-wget https://github.com/bazelbuild/bazel/releases/download/4.2.3/bazel-4.2.3-installer-linux-x86_64.sh
+wget https://github.com/protocolbuffers/protobuf/releases/download/v21.9/protobuf-cpp-3.21.9.tar.gz
 
-./bazel-version-installer-linux-x86_64.sh --user
+tar -xzvf protobuf-cpp-3.21.9.tar.gz
+
 ```
 
-Download protobuf.
 
-```bash
-git clone https://github.com/protocolbuffers/protobuf.git
-cd protobuf
-git submodule update --init --recursive
-```
-
-At last, build the C++ Protobuf runtime and the Protocol Buffer compiler (protoc) execute the following.
-
-```bash
-bazel build :protoc :protobuf
-```
 
 #### MKL
 
@@ -94,4 +85,34 @@ Update packages list and install MKL.
 sudo apt update
 sudo apt install intel-oneapi-mkl
 ```
+
+### Building file generators
+
+```bash
+cd file_generators
+chmod +x compile_cpps.sh
+./compile_cpps.sh
+```
+
+### Installing BEM/FMM Solver
+
+The project solve the Helmholtz equation related to sound propagation using a direct BEM method and an accelerated version using FMM.
+
+#### BEM
+
+```bash
+git clone -b release_1.1 git://last.hit.bme.hu/toolbox/nihu.git
+
+cd nihu
+mkdir build
+
+# where matlab
+MATLAB_PATH=/usr/local/bin
+cmake ../src -DNIHU_INSTALL_DIR="../bin" -DNIHU_MATLAB_PATH=$MATLAB_PATH
+make && make install
+```
+
+After installing, specify its path in **pre_compute/run_precalc_bem.sh**.
+
+#### FMM
 
