@@ -6,15 +6,15 @@
   
   <title>SoundSynth environment build | Autumn Adventure Tent</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="SoundSynthThe project is from https:&#x2F;&#x2F;github.com&#x2F;ztzhang&#x2F;SoundSynth, this article is used to record the construction of the environment. EnvironmentsUbuntu18.04 in VMware. BuildMost software can be in">
+  <meta name="description" content="SoundSynthThe project is from https:&#x2F;&#x2F;github.com&#x2F;ztzhang&#x2F;SoundSynth, this article is used to record the construction of the environment.  Get “SoundSynth” by executing the following.  1git clone https">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SoundSynth environment build">
 <meta property="og:url" content="http://example.com/2022/10/25/SoundSynth-environment-build/index.html">
 <meta property="og:site_name" content="Autumn Adventure Tent">
-<meta property="og:description" content="SoundSynthThe project is from https:&#x2F;&#x2F;github.com&#x2F;ztzhang&#x2F;SoundSynth, this article is used to record the construction of the environment. EnvironmentsUbuntu18.04 in VMware. BuildMost software can be in">
+<meta property="og:description" content="SoundSynthThe project is from https:&#x2F;&#x2F;github.com&#x2F;ztzhang&#x2F;SoundSynth, this article is used to record the construction of the environment.  Get “SoundSynth” by executing the following.  1git clone https">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-10-25T11:36:40.000Z">
-<meta property="article:modified_time" content="2022-10-31T03:01:51.502Z">
+<meta property="article:modified_time" content="2022-10-31T12:09:00.767Z">
 <meta property="article:author" content="HsaoMing">
 <meta property="article:tag" content="environment">
 <meta name="twitter:card" content="summary">
@@ -100,9 +100,12 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="SoundSynth"><a href="#SoundSynth" class="headerlink" title="SoundSynth"></a>SoundSynth</h3><p>The project is from <a target="_blank" rel="noopener" href="https://github.com/ztzhang/SoundSynth">https://github.com/ztzhang/SoundSynth</a>, this article is used to record the construction of the environment.</p>
+        <h3 id="SoundSynth"><a href="#SoundSynth" class="headerlink" title="SoundSynth"></a>SoundSynth</h3><p>The project is from <a target="_blank" rel="noopener" href="https://github.com/ztzhang/SoundSynth">https://github.com/ztzhang/SoundSynth</a>, this article is used to record the construction of the environment. </p>
+<p>Get “SoundSynth” by executing the following. </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/ztzhang/SoundSynth.git</span><br></pre></td></tr></table></figure>
+
 <h3 id="Environments"><a href="#Environments" class="headerlink" title="Environments"></a>Environments</h3><p>Ubuntu18.04 in VMware.</p>
-<h3 id="Build"><a href="#Build" class="headerlink" title="Build"></a>Build</h3><p>Most software can be installed by apt.</p>
+<h3 id="Building-Modal-Sound"><a href="#Building-Modal-Sound" class="headerlink" title="Building Modal Sound"></a>Building Modal Sound</h3><p>Most software can be installed by apt.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install gcc</span><br><span class="line">sudo apt install cmake</span><br></pre></td></tr></table></figure>
 
 <p>Except <a target="_blank" rel="noopener" href="https://gcc.gnu.org/">GCC</a> and <a target="_blank" rel="noopener" href="https://cmake.org/">CMake</a>, I need to install <a target="_blank" rel="noopener" href="http://eigen.tuxfamily.org/index.php?title=Main_Page">Eigen3</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qt5-intro.html">Qt5</a>, <a target="_blank" rel="noopener" href="https://github.com/protocolbuffers/protobuf">Protobuf</a>, <a target="_blank" rel="noopener" href="https://www.gnu.org/software/gsl/doc/html/index.html">GSL</a>, <a target="_blank" rel="noopener" href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html">MKL</a> and Matlab.</p>
@@ -112,16 +115,10 @@
 <h4 id="Auto-install"><a href="#Auto-install" class="headerlink" title="Auto install"></a>Auto install</h4><p>Qt5, GSL and Boost will be installed after type the following command.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Qt5</span></span><br><span class="line">sudo apt install qt5-default</span><br><span class="line"><span class="comment"># GSL</span></span><br><span class="line">sudo apt install libgsl0-dev</span><br><span class="line"><span class="comment"># Boost</span></span><br><span class="line">sudo apt install libboost-all-dev</span><br></pre></td></tr></table></figure>
 
-<h4 id="Protobuf"><a href="#Protobuf" class="headerlink" title="Protobuf"></a>Protobuf</h4><p>To build <a target="_blank" rel="noopener" href="https://developers.google.cn/protocol-buffers/">protobuf</a> from source, <a target="_blank" rel="noopener" href="https://bazel.build/">bazel</a>, git and g++ are needed.</p>
-<p>Commonly, git and g++ are already installed. </p>
-<p>Download file from <a target="_blank" rel="noopener" href="https://github.com/bazelbuild/bazel/releases">https://github.com/bazelbuild/bazel/releases</a>. </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/bazelbuild/bazel/releases/download/4.2.3/bazel-4.2.3-installer-linux-x86_64.sh</span><br><span class="line"></span><br><span class="line">./bazel-version-installer-linux-x86_64.sh --user</span><br></pre></td></tr></table></figure>
+<h4 id="Protobuf"><a href="#Protobuf" class="headerlink" title="Protobuf"></a>Protobuf</h4><p>Install protobuf by source code.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/protocolbuffers/protobuf/releases/download/v21.9/protobuf-cpp-3.21.9.tar.gz</span><br><span class="line"></span><br><span class="line">tar -xzvf protobuf-cpp-3.21.9.tar.gz</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>Download protobuf.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/protocolbuffers/protobuf.git</span><br><span class="line"><span class="built_in">cd</span> protobuf</span><br><span class="line">git submodule update --init --recursive</span><br></pre></td></tr></table></figure>
 
-<p>At last, build the C++ Protobuf runtime and the Protocol Buffer compiler (protoc) execute the following.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bazel build :protoc :protobuf</span><br></pre></td></tr></table></figure>
 
 <h4 id="MKL"><a href="#MKL" class="headerlink" title="MKL"></a>MKL</h4><p>Set up the repository.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># download the key to system keyring</span></span><br><span class="line">wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB | gpg --dearmor | sudo <span class="built_in">tee</span> /usr/share/keyrings/oneapi-archive-keyring.gpg &gt; /dev/null</span><br><span class="line"></span><br><span class="line"><span class="comment"># add signed entry to apt sources and configure the APT client to use Intel repository:</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main&quot;</span> | sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/oneAPI.list</span><br></pre></td></tr></table></figure>
@@ -129,11 +126,17 @@
 <p>Update packages list and install MKL.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install intel-oneapi-mkl</span><br></pre></td></tr></table></figure>
 
+<h3 id="Building-file-generators"><a href="#Building-file-generators" class="headerlink" title="Building file generators"></a>Building file generators</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> file_generators</span><br><span class="line"><span class="built_in">chmod</span> +x compile_cpps.sh</span><br><span class="line">./compile_cpps.sh</span><br></pre></td></tr></table></figure>
 
+<h3 id="Installing-BEM-x2F-FMM-Solver"><a href="#Installing-BEM-x2F-FMM-Solver" class="headerlink" title="Installing BEM&#x2F;FMM Solver"></a>Installing BEM&#x2F;FMM Solver</h3><p>The project solve the Helmholtz equation related to sound propagation using a direct BEM method and an accelerated version using FMM.</p>
+<h4 id="BEM"><a href="#BEM" class="headerlink" title="BEM"></a>BEM</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> -b release_1.1 git://last.hit.bme.hu/toolbox/nihu.git</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> nihu</span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"></span><br><span class="line"><span class="comment"># where matlab</span></span><br><span class="line">MATLAB_PATH=/usr/local/bin</span><br><span class="line">cmake ../src -DNIHU_INSTALL_DIR=<span class="string">&quot;../bin&quot;</span> -DNIHU_MATLAB_PATH=<span class="variable">$MATLAB_PATH</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>After installing, specify its path in <strong>pre_compute&#x2F;run_precalc_bem.sh</strong>.</p>
+<h4 id="FMM"><a href="#FMM" class="headerlink" title="FMM"></a>FMM</h4>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/25/SoundSynth-environment-build/" data-id="cl9w77c5t0003n8n67es13k7l" data-title="SoundSynth environment build" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/25/SoundSynth-environment-build/" data-id="cl9wqogdo0003jcn6e20j8qug" data-title="SoundSynth environment build" class="article-share-link">Share</a>
       
       
       
