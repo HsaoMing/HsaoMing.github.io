@@ -43,9 +43,9 @@ Qt5, GSL and Boost will be installed after type the following command.
 # Qt5
 sudo apt install qt5-default
 # GSL
-sudo apt-get install libgsl0-dev
+sudo apt install libgsl0-dev
 # Boost
-sudo apt-get install libboost-all-dev
+sudo apt install libboost-all-dev
 ```
 
 #### Protobuf
