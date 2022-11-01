@@ -106,7 +106,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/29/Oh-my-zsh/" data-id="cl9xj49t200012cn6avn19z3i" data-title="Oh-my-zsh" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/29/Oh-my-zsh/" data-id="cl9xmt23q0001qgn602ko2gkg" data-title="Oh-my-zsh" class="article-share-link">Share</a>
       
       
       
@@ -173,14 +173,19 @@
 <h3 id="Building-file-generators"><a href="#Building-file-generators" class="headerlink" title="Building file generators"></a>Building file generators</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> file_generators</span><br><span class="line"><span class="built_in">chmod</span> +x compile_cpps.sh</span><br><span class="line">./compile_cpps.sh</span><br></pre></td></tr></table></figure>
 
 <h3 id="Installing-BEM-x2F-FMM-Solver"><a href="#Installing-BEM-x2F-FMM-Solver" class="headerlink" title="Installing BEM&#x2F;FMM Solver"></a>Installing BEM&#x2F;FMM Solver</h3><p>The project solve the Helmholtz equation related to sound propagation using a direct BEM method and an accelerated version using FMM.</p>
-<h4 id="BEM"><a href="#BEM" class="headerlink" title="BEM"></a>BEM</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> -b release_1.1 git://last.hit.bme.hu/toolbox/nihu.git</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> nihu</span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"></span><br><span class="line"><span class="comment"># where matlab</span></span><br><span class="line">MATLAB_PATH=/usr/local/bin</span><br><span class="line">cmake ../src -DNIHU_INSTALL_DIR=<span class="string">&quot;../bin&quot;</span> -DNIHU_MATLAB_PATH=<span class="variable">$MATLAB_PATH</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h4 id="BEM-not-complete"><a href="#BEM-not-complete" class="headerlink" title="BEM(not complete)"></a>BEM(not complete)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> -b release_1.1 git://last.hit.bme.hu/toolbox/nihu.git</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> nihu</span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"></span><br><span class="line">MATLAB_PATH=/usr/local/MATLAB/R2022b</span><br><span class="line">cmake ../src -DNIHU_INSTALL_DIR=<span class="string">&quot;../bin&quot;</span> -DNIHU_MATLAB_PATH=<span class="variable">$MATLAB_PATH</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
 
 <p>After installing, specify its path in <strong>pre_compute&#x2F;run_precalc_bem.sh</strong>.</p>
-<h4 id="FMM"><a href="#FMM" class="headerlink" title="FMM"></a>FMM</h4>
+<h4 id="FMM"><a href="#FMM" class="headerlink" title="FMM"></a>FMM</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/zgimbutas/fmmlib3d.git</span><br><span class="line">sudo apt-get install bison flex octave liboctave-dev mwrap</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> fmmlib3d</span><br><span class="line">make mex</span><br></pre></td></tr></table></figure>
+
+<p>Samely, specify its path in <strong>pre_compute&#x2F;run_precalc.sh</strong>.</p>
+<h3 id="Building-Bullet"><a href="#Building-Bullet" class="headerlink" title="Building Bullet"></a>Building Bullet</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> bullet3/build3</span><br><span class="line">./premake4_linux64 gmake</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> gamke</span><br><span class="line">make App_RigidBodyFromObjExampleGui</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/25/SoundSynth-environment-build/" data-id="cl9xj49t600032cn62cph06df" data-title="SoundSynth environment build" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/25/SoundSynth-environment-build/" data-id="cl9xmt23t0003qgn6dk2r2od8" data-title="SoundSynth environment build" class="article-share-link">Share</a>
       
       
       
