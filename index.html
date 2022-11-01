@@ -106,7 +106,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/29/Oh-my-zsh/" data-id="cl9wqogdk0001jcn6fwud6uhj" data-title="Oh-my-zsh" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/29/Oh-my-zsh/" data-id="cl9xj49t200012cn6avn19z3i" data-title="Oh-my-zsh" class="article-share-link">Share</a>
       
       
       
@@ -162,9 +162,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Qt5</span></span><br><span class="line">sudo apt install qt5-default</span><br><span class="line"><span class="comment"># GSL</span></span><br><span class="line">sudo apt install libgsl0-dev</span><br><span class="line"><span class="comment"># Boost</span></span><br><span class="line">sudo apt install libboost-all-dev</span><br></pre></td></tr></table></figure>
 
 <h4 id="Protobuf"><a href="#Protobuf" class="headerlink" title="Protobuf"></a>Protobuf</h4><p>Install protobuf by source code.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/protocolbuffers/protobuf/releases/download/v21.9/protobuf-cpp-3.21.9.tar.gz</span><br><span class="line"></span><br><span class="line">tar -xzvf protobuf-cpp-3.21.9.tar.gz</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/protocolbuffers/protobuf/releases/download/v21.9/protobuf-cpp-3.21.9.tar.gz</span><br><span class="line"></span><br><span class="line">tar -xzvf protobuf-cpp-3.21.9.tar.gz</span><br><span class="line"><span class="built_in">cd</span> protobuf</span><br><span class="line">./configure --prefix=/usr/local/protobuf</span><br><span class="line">sudo make &amp;&amp; make install</span><br><span class="line">sudo ldconfig</span><br></pre></td></tr></table></figure>
 
 <h4 id="MKL"><a href="#MKL" class="headerlink" title="MKL"></a>MKL</h4><p>Set up the repository.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># download the key to system keyring</span></span><br><span class="line">wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB | gpg --dearmor | sudo <span class="built_in">tee</span> /usr/share/keyrings/oneapi-archive-keyring.gpg &gt; /dev/null</span><br><span class="line"></span><br><span class="line"><span class="comment"># add signed entry to apt sources and configure the APT client to use Intel repository:</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main&quot;</span> | sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/oneAPI.list</span><br></pre></td></tr></table></figure>
@@ -182,7 +180,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/25/SoundSynth-environment-build/" data-id="cl9wqogdo0003jcn6e20j8qug" data-title="SoundSynth environment build" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/25/SoundSynth-environment-build/" data-id="cl9xj49t600032cn62cph06df" data-title="SoundSynth environment build" class="article-share-link">Share</a>
       
       
       
