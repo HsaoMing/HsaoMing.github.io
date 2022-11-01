@@ -62,10 +62,11 @@ Install protobuf by source code.
 wget https://github.com/protocolbuffers/protobuf/releases/download/v21.9/protobuf-cpp-3.21.9.tar.gz
 
 tar -xzvf protobuf-cpp-3.21.9.tar.gz
-
+cd protobuf
+./configure --prefix=/usr/local/protobuf
+sudo make && make install
+sudo ldconfig
 ```
-
-
 
 #### MKL
 
