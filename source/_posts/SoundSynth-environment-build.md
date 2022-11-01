@@ -99,7 +99,7 @@ chmod +x compile_cpps.sh
 
 The project solve the Helmholtz equation related to sound propagation using a direct BEM method and an accelerated version using FMM.
 
-#### BEM
+#### BEM(not complete)
 
 ```bash
 git clone -b release_1.1 git://last.hit.bme.hu/toolbox/nihu.git
@@ -107,8 +107,7 @@ git clone -b release_1.1 git://last.hit.bme.hu/toolbox/nihu.git
 cd nihu
 mkdir build
 
-# where matlab
-MATLAB_PATH=/usr/local/bin
+MATLAB_PATH=/usr/local/MATLAB/R2022b
 cmake ../src -DNIHU_INSTALL_DIR="../bin" -DNIHU_MATLAB_PATH=$MATLAB_PATH
 make && make install
 ```
@@ -116,4 +115,24 @@ make && make install
 After installing, specify its path in **pre_compute/run_precalc_bem.sh**.
 
 #### FMM
+
+```bash
+git clone https://github.com/zgimbutas/fmmlib3d.git
+sudo apt-get install bison flex octave liboctave-dev mwrap
+
+cd fmmlib3d
+make mex
+```
+
+Samely, specify its path in **pre_compute/run_precalc.sh**.
+
+### Building Bullet
+
+```bash
+cd bullet3/build3
+./premake4_linux64 gmake
+
+cd gamke
+make App_RigidBodyFromObjExampleGui
+```
 
