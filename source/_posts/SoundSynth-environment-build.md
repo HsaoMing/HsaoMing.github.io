@@ -87,6 +87,47 @@ sudo apt update
 sudo apt install intel-oneapi-mkl
 ```
 
+#### Troubleshooting
+
+After installation, specify theirs path ,run `./modal_sound/run_cmake.sh`. Three problems have arisen.
+
+- Could not find MKL
+
+  I have tried several ways to install MKL, but none of them worked. It seems cmake can not find the MKL. Finally, this problem was solved by add the following to **FindMKL.cmake**
+
+  ```cmake
+  find_path(MKL_INCLUDE_DIR mkl.h
+      PATHS ENV INCLUDE
+      PATHS ${SYSTEM_INC_PATH}
+      PATHS $ENV{MKLROOT}/include  
+      #new
+      PATHS /opt/intel/oneapi/mkl/2022.2.0/include
+  )
+   
+  find_library(MKL_LIBRARY mkl_core
+      PATHS ENV LD_LIBRARY_PATH
+      PATHS ${SYSTEM_LIB_PATH}
+      PATHS ENV LIBRARY_PATH
+      PATHS $ENV{MKLROOT}/lib
+      # new
+      PATHS /opt/intel/oneapi/mkl/2022.2.0/lib/intel64
+  )
+  ```
+
+- Could NOT find Qt5Multimedia (missing: Qt5Multimedia_DIR)
+
+  This problem is easy to solve, by contrast, just execute the following.
+
+  ```bash
+  sudo apt install qtmultimedia5-dev
+  ```
+  
+- Unable to find the entry address of the thread function in the phread library.Add the following to the **CMakeLists.txt**
+
+  ```makefile
+  link_libraries(pthread)
+  ```
+
 ### Building file generators
 
 ```bash
