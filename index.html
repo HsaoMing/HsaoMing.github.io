@@ -106,7 +106,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/29/Oh-my-zsh/" data-id="cl9xmt23q0001qgn602ko2gkg" data-title="Oh-my-zsh" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/29/Oh-my-zsh/" data-id="cl9zss1bb0001lon600l36zox" data-title="Oh-my-zsh" class="article-share-link">Share</a>
       
       
       
@@ -170,6 +170,19 @@
 <p>Update packages list and install MKL.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install intel-oneapi-mkl</span><br></pre></td></tr></table></figure>
 
+<h4 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h4><p>After installation, specify theirs path ,run <code>./modal_sound/run_cmake.sh</code>. Three problems have arisen.</p>
+<ul>
+<li><p>Could not find MKL</p>
+<p>I have tried several ways to install MKL, but none of them worked. It seems cmake can not find the MKL. Finally, this problem was solved by add the following to <strong>FindMKL.cmake</strong></p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">find_path</span>(MKL_INCLUDE_DIR mkl.h</span><br><span class="line">    PATHS ENV <span class="keyword">INCLUDE</span></span><br><span class="line">    PATHS <span class="variable">$&#123;SYSTEM_INC_PATH&#125;</span></span><br><span class="line">    PATHS $ENV&#123;MKLROOT&#125;/<span class="keyword">include</span>  </span><br><span class="line">    <span class="comment">#new</span></span><br><span class="line">    PATHS /opt/intel/oneapi/mkl/<span class="number">2022.2</span>.<span class="number">0</span>/<span class="keyword">include</span></span><br><span class="line">)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">find_library</span>(MKL_LIBRARY mkl_core</span><br><span class="line">    PATHS ENV LD_LIBRARY_PATH</span><br><span class="line">    PATHS <span class="variable">$&#123;SYSTEM_LIB_PATH&#125;</span></span><br><span class="line">    PATHS ENV LIBRARY_PATH</span><br><span class="line">    PATHS $ENV&#123;MKLROOT&#125;/lib</span><br><span class="line">    <span class="comment"># new</span></span><br><span class="line">    PATHS /opt/intel/oneapi/mkl/<span class="number">2022.2</span>.<span class="number">0</span>/lib/intel64</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Could NOT find Qt5Multimedia (missing: Qt5Multimedia_DIR)</p>
+<p>This problem is easy to solve, by contrast, just execute the following.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install qtmultimedia5-dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Unable to find the entry address of the thread function in the phread library.Add the following to the <strong>CMakeLists.txt</strong></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">link_libraries(pthread)</span><br></pre></td></tr></table></figure></li>
+</ul>
 <h3 id="Building-file-generators"><a href="#Building-file-generators" class="headerlink" title="Building file generators"></a>Building file generators</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> file_generators</span><br><span class="line"><span class="built_in">chmod</span> +x compile_cpps.sh</span><br><span class="line">./compile_cpps.sh</span><br></pre></td></tr></table></figure>
 
 <h3 id="Installing-BEM-x2F-FMM-Solver"><a href="#Installing-BEM-x2F-FMM-Solver" class="headerlink" title="Installing BEM&#x2F;FMM Solver"></a>Installing BEM&#x2F;FMM Solver</h3><p>The project solve the Helmholtz equation related to sound propagation using a direct BEM method and an accelerated version using FMM.</p>
@@ -185,7 +198,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/25/SoundSynth-environment-build/" data-id="cl9xmt23t0003qgn6dk2r2od8" data-title="SoundSynth environment build" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/25/SoundSynth-environment-build/" data-id="cl9zss1bi0003lon6gkt76bl6" data-title="SoundSynth environment build" class="article-share-link">Share</a>
       
       
       
