@@ -43,7 +43,7 @@ tar -xvf eigen-3.4.0.tar.gz
 
 #### Auto install
 
-Qt5, GSL and Boost will be installed after type the following command.
+Qt5, GSL, FFmpeg and Boost will be installed after type the following command.
 
 ```bash
 # Qt5
@@ -52,6 +52,8 @@ sudo apt install qt5-default
 sudo apt install libgsl0-dev
 # Boost
 sudo apt install libboost-all-dev
+# FFmpeg
+sudo apt install ffmpeg
 ```
 
 #### Protobuf
