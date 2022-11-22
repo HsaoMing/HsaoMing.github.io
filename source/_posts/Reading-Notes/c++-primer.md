@@ -15,7 +15,9 @@ On most systems, the value returned from main is a status indicator. **A return 
 
 The iostream library defines four IO objects. 
 
-- cin: This object is referred to as the [standard input](#standard input)
-- cout: 
+- cin: This object is referred to as the [standard input](#standard_input)
+- cout: This object is known as the standard output
+- cerr: This object is referred to as standard error
+- clog: This object is used for general information about the execution the program
 
-[standard input](#standard input)
+[standard input](#standard_input)
