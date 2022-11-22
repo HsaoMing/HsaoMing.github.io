@@ -15,16 +15,7 @@ On most systems, the value returned from main is a status indicator. **A return 
 
 The iostream library defines four IO objects. 
 
-- cin: This object is referred to as the [standard input](#standard_input)
+- cin: This object is referred to as the [standard input](#standard input)
+- cout: 
 
-
-
-
-
-
-
-
-
-<a id='standard_input'></a>
-
-d
+[standard input](#standard input)
