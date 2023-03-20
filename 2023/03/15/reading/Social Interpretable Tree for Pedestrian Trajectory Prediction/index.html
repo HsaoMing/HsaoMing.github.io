@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Social Interpretable Tree for Pedestrian Trajectory Prediction | Autumn Adventure Tent</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Introduction由于行人移动的随机性，本文提出了名为SIT的方法。以树的形式推断行人未来可能的轨迹，然而树的复杂程度随着深度呈指数增长，因此又引入了CTT。该方法将高阶速度是做后续的移动方向，并增加了路径分割的时间。 Related Work手工制作的方法过度依赖先验信息，模型将仅限于特定场景，缺乏泛化能力。深度学习的发展推动了行人轨迹预测的研究，此类方法需要重复采样每个可能的未来轨迹。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Social Interpretable Tree for Pedestrian Trajectory Prediction">
+<meta property="og:url" content="http://example.com/2023/03/15/reading/Social%20Interpretable%20Tree%20for%20Pedestrian%20Trajectory%20Prediction/index.html">
+<meta property="og:site_name" content="Autumn Adventure Tent">
+<meta property="og:description" content="Introduction由于行人移动的随机性，本文提出了名为SIT的方法。以树的形式推断行人未来可能的轨迹，然而树的复杂程度随着深度呈指数增长，因此又引入了CTT。该方法将高阶速度是做后续的移动方向，并增加了路径分割的时间。 Related Work手工制作的方法过度依赖先验信息，模型将仅限于特定场景，缺乏泛化能力。深度学习的发展推动了行人轨迹预测的研究，此类方法需要重复采样每个可能的未来轨迹。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="c:\Users\512\AppData\Roaming\Typora\typora-user-images\image-20230315213257300.png">
+<meta property="article:published_time" content="2023-03-15T01:46:23.000Z">
+<meta property="article:modified_time" content="2023-03-15T14:08:03.292Z">
+<meta property="article:author" content="HsaoMing">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\512\AppData\Roaming\Typora\typora-user-images\image-20230315213257300.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Autumn Adventure Tent" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Autumn Adventure Tent</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-reading/Social Interpretable Tree for Pedestrian Trajectory Prediction" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/03/15/reading/Social%20Interpretable%20Tree%20for%20Pedestrian%20Trajectory%20Prediction/" class="article-date">
+  <time class="dt-published" datetime="2023-03-15T01:46:23.000Z" itemprop="datePublished">2023-03-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Social Interpretable Tree for Pedestrian Trajectory Prediction
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>由于行人移动的随机性，本文提出了名为SIT的方法。以树的形式推断行人未来可能的轨迹，然而树的复杂程度随着深度呈指数增长，因此又引入了CTT。该方法将高阶速度是做后续的移动方向，并增加了路径分割的时间。</p>
+<h3 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h3><p>手工制作的方法过度依赖先验信息，模型将仅限于特定场景，缺乏泛化能力。深度学习的发展推动了行人轨迹预测的研究，此类方法需要重复采样每个可能的未来轨迹。</p>
+<h3 id="Our-Method"><a href="#Our-Method" class="headerlink" title="Our Method"></a>Our Method</h3><p><img src="C:\Users\512\AppData\Roaming\Typora\typora-user-images\image-20230315213257300.png" alt="image-20230315213257300"></p>
+<h4 id="Problem-Formulation"><a href="#Problem-Formulation" class="headerlink" title="Problem Formulation"></a>Problem Formulation</h4><p>基于已观测的轨迹$X$以及相互作用影响$S$预测未来的轨迹$Y$，选择最接近$\hat{Y}$预测结果</p>
+<ul>
+<li>$x^t_i$：时间步长$t$，行人$i$的坐标</li>
+<li>$\textbf{X} &#x3D; {X_i}^N_{i&#x3D;1},X_i&#x3D;{x^t_i}^{T_{obs}}_{t&#x3D;1}$：观察轨迹</li>
+<li>$\textbf{Y} &#x3D; {Y_j}^K_{j&#x3D;1}$：$K$个可接受的未来轨迹</li>
+<li>$\hat{Y} &#x3D; {y_i}^N_{i&#x3D;1},y_i &#x3D; {x^t_i}^{T_{pred}}<em>{t&#x3D;T</em>{obs}+1}$：真实轨迹（ground truth）</li>
+<li>$S &#x3D; {s_t}^{T_{obs}}_{t&#x3D;1}$：行人之间在每个时间步长$t$的相互作用影响</li>
+<li>$p(\hat{Y}|X,S)&#x3D;\sum_{Y\in\textbf{Y}}{p(Y|X,S)p(|\hat{Y}|Y,X,S)}$</li>
+</ul>
+<h4 id="Trajectory-Prediction-with-Tree"><a href="#Trajectory-Prediction-with-Tree" class="headerlink" title="Trajectory Prediction with Tree"></a>Trajectory Prediction with Tree</h4><p><strong>Coarse Trajectory Tree</strong>是为了平衡树的复杂性与覆盖范围。</p>
+<p><strong>Trajectory Encoding</strong> 一个MLP将$X$编码成$F_x$，另一个MLP将$Y_{coarse}$编码成$F_{tree}&#x3D;{f_i}^M_{i&#x3D;1}$，采用GCN交互编码成$F_s$</p>
+<p>对$Y_{coarse}$中的数据进行评分并选择具有高置信度的对象优化</p>
+<ul>
+<li>$p &#x3D; Softmax(\phi(F_S)\psi(F_{tree})^T)$</li>
+<li>$q$是最接近真实轨迹的标签</li>
+<li>$\mathcal{L}<em>{clf}&#x3D;\mathcal{L}</em>{CE}(p,q)$，$\mathcal{L}_{CE}$为交叉熵损失</li>
+</ul>
+<p>用MLP将$F_s$与$f*$融合得到$Y’$，依据$\mathcal{L}<em>{coarse}&#x3D;\mathcal{L}</em>{reg}(Y’,\hat{Y}_{coarse})$进行贪婪优化。</p>
+<p><strong>Trajectory Refining</strong>将$Y’$细化成 $Y_{fine}$，$\mathcal{L}<em>{ref}&#x3D;\mathcal{L}</em>{reg}(Y_{coarse},Y)$</p>
+<ul>
+<li>$\mathcal{L}&#x3D;\lambda_1\mathcal{L}<em>{coarse}+\lambda_2\mathcal{L}</em>{clf}+\lambda_3\mathcal{L}_{ref}$</li>
+</ul>
+<h3 id="Experimental-Analysis"><a href="#Experimental-Analysis" class="headerlink" title="Experimental Analysis"></a>Experimental Analysis</h3><p>用ADE（Average Displacement Error）与FDE（Final Displacement Error）来评估轨迹预测的性能。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/03/15/reading/Social%20Interpretable%20Tree%20for%20Pedestrian%20Trajectory%20Prediction/" data-id="clfay58he0002dktj66mj9rp7" data-title="Social Interpretable Tree for Pedestrian Trajectory Prediction" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/03/16/template/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          template
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/03/14/reading/Learning%20to%20detect%20anomaly%20events%20in%20crowwd%20scenes%20from%20synthetic%20data/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Learning to detect anomaly events in crowd scenes from synthetic data</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SoundSynth/">SoundSynth</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/environment/" rel="tag">environment</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zsh/" rel="tag">zsh</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/environment/" style="font-size: 10px;">environment</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/03/16/template/">template</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/15/reading/Social%20Interpretable%20Tree%20for%20Pedestrian%20Trajectory%20Prediction/">Social Interpretable Tree for Pedestrian Trajectory Prediction</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/14/reading/Learning%20to%20detect%20anomaly%20events%20in%20crowwd%20scenes%20from%20synthetic%20data/">Learning to detect anomaly events in crowd scenes from synthetic data</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/29/Oh-my-zsh/">Oh-my-zsh</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/25/SoundSynth-environment-build/">SoundSynth environment build</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 HsaoMing<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
