@@ -1,7 +1,8 @@
 ---
 title: Learning to detect anomaly events in crowwd scenes from synthetic data
-date: 2023-03-14 19:09:36
-tags:
+math: true
+date: 2023-03-21 19:22:08
+tags: reading
 ---
 
 ### Introduction
@@ -31,4 +32,3 @@ SHADE数据集是利用Script Hook V从GTA5中记录产生的，该数据集囊�
 ![image-2](./Learning to detect anomaly events in crowwd scenes from synthetic data/image-2.png)
 
 $loss = min\max{L(G_{StoR,G_RtoS,D_R,D_S})}$
-
