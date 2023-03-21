@@ -106,7 +106,6 @@ deploy:
   repo: git@github.com:HsaoMing/HsaoMing.github.io.git
   branch: main
 
-math:
-
-  mathjax:
-    enable:true
+mathjax:
+  per_page: true
+  enable: true
