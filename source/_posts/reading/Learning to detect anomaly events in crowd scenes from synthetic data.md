@@ -17,7 +17,7 @@ tags: reading
 
 SHADE数据集是利用Script Hook V从GTA5中记录产生的，该数据集囊括了9种行为与7中天气情况。
 
-![image-1](./Learning to detect anomaly events in crowwd scenes from synthetic data/image-1.png)
+![image-1](./Learning to detect anomaly events in crowd scenes from synthetic data/image-1.png)
 
 ### Abnormal Video detection method
 
@@ -29,6 +29,6 @@ SHADE数据集是利用Script Hook V从GTA5中记录产生的，该数据集囊�
 
 训练4个神经网络，两个生成网络以及两个对抗网络，$G_{StoR}$、$G_{RtoS}$分别用于生成从S到R和从R到S的视频，$D_S$、$D_R$鉴别视频是否属于S、R。
 
-![image-2](./Learning to detect anomaly events in crowwd scenes from synthetic data/image-2.png)
+![image-2](./Learning to detect anomaly events in crowd scenes from synthetic data/image-2.png)
 
 $loss = min\max{L(G_{StoR,G_RtoS,D_R,D_S})}$
