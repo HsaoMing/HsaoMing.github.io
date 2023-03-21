@@ -100,7 +100,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: my_landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -109,7 +109,13 @@ deploy:
   repo: git@github.com:HsaoMing/HsaoMing.github.io.git
   branch: main
 
+<<<<<<< HEAD
 math:
   per_page: true
   mathjax:
     enable:true
+=======
+mathjax:
+  per_page: true
+  enable: true
+>>>>>>> 5516706e15e35df0c364c9b3d0ce5fb64cfc6f5e
