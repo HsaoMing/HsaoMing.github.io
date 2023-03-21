@@ -1,5 +1,5 @@
 ---
-title: 
+title: Learning to detect anomaly events in crowwd scenes from synthetic data
 date: 2023-03-14 19:09:36
 tags:
 ---
