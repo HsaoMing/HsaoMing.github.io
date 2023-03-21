@@ -112,7 +112,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -123,7 +123,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -140,6 +140,99 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/21/reading/Learning%20to%20detect%20anomaly%20events%20in%20crowd%20scenes%20from%20synthetic%20data/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="HsaoMing">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Autumn Adventure Tent">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Autumn Adventure Tent">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/03/21/reading/Learning%20to%20detect%20anomaly%20events%20in%20crowd%20scenes%20from%20synthetic%20data/" class="post-title-link" itemprop="url">Learning to detect anomaly events in crowwd scenes from synthetic data</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-03-21 19:22:08 / Modified: 19:25:21" itemprop="dateCreated datePublished" datetime="2023-03-21T19:22:08+08:00">2023-03-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="introduction">Introduction</h3>
+<p>&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x5F3A;&#x5927;&#x7684;&#x5B66;&#x4E60;&#x80FD;&#x529B;&#x63D0;&#x5347;&#x4E86;&#x5F02;&#x5E38;&#x68C0;&#x6D4B;&#x7684;&#x80FD;&#x529B;&#xFF0C;&#x4F46;&#x5F02;&#x5E38;&#x4E8B;&#x4EF6;&#x5F88;&#x5C11;&#x51FA;&#x73B0;&#x5728;&#x73B0;&#x5B9E;&#x4E16;&#x754C;&#x4E2D;&#x3002;&#x672C;&#x6587;&#x5728;GTA5&#x4E2D;&#x4EBA;&#x5DE5;&#x8BBE;&#x8BA1;&#x5F02;&#x5E38;&#x4E8B;&#x4EF6;&#x5E76;&#x8BB0;&#x5F55;&#xFF0C;&#x91C7;&#x7528;C3DGAN&#x6D88;&#x9664;&#x4E24;&#x4E2A;&#x9886;&#x57DF;&#x4E4B;&#x95F4;&#x7684;&#x5DEE;&#x5F02;&#x3002;</p>
+<h3 id="related-work">Related work</h3>
+<p>&#x73B0;&#x6709;&#x7684;&#x5F02;&#x5E38;&#x884C;&#x4E3A;&#x68C0;&#x6D4B;&#x65B9;&#x6CD5;&#x5927;&#x4F53;&#x4E0A;&#x5206;&#x4E3A;&#x5C40;&#x90E8;&#x65B9;&#x6CD5;&#x548C;&#x5168;&#x5C40;&#x65B9;&#x6CD5;&#xFF0C;&#x524D;&#x8005;&#x4ECE;&#x5E27;&#x68C0;&#x6D4B;&#x5F02;&#x5E38;&#x884C;&#x4E3A;&#xFF0C;&#x540E;&#x8005;&#x4ECE;&#x89C6;&#x9891;&#x4E2D;&#x68C0;&#x6D4B;&#x5F02;&#x5E38;&#x884C;&#x4E3A;&#x3002;&#x4F20;&#x7EDF;&#x7684;&#x5168;&#x5C40;&#x65B9;&#x6CD5;&#x53C8;&#x5206;&#x4E3A;&#x4E09;&#x7C7B;&#xFF1A;&#x57FA;&#x4E8E;&#x8F68;&#x8FF9;&#x70B9;&#x7684;&#x65B9;&#x6CD5;&#x3001;&#x57FA;&#x4E8E;&#x5149;&#x6D41;&#x7684;&#x6A21;&#x578B;&#x548C;&#x57FA;&#x4E8E;&#x5206;&#x7C7B;&#x7684;&#x6A21;&#x578B;&#x3002;</p>
+<h3 id="synthetic-abnormality-dataset">Synthetic Abnormality
+Dataset</h3>
+<p>SHADE&#x6570;&#x636E;&#x96C6;&#x662F;&#x5229;&#x7528;Script Hook
+V&#x4ECE;GTA5&#x4E2D;&#x8BB0;&#x5F55;&#x4EA7;&#x751F;&#x7684;&#xFF0C;&#x8BE5;&#x6570;&#x636E;&#x96C6;&#x56CA;&#x62EC;&#x4E86;9&#x79CD;&#x884C;&#x4E3A;&#x4E0E;7&#x4E2D;&#x5929;&#x6C14;&#x60C5;&#x51B5;&#x3002;</p>
+<figure>
+<img src="./Learning%20to%20detect%20anomaly%20events%20in%20crowwd%20scenes%20from%20synthetic%20data/image-1.png" alt="image-1">
+<figcaption aria-hidden="true">image-1</figcaption>
+</figure>
+<h3 id="abnormal-video-detection-method">Abnormal Video detection
+method</h3>
+<h3 id="cyclic-3d-gan">Cyclic 3D GAN</h3>
+<p>&#x7528;SHADE&#x8BAD;&#x7EC3;&#x7684;&#x6A21;&#x578B;&#x76F4;&#x63A5;&#x5728;&#x771F;&#x5B9E;&#x4E16;&#x754C;&#x7684;&#x5E94;&#x7528;&#x6548;&#x679C;&#x53EF;&#x80FD;&#x4E0D;&#x592A;&#x7406;&#x60F3;&#xFF0C;C3DGAN&#x5219;&#x662F;&#x7528;&#x6765;&#x6D88;&#x9664;&#x5408;&#x6210;&#x6570;&#x636E;&#x4E0E;&#x771F;&#x5B9E;&#x6570;&#x636E;&#x4E4B;&#x95F4;&#x7684;&#x5DEE;&#x5F02;&#x3002;</p>
+<p>&#x5728;&#x5408;&#x6210;&#x6570;&#x636E;&#x96C6;&#x4E0A;&#x8BAD;&#x7EC3;&#x5F02;&#x5E38;&#x89C6;&#x9891;&#x68C0;&#x6D4B;&#x5668;&#xFF0C;C3DGAN&#x5C06;&#x5408;&#x6210;&#x89C6;&#x9891;&#x8F6C;&#x6362;&#x4E3A;&#x7167;&#x7247;&#x7EA7;&#x522B;&#x771F;&#x5B9E;&#x611F;&#x6570;&#x636E;&#xFF0C;&#x7528;&#x771F;&#x5B9E;&#x6570;&#x636E;&#x6D4B;&#x8BD5;&#x8BE5;&#x6A21;&#x578B;&#x3002;</p>
+<p>&#x8BAD;&#x7EC3;4&#x4E2A;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#xFF0C;&#x4E24;&#x4E2A;&#x751F;&#x6210;&#x7F51;&#x7EDC;&#x4EE5;&#x53CA;&#x4E24;&#x4E2A;&#x5BF9;&#x6297;&#x7F51;&#x7EDC;&#xFF0C;<span class="math inline">\(G_{StoR}\)</span>&#x3001;<span class="math inline">\(G_{RtoS}\)</span>&#x5206;&#x522B;&#x7528;&#x4E8E;&#x751F;&#x6210;&#x4ECE;S&#x5230;R&#x548C;&#x4ECE;R&#x5230;S&#x7684;&#x89C6;&#x9891;&#xFF0C;<span class="math inline">\(D_S\)</span>&#x3001;<span class="math inline">\(D_R\)</span>&#x9274;&#x522B;&#x89C6;&#x9891;&#x662F;&#x5426;&#x5C5E;&#x4E8E;S&#x3001;R&#x3002;</p>
+<figure>
+<img src="./Learning%20to%20detect%20anomaly%20events%20in%20crowwd%20scenes%20from%20synthetic%20data/image-2.png" alt="image-2">
+<figcaption aria-hidden="true">image-2</figcaption>
+</figure>
+<p><span class="math inline">\(loss =
+min\max{L(G_{StoR,G_RtoS,D_R,D_S})}\)</span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -258,232 +351,6 @@ P_L),X_R=(I_R,P_R)\},\mathcal{Y}\in\{c_1,c_2,c_3\}
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/16/template/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="HsaoMing">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Autumn Adventure Tent">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Autumn Adventure Tent">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/03/16/template/" class="post-title-link" itemprop="url">template</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2023-03-16 18:06:26 / Modified: 19:59:12" itemprop="dateCreated datePublished" datetime="2023-03-16T18:06:26+08:00">2023-03-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="&#x5E0C;&#x814A;&#x5B57;&#x6BCD;">&#x5E0C;&#x814A;&#x5B57;&#x6BCD;</h3>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: center;">&#x5C0F;&#x5199;</th>
-<th style="text-align: center;">&#x5927;&#x5199;</th>
-<th style="text-align: center;">latex</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(\alpha\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Alpha\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(\beta\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Beta\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(\gamma\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Gamma\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(\delta\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Delta\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(\epsilon\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Epsilon\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(\zeta\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Zeta\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(\nu\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Nu\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(\xi\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Xi\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(\omicron\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Omicron\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(\pi\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Pi\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(\rho\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Rho\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(\sigma\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Sigma\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(\eta\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Eta\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(\theta\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Theta\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(\iota\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Iota\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(\kappa\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Kappa\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(\lambda\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Lambda\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(\mu\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Mu\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(\tau\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Tau\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(\upsilon\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Upsilon\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(\phi\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Phi\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(\chi\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Chi\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(\psi\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Psi\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(\omega\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\Omega\)</span></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<h3 id="&#x6570;&#x5B66;&#x516C;&#x5F0F;">&#x6570;&#x5B66;&#x516C;&#x5F0F;</h3>
-<table>
-<colgroup>
-<col style="width: 20%">
-<col style="width: 22%">
-<col style="width: 29%">
-<col style="width: 27%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;"><span class="math inline">\(\overline{a}\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\underline{a}\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\overrightarrow{a}\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(\overleftarrow{a}\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(\sqrt{a}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\widehat{a}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\overbrace{a}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\underbrace{a}\)</span></td>
-</tr>
-</tbody>
-</table>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/15/reading/Social%20Interpretable%20Tree%20for%20Pedestrian%20Trajectory%20Prediction/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -571,105 +438,6 @@ Softmax(\phi(F_S)\psi(F_{tree})^T)\)</span></li>
 <h3 id="experimental-analysis">Experimental Analysis</h3>
 <p>&#x7528;ADE&#xFF08;Average Displacement Error&#xFF09;&#x4E0E;FDE&#xFF08;Final Displacement
 Error&#xFF09;&#x6765;&#x8BC4;&#x4F30;&#x8F68;&#x8FF9;&#x9884;&#x6D4B;&#x7684;&#x6027;&#x80FD;&#x3002;</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/14/reading/Learning%20to%20detect%20anomaly%20events%20in%20crowwd%20scenes%20from%20synthetic%20data/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="HsaoMing">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Autumn Adventure Tent">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Autumn Adventure Tent">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/03/14/reading/Learning%20to%20detect%20anomaly%20events%20in%20crowwd%20scenes%20from%20synthetic%20data/" class="post-title-link" itemprop="url">Learning to detect anomaly events in crowwd scenes from synthetic data</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-03-14 19:09:36" itemprop="dateCreated datePublished" datetime="2023-03-14T19:09:36+08:00">2023-03-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-03-21 19:01:31" itemprop="dateModified" datetime="2023-03-21T19:01:31+08:00">2023-03-21</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="introduction">Introduction</h3>
-<p>&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x5F3A;&#x5927;&#x7684;&#x5B66;&#x4E60;&#x80FD;&#x529B;&#x63D0;&#x5347;&#x4E86;&#x5F02;&#x5E38;&#x68C0;&#x6D4B;&#x7684;&#x80FD;&#x529B;&#xFF0C;&#x4F46;&#x5F02;&#x5E38;&#x4E8B;&#x4EF6;&#x5F88;&#x5C11;&#x51FA;&#x73B0;&#x5728;&#x73B0;&#x5B9E;&#x4E16;&#x754C;&#x4E2D;&#x3002;&#x672C;&#x6587;&#x5728;GTA5&#x4E2D;&#x4EBA;&#x5DE5;&#x8BBE;&#x8BA1;&#x5F02;&#x5E38;&#x4E8B;&#x4EF6;&#x5E76;&#x8BB0;&#x5F55;&#xFF0C;&#x91C7;&#x7528;C3DGAN&#x6D88;&#x9664;&#x4E24;&#x4E2A;&#x9886;&#x57DF;&#x4E4B;&#x95F4;&#x7684;&#x5DEE;&#x5F02;&#x3002;</p>
-<h3 id="related-work">Related work</h3>
-<p>&#x73B0;&#x6709;&#x7684;&#x5F02;&#x5E38;&#x884C;&#x4E3A;&#x68C0;&#x6D4B;&#x65B9;&#x6CD5;&#x5927;&#x4F53;&#x4E0A;&#x5206;&#x4E3A;&#x5C40;&#x90E8;&#x65B9;&#x6CD5;&#x548C;&#x5168;&#x5C40;&#x65B9;&#x6CD5;&#xFF0C;&#x524D;&#x8005;&#x4ECE;&#x5E27;&#x68C0;&#x6D4B;&#x5F02;&#x5E38;&#x884C;&#x4E3A;&#xFF0C;&#x540E;&#x8005;&#x4ECE;&#x89C6;&#x9891;&#x4E2D;&#x68C0;&#x6D4B;&#x5F02;&#x5E38;&#x884C;&#x4E3A;&#x3002;&#x4F20;&#x7EDF;&#x7684;&#x5168;&#x5C40;&#x65B9;&#x6CD5;&#x53C8;&#x5206;&#x4E3A;&#x4E09;&#x7C7B;&#xFF1A;&#x57FA;&#x4E8E;&#x8F68;&#x8FF9;&#x70B9;&#x7684;&#x65B9;&#x6CD5;&#x3001;&#x57FA;&#x4E8E;&#x5149;&#x6D41;&#x7684;&#x6A21;&#x578B;&#x548C;&#x57FA;&#x4E8E;&#x5206;&#x7C7B;&#x7684;&#x6A21;&#x578B;&#x3002;</p>
-<h3 id="synthetic-abnormality-dataset">Synthetic Abnormality
-Dataset</h3>
-<p>SHADE&#x6570;&#x636E;&#x96C6;&#x662F;&#x5229;&#x7528;Script Hook
-V&#x4ECE;GTA5&#x4E2D;&#x8BB0;&#x5F55;&#x4EA7;&#x751F;&#x7684;&#xFF0C;&#x8BE5;&#x6570;&#x636E;&#x96C6;&#x56CA;&#x62EC;&#x4E86;9&#x79CD;&#x884C;&#x4E3A;&#x4E0E;7&#x4E2D;&#x5929;&#x6C14;&#x60C5;&#x51B5;&#x3002;</p>
-<figure>
-<img src="./Learning%20to%20detect%20anomaly%20events%20in%20crowwd%20scenes%20from%20synthetic%20data/image-1.png" alt="image-1">
-<figcaption aria-hidden="true">image-1</figcaption>
-</figure>
-<h3 id="abnormal-video-detection-method">Abnormal Video detection
-method</h3>
-<h3 id="cyclic-3d-gan">Cyclic 3D GAN</h3>
-<p>&#x7528;SHADE&#x8BAD;&#x7EC3;&#x7684;&#x6A21;&#x578B;&#x76F4;&#x63A5;&#x5728;&#x771F;&#x5B9E;&#x4E16;&#x754C;&#x7684;&#x5E94;&#x7528;&#x6548;&#x679C;&#x53EF;&#x80FD;&#x4E0D;&#x592A;&#x7406;&#x60F3;&#xFF0C;C3DGAN&#x5219;&#x662F;&#x7528;&#x6765;&#x6D88;&#x9664;&#x5408;&#x6210;&#x6570;&#x636E;&#x4E0E;&#x771F;&#x5B9E;&#x6570;&#x636E;&#x4E4B;&#x95F4;&#x7684;&#x5DEE;&#x5F02;&#x3002;</p>
-<p>&#x5728;&#x5408;&#x6210;&#x6570;&#x636E;&#x96C6;&#x4E0A;&#x8BAD;&#x7EC3;&#x5F02;&#x5E38;&#x89C6;&#x9891;&#x68C0;&#x6D4B;&#x5668;&#xFF0C;C3DGAN&#x5C06;&#x5408;&#x6210;&#x89C6;&#x9891;&#x8F6C;&#x6362;&#x4E3A;&#x7167;&#x7247;&#x7EA7;&#x522B;&#x771F;&#x5B9E;&#x611F;&#x6570;&#x636E;&#xFF0C;&#x7528;&#x771F;&#x5B9E;&#x6570;&#x636E;&#x6D4B;&#x8BD5;&#x8BE5;&#x6A21;&#x578B;&#x3002;</p>
-<p>&#x8BAD;&#x7EC3;4&#x4E2A;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#xFF0C;&#x4E24;&#x4E2A;&#x751F;&#x6210;&#x7F51;&#x7EDC;&#x4EE5;&#x53CA;&#x4E24;&#x4E2A;&#x5BF9;&#x6297;&#x7F51;&#x7EDC;&#xFF0C;<span class="math inline">\(G_{StoR}\)</span>&#x3001;<span class="math inline">\(G_{RtoS}\)</span>&#x5206;&#x522B;&#x7528;&#x4E8E;&#x751F;&#x6210;&#x4ECE;S&#x5230;R&#x548C;&#x4ECE;R&#x5230;S&#x7684;&#x89C6;&#x9891;&#xFF0C;<span class="math inline">\(D_S\)</span>&#x3001;<span class="math inline">\(D_R\)</span>&#x9274;&#x522B;&#x89C6;&#x9891;&#x662F;&#x5426;&#x5C5E;&#x4E8E;S&#x3001;R&#x3002;</p>
-<figure>
-<img src="./Learning%20to%20detect%20anomaly%20events%20in%20crowwd%20scenes%20from%20synthetic%20data/image-2.png" alt="image-2">
-<figcaption aria-hidden="true">image-2</figcaption>
-</figure>
-<p><span class="math inline">\(loss =
-min\max{L(G_{StoR,G_RtoS,D_R,D_S})}\)</span></p>
 
       
     </div>
