@@ -17,7 +17,7 @@ tags: reading
 
 SHADE数据集是利用Script Hook V从GTA5中记录产生的，该数据集囊括了9种行为与7中天气情况。
 
-![image-1](./Learning to detect anomaly events in crowd scenes from synthetic data/image-1.png)
+![image-1](image-1.png)
 
 ### Abnormal Video detection method
 
