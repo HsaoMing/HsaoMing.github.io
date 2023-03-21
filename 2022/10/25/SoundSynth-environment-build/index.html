@@ -6,12 +6,12 @@
   
   <title>SoundSynth environment build | Autumn Adventure Tent</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="SoundSynthThe project is from https:&#x2F;&#x2F;github.com&#x2F;ztzhang&#x2F;SoundSynth, this article is used to record the construction of the environment.  Get “SoundSynth” by executing the following.  1git clone https">
+  <meta name="description" content="SoundSynthThe project is from https:&#x2F;&#x2F;github.com&#x2F;ztzhang&#x2F;SoundSynth, this article is used to record the construction of the environment.  Get &amp;#x201C;SoundSynth&amp;#x201D; by executing the following.  1g">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SoundSynth environment build">
 <meta property="og:url" content="http://example.com/2022/10/25/SoundSynth-environment-build/index.html">
 <meta property="og:site_name" content="Autumn Adventure Tent">
-<meta property="og:description" content="SoundSynthThe project is from https:&#x2F;&#x2F;github.com&#x2F;ztzhang&#x2F;SoundSynth, this article is used to record the construction of the environment.  Get “SoundSynth” by executing the following.  1git clone https">
+<meta property="og:description" content="SoundSynthThe project is from https:&#x2F;&#x2F;github.com&#x2F;ztzhang&#x2F;SoundSynth, this article is used to record the construction of the environment.  Get &amp;#x201C;SoundSynth&amp;#x201D; by executing the following.  1g">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-10-25T11:36:40.000Z">
 <meta property="article:modified_time" content="2023-03-10T11:03:57.642Z">
@@ -101,7 +101,7 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <h3 id="SoundSynth"><a href="#SoundSynth" class="headerlink" title="SoundSynth"></a>SoundSynth</h3><p>The project is from <a target="_blank" rel="noopener" href="https://github.com/ztzhang/SoundSynth">https://github.com/ztzhang/SoundSynth</a>, this article is used to record the construction of the environment. </p>
-<p>Get “SoundSynth” by executing the following. </p>
+<p>Get &#x201C;SoundSynth&#x201D; by executing the following. </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/ztzhang/SoundSynth.git</span><br></pre></td></tr></table></figure>
 
 <h3 id="Environments"><a href="#Environments" class="headerlink" title="Environments"></a>Environments</h3><p>Ubuntu18.04 in VMware.</p>
@@ -128,7 +128,7 @@
 <ul>
 <li><p>Could not find MKL</p>
 <p>I have tried several ways to install MKL, but none of them worked. It seems cmake can not find the MKL. Finally, this problem was solved by add the following to <strong>FindMKL.cmake</strong></p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">find_path</span>(MKL_INCLUDE_DIR mkl.h</span><br><span class="line">    PATHS ENV <span class="keyword">INCLUDE</span></span><br><span class="line">    PATHS <span class="variable">$&#123;SYSTEM_INC_PATH&#125;</span></span><br><span class="line">    PATHS $ENV&#123;MKLROOT&#125;/<span class="keyword">include</span>  </span><br><span class="line">    <span class="comment">#new</span></span><br><span class="line">    PATHS /opt/intel/oneapi/mkl/<span class="number">2022.2</span>.<span class="number">0</span>/<span class="keyword">include</span></span><br><span class="line">)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">find_library</span>(MKL_LIBRARY mkl_core</span><br><span class="line">    PATHS ENV LD_LIBRARY_PATH</span><br><span class="line">    PATHS <span class="variable">$&#123;SYSTEM_LIB_PATH&#125;</span></span><br><span class="line">    PATHS ENV LIBRARY_PATH</span><br><span class="line">    PATHS $ENV&#123;MKLROOT&#125;/lib</span><br><span class="line">    <span class="comment"># new</span></span><br><span class="line">    PATHS /opt/intel/oneapi/mkl/<span class="number">2022.2</span>.<span class="number">0</span>/lib/intel64</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">find_path</span>(MKL_INCLUDE_DIR mkl.h</span><br><span class="line">    PATHS ENV <span class="keyword">INCLUDE</span></span><br><span class="line">    PATHS <span class="variable">${SYSTEM_INC_PATH}</span></span><br><span class="line">    PATHS $ENV{MKLROOT}/<span class="keyword">include</span>  </span><br><span class="line">    <span class="comment">#new</span></span><br><span class="line">    PATHS /opt/intel/oneapi/mkl/<span class="number">2022.2</span>.<span class="number">0</span>/<span class="keyword">include</span></span><br><span class="line">)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">find_library</span>(MKL_LIBRARY mkl_core</span><br><span class="line">    PATHS ENV LD_LIBRARY_PATH</span><br><span class="line">    PATHS <span class="variable">${SYSTEM_LIB_PATH}</span></span><br><span class="line">    PATHS ENV LIBRARY_PATH</span><br><span class="line">    PATHS $ENV{MKLROOT}/lib</span><br><span class="line">    <span class="comment"># new</span></span><br><span class="line">    PATHS /opt/intel/oneapi/mkl/<span class="number">2022.2</span>.<span class="number">0</span>/lib/intel64</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Could NOT find Qt5Multimedia (missing: Qt5Multimedia_DIR)</p>
 <p>This problem is easy to solve, by contrast, just execute the following.</p>
@@ -139,20 +139,20 @@
 </ul>
 <h3 id="Building-file-generators"><a href="#Building-file-generators" class="headerlink" title="Building file generators"></a>Building file generators</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> file_generators</span><br><span class="line"><span class="built_in">chmod</span> +x compile_cpps.sh</span><br><span class="line">./compile_cpps.sh</span><br></pre></td></tr></table></figure>
 
-<h3 id="Installing-BEM-x2F-FMM-Solver"><a href="#Installing-BEM-x2F-FMM-Solver" class="headerlink" title="Installing BEM&#x2F;FMM Solver"></a>Installing BEM&#x2F;FMM Solver</h3><p>The project solve the Helmholtz equation related to sound propagation using a direct BEM method and an accelerated version using FMM.</p>
+<h3 id="Installing-BEM-x2F-FMM-Solver"><a href="#Installing-BEM-x2F-FMM-Solver" class="headerlink" title="Installing BEM/FMM Solver"></a>Installing BEM/FMM Solver</h3><p>The project solve the Helmholtz equation related to sound propagation using a direct BEM method and an accelerated version using FMM.</p>
 <h4 id="BEM-not-complete"><a href="#BEM-not-complete" class="headerlink" title="BEM(not complete)"></a>BEM(not complete)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> -b release_1.1 git://last.hit.bme.hu/toolbox/nihu.git</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> nihu</span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"></span><br><span class="line">MATLAB_PATH=/usr/local/MATLAB/R2022b</span><br><span class="line">cmake ../src -DNIHU_INSTALL_DIR=<span class="string">&quot;../bin&quot;</span> -DNIHU_MATLAB_PATH=<span class="variable">$MATLAB_PATH</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
 
-<p>After installing, specify its path in <strong>pre_compute&#x2F;run_precalc_bem.sh</strong>.</p>
+<p>After installing, specify its path in <strong>pre_compute/run_precalc_bem.sh</strong>.</p>
 <h4 id="FMM"><a href="#FMM" class="headerlink" title="FMM"></a>FMM</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/zgimbutas/fmmlib3d.git</span><br><span class="line">sudo apt-get install bison flex octave liboctave-dev mwrap</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> fmmlib3d</span><br><span class="line">make mex</span><br></pre></td></tr></table></figure>
 
-<p>Samely, specify its path in <strong>pre_compute&#x2F;run_precalc.sh</strong>.</p>
+<p>Samely, specify its path in <strong>pre_compute/run_precalc.sh</strong>.</p>
 <h3 id="Building-Bullet"><a href="#Building-Bullet" class="headerlink" title="Building Bullet"></a>Building Bullet</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> bullet3/build3</span><br><span class="line">./premake4_linux64 gmake</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> gamke</span><br><span class="line">make App_RigidBodyFromObjExampleGui</span><br></pre></td></tr></table></figure>
 
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/25/SoundSynth-environment-build/" data-id="clf2fmgem000618tjes2z2984" data-title="SoundSynth environment build" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/25/SoundSynth-environment-build/" data-id="clfhmammm0003rwtjbsco25i1" data-title="SoundSynth environment build" class="article-share-link">Share</a>
       
       
       
@@ -242,7 +242,7 @@
           </li>
         
           <li>
-            <a href="/2023/03/14/reading/Learning%20to%20detect%20anomaly%20events%20in%20crowwd%20scenes%20from%20synthetic%20data/">Learning to detect anomaly events in crowd scenes from synthetic data</a>
+            <a href="/2023/03/14/reading/Learning%20to%20detect%20anomaly%20events%20in%20crowwd%20scenes%20from%20synthetic%20data/">(no title)</a>
           </li>
         
           <li>
