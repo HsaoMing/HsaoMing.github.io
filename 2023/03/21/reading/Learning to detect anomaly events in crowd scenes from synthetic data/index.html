@@ -26,14 +26,14 @@
 <meta property="og:site_name" content="Autumn Adventure Tent">
 <meta property="og:description" content="Introduction 神经网络强大的学习能力提升了异常检测的能力，但异常事件很少出现在现实世界中。本文在GTA5中人工设计异常事件并记录，采用C3DGAN消除两个领域之间的差异。 Related work 现有的异常行为检测方法大体上分为局部方法和全局方法，前者从帧检测异常行为，后者从视频中检测异常行为。传统的全局方法又分为三类：基于轨迹点的方法、基于光流的模型和基于分类的模型。 Sy">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2023/03/21/reading/Learning%20to%20detect%20anomaly%20events%20in%20crowd%20scenes%20from%20synthetic%20data/image-1.png">
-<meta property="og:image" content="http://example.com/2023/03/21/reading/Learning%20to%20detect%20anomaly%20events%20in%20crowd%20scenes%20from%20synthetic%20data/image-2.png">
+<meta property="og:image" content="http://example.com/image-1.png">
+<meta property="og:image" content="http://example.com/image-2.png">
 <meta property="article:published_time" content="2023-03-21T11:22:08.000Z">
 <meta property="article:modified_time" content="2023-03-22T01:30:35.089Z">
 <meta property="article:author" content="HsaoMing">
 <meta property="article:tag" content="reading">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2023/03/21/reading/Learning%20to%20detect%20anomaly%20events%20in%20crowd%20scenes%20from%20synthetic%20data/image-1.png">
+<meta name="twitter:image" content="http://example.com/image-1.png">
 
 
 <link rel="canonical" href="http://example.com/2023/03/21/reading/Learning%20to%20detect%20anomaly%20events%20in%20crowd%20scenes%20from%20synthetic%20data/">
@@ -219,7 +219,7 @@ Dataset</h3>
 <p>SHADE数据集是利用Script Hook
 V从GTA5中记录产生的，该数据集囊括了9种行为与7中天气情况。</p>
 <figure>
-<img src="image-1.png" alt="image-1">
+<img src="/image-1.png" alt="image-1">
 <figcaption aria-hidden="true">image-1</figcaption>
 </figure>
 <h3 id="abnormal-video-detection-method">Abnormal Video detection
@@ -229,7 +229,7 @@ method</h3>
 <p>在合成数据集上训练异常视频检测器，C3DGAN将合成视频转换为照片级别真实感数据，用真实数据测试该模型。</p>
 <p>训练4个神经网络，两个生成网络以及两个对抗网络，<span class="math inline">\(G_{StoR}\)</span>、<span class="math inline">\(G_{RtoS}\)</span>分别用于生成从S到R和从R到S的视频，<span class="math inline">\(D_S\)</span>、<span class="math inline">\(D_R\)</span>鉴别视频是否属于S、R。</p>
 <figure>
-<img src="image-2.png" alt="image-2">
+<img src="/image-2.png" alt="image-2">
 <figcaption aria-hidden="true">image-2</figcaption>
 </figure>
 <p><span class="math inline">\(loss =
