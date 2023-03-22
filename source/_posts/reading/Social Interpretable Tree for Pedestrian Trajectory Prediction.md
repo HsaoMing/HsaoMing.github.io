@@ -14,7 +14,7 @@ tags:
 
 ### Our Method
 
-![image-20230315213257300](C:\Users\512\AppData\Roaming\Typora\typora-user-images\image-20230315213257300.png)
+![image-1](./Social Interpretable Tree for Pedestrian Trajectory Prediction/image-1.png)
 
 #### Problem Formulation
 
