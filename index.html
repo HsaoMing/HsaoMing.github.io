@@ -177,9 +177,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2023-03-21 19:22:08 / Modified: 22:05:50" itemprop="dateCreated datePublished" datetime="2023-03-21T19:22:08+08:00">2023-03-21</time>
+      <time title="Created: 2023-03-21 19:22:08" itemprop="dateCreated datePublished" datetime="2023-03-21T19:22:08+08:00">2023-03-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-03-22 09:25:15" itemprop="dateModified" datetime="2023-03-22T09:25:15+08:00">2023-03-22</time>
     </span>
 
   
@@ -192,15 +198,30 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>神经网络强大的学习能力提升了异常检测的能力，但异常事件很少出现在现实世界中。本文在GTA5中人工设计异常事件并记录，采用C3DGAN消除两个领域之间的差异。</p>
-<h3 id="Related-work"><a href="#Related-work" class="headerlink" title="Related work"></a>Related work</h3><p>现有的异常行为检测方法大体上分为局部方法和全局方法，前者从帧检测异常行为，后者从视频中检测异常行为。传统的全局方法又分为三类：基于轨迹点的方法、基于光流的模型和基于分类的模型。</p>
-<h3 id="Synthetic-Abnormality-Dataset"><a href="#Synthetic-Abnormality-Dataset" class="headerlink" title="Synthetic Abnormality Dataset"></a>Synthetic Abnormality Dataset</h3><p>SHADE数据集是利用Script Hook V从GTA5中记录产生的，该数据集囊括了9种行为与7中天气情况。</p>
-<p>![image-1](.&#x2F;Learning to detect anomaly events in crowd scenes from synthetic data&#x2F;image-1.png)</p>
-<h3 id="Abnormal-Video-detection-method"><a href="#Abnormal-Video-detection-method" class="headerlink" title="Abnormal Video detection method"></a>Abnormal Video detection method</h3><h3 id="Cyclic-3D-GAN"><a href="#Cyclic-3D-GAN" class="headerlink" title="Cyclic 3D GAN"></a>Cyclic 3D GAN</h3><p>用SHADE训练的模型直接在真实世界的应用效果可能不太理想，C3DGAN则是用来消除合成数据与真实数据之间的差异。</p>
+          <h3 id="introduction">Introduction</h3>
+<p>神经网络强大的学习能力提升了异常检测的能力，但异常事件很少出现在现实世界中。本文在GTA5中人工设计异常事件并记录，采用C3DGAN消除两个领域之间的差异。</p>
+<h3 id="related-work">Related work</h3>
+<p>现有的异常行为检测方法大体上分为局部方法和全局方法，前者从帧检测异常行为，后者从视频中检测异常行为。传统的全局方法又分为三类：基于轨迹点的方法、基于光流的模型和基于分类的模型。</p>
+<h3 id="synthetic-abnormality-dataset">Synthetic Abnormality
+Dataset</h3>
+<p>SHADE数据集是利用Script Hook
+V从GTA5中记录产生的，该数据集囊括了9种行为与7中天气情况。</p>
+<figure>
+<img src="/2023/03/21/reading/Learning%20to%20detect%20anomaly%20events%20in%20crowd%20scenes%20from%20synthetic%20data/image-1.png" alt="image-1">
+<figcaption aria-hidden="true">image-1</figcaption>
+</figure>
+<h3 id="abnormal-video-detection-method">Abnormal Video detection
+method</h3>
+<h3 id="cyclic-3d-gan">Cyclic 3D GAN</h3>
+<p>用SHADE训练的模型直接在真实世界的应用效果可能不太理想，C3DGAN则是用来消除合成数据与真实数据之间的差异。</p>
 <p>在合成数据集上训练异常视频检测器，C3DGAN将合成视频转换为照片级别真实感数据，用真实数据测试该模型。</p>
-<p>训练4个神经网络，两个生成网络以及两个对抗网络，$G_{StoR}$、$G_{RtoS}$分别用于生成从S到R和从R到S的视频，$D_S$、$D_R$鉴别视频是否属于S、R。</p>
-<p>![image-2](.&#x2F;Learning to detect anomaly events in crowd scenes from synthetic data&#x2F;image-2.png)</p>
-<p>$loss &#x3D; min\max{L(G_{StoR,G_RtoS,D_R,D_S})}$</p>
+<p>训练4个神经网络，两个生成网络以及两个对抗网络，<span class="math inline">\(G_{StoR}\)</span>、<span class="math inline">\(G_{RtoS}\)</span>分别用于生成从S到R和从R到S的视频，<span class="math inline">\(D_S\)</span>、<span class="math inline">\(D_R\)</span>鉴别视频是否属于S、R。</p>
+<figure>
+<img src="/2023/03/21/reading/Learning%20to%20detect%20anomaly%20events%20in%20crowd%20scenes%20from%20synthetic%20data/image-2.png" alt="image-2">
+<figcaption aria-hidden="true">image-2</figcaption>
+</figure>
+<p><span class="math inline">\(loss =
+min\max{L(G_{StoR,G_RtoS,D_R,D_S})}\)</span></p>
 
       
     </div>
@@ -276,27 +297,40 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>随着智能手机的普及，与手机相关的分心行为已经造成了许多交通死亡和事故。利用计算机视觉对行人分心行为的检测通常采用有监督学习的方式。本文在虚拟世界模拟出行人与手机相关的分心行为和正常行为，通过<strong>CNN</strong>的空间特征提取和基于<strong>LSTM</strong>的时间特征来实现时空特征学习。最后，使用姿势感知迁移学习将<strong>从合成数据中获得的知识转移到真实数据</strong>。</p>
-<h6 id="姿势感知学习策略"><a href="#姿势感知学习策略" class="headerlink" title="姿势感知学习策略"></a>姿势感知学习策略</h6><ul>
+          <h3 id="introduction">Introduction</h3>
+<p>随着智能手机的普及，与手机相关的分心行为已经造成了许多交通死亡和事故。利用计算机视觉对行人分心行为的检测通常采用有监督学习的方式。本文在虚拟世界模拟出行人与手机相关的分心行为和正常行为，通过<strong>CNN</strong>的空间特征提取和基于<strong>LSTM</strong>的时间特征来实现时空特征学习。最后，使用姿势感知迁移学习将<strong>从合成数据中获得的知识转移到真实数据</strong>。</p>
+<h6 id="姿势感知学习策略">姿势感知学习策略</h6>
+<ul>
 <li>微调</li>
 <li>2D人体姿势特征嵌入（2D人体姿态是合成数据和真实数据之间相对稳定的特征，使用2D人体姿态特征作为迁移学习的域不变特征。）</li>
 </ul>
-<h6 id="主要贡献"><a href="#主要贡献" class="headerlink" title="主要贡献"></a>主要贡献</h6><ul>
+<h6 id="主要贡献">主要贡献</h6>
+<ul>
 <li>提出了深度学习模型<strong>PPDBNet</strong></li>
 <li>提出了新的数据集<strong>SYN-PPDB</strong></li>
 <li>提升了识别的准确率</li>
 </ul>
-<h3 id="Synthetic-Dataset-SYN-PPDB"><a href="#Synthetic-Dataset-SYN-PPDB" class="headerlink" title="Synthetic Dataset: SYN-PPDB"></a>Synthetic Dataset: SYN-PPDB</h3><h6 id="该数据集由Unity生成，场景包含"><a href="#该数据集由Unity生成，场景包含" class="headerlink" title="该数据集由Unity生成，场景包含"></a>该数据集由Unity生成，场景包含</h6><ul>
+<h3 id="synthetic-dataset-syn-ppdb">Synthetic Dataset: SYN-PPDB</h3>
+<h6 id="该数据集由unity生成场景包含">该数据集由Unity生成，场景包含</h6>
+<ul>
 <li>10名身高、衣服、行走速度各不相同的演员，这些演员由5名男性和5名女性组成</li>
-<li>行驶速度为$1m&#x2F;s$的车辆，并且前挡板装有两个摄像头</li>
+<li>行驶速度为<span class="math inline">\(1m/s\)</span>的车辆，并且前挡板装有两个摄像头</li>
 </ul>
-<h6 id="该数据集共有448个视频"><a href="#该数据集共有448个视频" class="headerlink" title="该数据集共有448个视频"></a>该数据集共有448个视频</h6><ul>
-<li>每个视频长$2s$，每秒30帧</li>
+<h6 id="该数据集共有448个视频">该数据集共有448个视频</h6>
+<ul>
+<li>每个视频长<span class="math inline">\(2s\)</span>，每秒30帧</li>
 <li>像素为64$×$128</li>
-<li>相应的电话行为相关的标签${c_1, c_2, c_3}$</li>
+<li>相应的电话行为相关的标签<span class="math inline">\(\{c_1, c_2,
+c_3\}\)</span></li>
 </ul>
-<h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><p>$$<br>\mathcal{X} &#x3D; {X_L&#x3D;(I_L, P_L),X_R&#x3D;(I_R,P_R)},\mathcal{Y}\in{c_1,c_2,c_3}<br>$$</p>
-<p>- </p>
+<h3 id="method">Method</h3>
+<p><span class="math display">\[
+\mathcal{X} = \{X_L=(I_L,
+P_L),X_R=(I_R,P_R)\},\mathcal{Y}\in\{c_1,c_2,c_3\}
+\]</span></p>
+<ul>
+<li></li>
+</ul>
 
       
     </div>
@@ -366,32 +400,50 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>由于行人移动的随机性，本文提出了名为SIT的方法。以树的形式推断行人未来可能的轨迹，然而树的复杂程度随着深度呈指数增长，因此又引入了CTT。该方法将高阶速度是做后续的移动方向，并增加了路径分割的时间。</p>
-<h3 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h3><p>手工制作的方法过度依赖先验信息，模型将仅限于特定场景，缺乏泛化能力。深度学习的发展推动了行人轨迹预测的研究，此类方法需要重复采样每个可能的未来轨迹。</p>
-<h3 id="Our-Method"><a href="#Our-Method" class="headerlink" title="Our Method"></a>Our Method</h3><p><img src="/2023/03/15/reading/Social%20Interpretable%20Tree%20for%20Pedestrian%20Trajectory%20Prediction/Users\512\AppData\Roaming\Typora\typora-user-images\image-20230315213257300.png" alt="image-20230315213257300"></p>
-<h4 id="Problem-Formulation"><a href="#Problem-Formulation" class="headerlink" title="Problem Formulation"></a>Problem Formulation</h4><p>基于已观测的轨迹$X$以及相互作用影响$S$预测未来的轨迹$Y$，选择最接近$\hat{Y}$预测结果</p>
+          <h3 id="introduction">Introduction</h3>
+<p>由于行人移动的随机性，本文提出了名为SIT的方法。以树的形式推断行人未来可能的轨迹，然而树的复杂程度随着深度呈指数增长，因此又引入了CTT。该方法将高阶速度是做后续的移动方向，并增加了路径分割的时间。</p>
+<h3 id="related-work">Related Work</h3>
+<p>手工制作的方法过度依赖先验信息，模型将仅限于特定场景，缺乏泛化能力。深度学习的发展推动了行人轨迹预测的研究，此类方法需要重复采样每个可能的未来轨迹。</p>
+<h3 id="our-method">Our Method</h3>
+<figure>
+<img src="/2023/03/15/reading/Social%20Interpretable%20Tree%20for%20Pedestrian%20Trajectory%20Prediction/Users\512\AppData\Roaming\Typora\typora-user-images\image-20230315213257300.png" alt="image-20230315213257300">
+<figcaption aria-hidden="true">image-20230315213257300</figcaption>
+</figure>
+<h4 id="problem-formulation">Problem Formulation</h4>
+<p>基于已观测的轨迹<span class="math inline">\(X\)</span>以及相互作用影响<span class="math inline">\(S\)</span>预测未来的轨迹<span class="math inline">\(Y\)</span>，选择最接近<span class="math inline">\(\hat{Y}\)</span>预测结果</p>
 <ul>
-<li>$x^t_i$：时间步长$t$，行人$i$的坐标</li>
-<li>$\textbf{X} &#x3D; {X_i}^N_{i&#x3D;1},X_i&#x3D;{x^t_i}^{T_{obs}}_{t&#x3D;1}$：观察轨迹</li>
-<li>$\textbf{Y} &#x3D; {Y_j}^K_{j&#x3D;1}$：$K$个可接受的未来轨迹</li>
-<li>$\hat{Y} &#x3D; {y_i}^N_{i&#x3D;1},y_i &#x3D; {x^t_i}^{T_{pred}}<em>{t&#x3D;T</em>{obs}+1}$：真实轨迹（ground truth）</li>
-<li>$S &#x3D; {s_t}^{T_{obs}}_{t&#x3D;1}$：行人之间在每个时间步长$t$的相互作用影响</li>
-<li>$p(\hat{Y}|X,S)&#x3D;\sum_{Y\in\textbf{Y}}{p(Y|X,S)p(|\hat{Y}|Y,X,S)}$</li>
+<li><span class="math inline">\(x^t_i\)</span>：时间步长<span class="math inline">\(t\)</span>，行人<span class="math inline">\(i\)</span>的坐标</li>
+<li><span class="math inline">\(\textbf{X} =
+\{X_i\}^N_{i=1},X_i=\{x^t_i\}^{T_{obs}}_{t=1}\)</span>：观察轨迹</li>
+<li><span class="math inline">\(\textbf{Y} =
+\{Y_j\}^K_{j=1}\)</span>：<span class="math inline">\(K\)</span>个可接受的未来轨迹</li>
+<li><span class="math inline">\(\hat{Y} = \{y_i\}^N_{i=1},y_i =
+\{x^t_i\}^{T_{pred}}_{t=T_{obs}+1}\)</span>：真实轨迹（ground
+truth）</li>
+<li><span class="math inline">\(S =
+\{s_t\}^{T_{obs}}_{t=1}\)</span>：行人之间在每个时间步长<span class="math inline">\(t\)</span>的相互作用影响</li>
+<li><span class="math inline">\(p(\hat{Y}|X,S)=\sum_{Y\in\textbf{Y}}{p(Y|X,S)p(|\hat{Y}|Y,X,S)}\)</span></li>
 </ul>
-<h4 id="Trajectory-Prediction-with-Tree"><a href="#Trajectory-Prediction-with-Tree" class="headerlink" title="Trajectory Prediction with Tree"></a>Trajectory Prediction with Tree</h4><p><strong>Coarse Trajectory Tree</strong>是为了平衡树的复杂性与覆盖范围。</p>
-<p><strong>Trajectory Encoding</strong> 一个MLP将$X$编码成$F_x$，另一个MLP将$Y_{coarse}$编码成$F_{tree}&#x3D;{f_i}^M_{i&#x3D;1}$，采用GCN交互编码成$F_s$</p>
-<p>对$Y_{coarse}$中的数据进行评分并选择具有高置信度的对象优化</p>
+<h4 id="trajectory-prediction-with-tree">Trajectory Prediction with
+Tree</h4>
+<p><strong>Coarse Trajectory
+Tree</strong>是为了平衡树的复杂性与覆盖范围。</p>
+<p><strong>Trajectory Encoding</strong> 一个MLP将<span class="math inline">\(X\)</span>编码成<span class="math inline">\(F_x\)</span>，另一个MLP将<span class="math inline">\(Y_{coarse}\)</span>编码成<span class="math inline">\(F_{tree}=\{f_i\}^M_{i=1}\)</span>，采用GCN交互编码成<span class="math inline">\(F_s\)</span></p>
+<p>对<span class="math inline">\(Y_{coarse}\)</span>中的数据进行评分并选择具有高置信度的对象优化</p>
 <ul>
-<li>$p &#x3D; Softmax(\phi(F_S)\psi(F_{tree})^T)$</li>
-<li>$q$是最接近真实轨迹的标签</li>
-<li>$\mathcal{L}<em>{clf}&#x3D;\mathcal{L}</em>{CE}(p,q)$，$\mathcal{L}_{CE}$为交叉熵损失</li>
+<li><span class="math inline">\(p =
+Softmax(\phi(F_S)\psi(F_{tree})^T)\)</span></li>
+<li><span class="math inline">\(q\)</span>是最接近真实轨迹的标签</li>
+<li><span class="math inline">\(\mathcal{L}_{clf}=\mathcal{L}_{CE}(p,q)\)</span>，<span class="math inline">\(\mathcal{L}_{CE}\)</span>为交叉熵损失</li>
 </ul>
-<p>用MLP将$F_s$与$f*$融合得到$Y’$，依据$\mathcal{L}<em>{coarse}&#x3D;\mathcal{L}</em>{reg}(Y’,\hat{Y}_{coarse})$进行贪婪优化。</p>
-<p><strong>Trajectory Refining</strong>将$Y’$细化成 $Y_{fine}$，$\mathcal{L}<em>{ref}&#x3D;\mathcal{L}</em>{reg}(Y_{coarse},Y)$</p>
+<p>用MLP将<span class="math inline">\(F_s\)</span>与<span class="math inline">\(f*\)</span>融合得到<span class="math inline">\(Y&#39;\)</span>，依据<span class="math inline">\(\mathcal{L}_{coarse}=\mathcal{L}_{reg}(Y&#39;,\hat{Y}_{coarse})\)</span>进行贪婪优化。</p>
+<p><strong>Trajectory Refining</strong>将<span class="math inline">\(Y&#39;\)</span>细化成 <span class="math inline">\(Y_{fine}\)</span>，<span class="math inline">\(\mathcal{L}_{ref}=\mathcal{L}_{reg}(Y_{coarse},Y)\)</span></p>
 <ul>
-<li>$\mathcal{L}&#x3D;\lambda_1\mathcal{L}<em>{coarse}+\lambda_2\mathcal{L}</em>{clf}+\lambda_3\mathcal{L}_{ref}$</li>
+<li><span class="math inline">\(\mathcal{L}=\lambda_1\mathcal{L}_{coarse}+\lambda_2\mathcal{L}_{clf}+\lambda_3\mathcal{L}_{ref}\)</span></li>
 </ul>
-<h3 id="Experimental-Analysis"><a href="#Experimental-Analysis" class="headerlink" title="Experimental Analysis"></a>Experimental Analysis</h3><p>用ADE（Average Displacement Error）与FDE（Final Displacement Error）来评估轨迹预测的性能。</p>
+<h3 id="experimental-analysis">Experimental Analysis</h3>
+<p>用ADE（Average Displacement Error）与FDE（Final Displacement
+Error）来评估轨迹预测的性能。</p>
 
       
     </div>
@@ -476,9 +528,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="Oh-my-zsh"><a href="#Oh-my-zsh" class="headerlink" title="Oh-my-zsh"></a><a target="_blank" rel="noopener" href="https://ohmyz.sh/">Oh-my-zsh</a></h3><p>Before installing Oh-my-zsh, make sure zsh has been install. If not, tpye the following command.</p>
+          <h3 id="oh-my-zsh"><a target="_blank" rel="noopener" href="https://ohmyz.sh/">Oh-my-zsh</a></h3>
+<p>Before installing Oh-my-zsh, make sure zsh has been install. If not,
+tpye the following command.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># locate shell</span></span><br><span class="line"><span class="built_in">cat</span> /etc/shells</span><br><span class="line"></span><br><span class="line">sudo apt install zsh</span><br></pre></td></tr></table></figure>
-
 <p>Then, download and run install script.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh</span><br><span class="line"></span><br><span class="line"><span class="built_in">chmod</span> +x install.sh</span><br><span class="line">./install.sh</span><br></pre></td></tr></table></figure>
 
@@ -565,54 +618,68 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="SoundSynth"><a href="#SoundSynth" class="headerlink" title="SoundSynth"></a>SoundSynth</h3><p>The project is from <a target="_blank" rel="noopener" href="https://github.com/ztzhang/SoundSynth">https://github.com/ztzhang/SoundSynth</a>, this article is used to record the construction of the environment. </p>
-<p>Get “SoundSynth” by executing the following. </p>
+          <h3 id="soundsynth">SoundSynth</h3>
+<p>The project is from <a target="_blank" rel="noopener" href="https://github.com/ztzhang/SoundSynth">https://github.com/ztzhang/SoundSynth</a>,
+this article is used to record the construction of the environment.</p>
+<p>Get "SoundSynth" by executing the following.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/ztzhang/SoundSynth.git</span><br></pre></td></tr></table></figure>
-
-<h3 id="Environments"><a href="#Environments" class="headerlink" title="Environments"></a>Environments</h3><p>Ubuntu18.04 in VMware.</p>
-<h3 id="Building-Modal-Sound"><a href="#Building-Modal-Sound" class="headerlink" title="Building Modal Sound"></a>Building Modal Sound</h3><p>Most software can be installed by apt.</p>
+<h3 id="environments">Environments</h3>
+<p>Ubuntu18.04 in VMware.</p>
+<h3 id="building-modal-sound">Building Modal Sound</h3>
+<p>Most software can be installed by apt.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install gcc</span><br><span class="line">sudo apt install cmake</span><br></pre></td></tr></table></figure>
-
-<p>Except <a target="_blank" rel="noopener" href="https://gcc.gnu.org/">GCC</a> and <a target="_blank" rel="noopener" href="https://cmake.org/">CMake</a>, I need to install <a target="_blank" rel="noopener" href="http://eigen.tuxfamily.org/index.php?title=Main_Page">Eigen3</a>, <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qt5-intro.html">Qt5</a>, <a target="_blank" rel="noopener" href="https://github.com/protocolbuffers/protobuf">Protobuf</a>, <a target="_blank" rel="noopener" href="https://www.gnu.org/software/gsl/doc/html/index.html">GSL</a>, <a target="_blank" rel="noopener" href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html">MKL</a> and Matlab.</p>
-<h4 id="Eigen3"><a href="#Eigen3" class="headerlink" title="Eigen3"></a>Eigen3</h4><p>Eigen3 is a header only library, so there is no building involved. </p>
+<p>Except <a target="_blank" rel="noopener" href="https://gcc.gnu.org/">GCC</a> and <a target="_blank" rel="noopener" href="https://cmake.org/">CMake</a>, I need to install <a target="_blank" rel="noopener" href="http://eigen.tuxfamily.org/index.php?title=Main_Page">Eigen3</a>,
+<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/qt5-intro.html">Qt5</a>, <a target="_blank" rel="noopener" href="https://github.com/protocolbuffers/protobuf">Protobuf</a>, <a target="_blank" rel="noopener" href="https://www.gnu.org/software/gsl/doc/html/index.html">GSL</a>, <a target="_blank" rel="noopener" href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html">MKL</a>
+and Matlab.</p>
+<h4 id="eigen3">Eigen3</h4>
+<p>Eigen3 is a header only library, so there is no building
+involved.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz</span><br><span class="line">tar -xvf eigen-3.4.0.tar.gz</span><br></pre></td></tr></table></figure>
-
-<h4 id="Auto-install"><a href="#Auto-install" class="headerlink" title="Auto install"></a>Auto install</h4><p>Qt5, GSL, FFmpeg and Boost will be installed after type the following command.</p>
+<h4 id="auto-install">Auto install</h4>
+<p>Qt5, GSL, FFmpeg and Boost will be installed after type the following
+command.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Qt5</span></span><br><span class="line">sudo apt install qt5-default</span><br><span class="line"><span class="comment"># GSL</span></span><br><span class="line">sudo apt install libgsl0-dev</span><br><span class="line"><span class="comment"># Boost</span></span><br><span class="line">sudo apt install libboost-all-dev</span><br><span class="line"><span class="comment"># FFmpeg</span></span><br><span class="line">sudo apt install ffmpeg</span><br></pre></td></tr></table></figure>
-
-<h4 id="Protobuf"><a href="#Protobuf" class="headerlink" title="Protobuf"></a>Protobuf</h4><p>Install protobuf by source code.</p>
+<h4 id="protobuf">Protobuf</h4>
+<p>Install protobuf by source code.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/protocolbuffers/protobuf/releases/download/v21.9/protobuf-cpp-3.21.9.tar.gz</span><br><span class="line"></span><br><span class="line">tar -xzvf protobuf-cpp-3.21.9.tar.gz</span><br><span class="line"><span class="built_in">cd</span> protobuf</span><br><span class="line">./configure --prefix=/usr/local/protobuf</span><br><span class="line">sudo make &amp;&amp; make install</span><br><span class="line">sudo ldconfig</span><br></pre></td></tr></table></figure>
-
-<h4 id="MKL"><a href="#MKL" class="headerlink" title="MKL"></a>MKL</h4><p>Set up the repository.</p>
+<h4 id="mkl">MKL</h4>
+<p>Set up the repository.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># download the key to system keyring</span></span><br><span class="line">wget -O- https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB | gpg --dearmor | sudo <span class="built_in">tee</span> /usr/share/keyrings/oneapi-archive-keyring.gpg &gt; /dev/null</span><br><span class="line"></span><br><span class="line"><span class="comment"># add signed entry to apt sources and configure the APT client to use Intel repository:</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main&quot;</span> | sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/oneAPI.list</span><br></pre></td></tr></table></figure>
-
 <p>Update packages list and install MKL.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install intel-oneapi-mkl</span><br></pre></td></tr></table></figure>
-
-<h4 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h4><p>After installation, specify theirs path ,run <code>./modal_sound/run_cmake.sh</code>. Three problems have arisen.</p>
+<h4 id="troubleshooting">Troubleshooting</h4>
+<p>After installation, specify theirs path ,run
+<code>./modal_sound/run_cmake.sh</code>. Three problems have arisen.</p>
 <ul>
 <li><p>Could not find MKL</p>
-<p>I have tried several ways to install MKL, but none of them worked. It seems cmake can not find the MKL. Finally, this problem was solved by add the following to <strong>FindMKL.cmake</strong></p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">find_path</span>(MKL_INCLUDE_DIR mkl.h</span><br><span class="line">    PATHS ENV <span class="keyword">INCLUDE</span></span><br><span class="line">    PATHS <span class="variable">$&#123;SYSTEM_INC_PATH&#125;</span></span><br><span class="line">    PATHS $ENV&#123;MKLROOT&#125;/<span class="keyword">include</span>  </span><br><span class="line">    <span class="comment">#new</span></span><br><span class="line">    PATHS /opt/intel/oneapi/mkl/<span class="number">2022.2</span>.<span class="number">0</span>/<span class="keyword">include</span></span><br><span class="line">)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">find_library</span>(MKL_LIBRARY mkl_core</span><br><span class="line">    PATHS ENV LD_LIBRARY_PATH</span><br><span class="line">    PATHS <span class="variable">$&#123;SYSTEM_LIB_PATH&#125;</span></span><br><span class="line">    PATHS ENV LIBRARY_PATH</span><br><span class="line">    PATHS $ENV&#123;MKLROOT&#125;/lib</span><br><span class="line">    <span class="comment"># new</span></span><br><span class="line">    PATHS /opt/intel/oneapi/mkl/<span class="number">2022.2</span>.<span class="number">0</span>/lib/intel64</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-</li>
+<p>I have tried several ways to install MKL, but none of them worked. It
+seems cmake can not find the MKL. Finally, this problem was solved by
+add the following to <strong>FindMKL.cmake</strong></p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">find_path</span>(MKL_INCLUDE_DIR mkl.h</span><br><span class="line">    PATHS ENV <span class="keyword">INCLUDE</span></span><br><span class="line">    PATHS <span class="variable">$&#123;SYSTEM_INC_PATH&#125;</span></span><br><span class="line">    PATHS $ENV&#123;MKLROOT&#125;/<span class="keyword">include</span>  </span><br><span class="line">    <span class="comment">#new</span></span><br><span class="line">    PATHS /opt/intel/oneapi/mkl/<span class="number">2022.2</span>.<span class="number">0</span>/<span class="keyword">include</span></span><br><span class="line">)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">find_library</span>(MKL_LIBRARY mkl_core</span><br><span class="line">    PATHS ENV LD_LIBRARY_PATH</span><br><span class="line">    PATHS <span class="variable">$&#123;SYSTEM_LIB_PATH&#125;</span></span><br><span class="line">    PATHS ENV LIBRARY_PATH</span><br><span class="line">    PATHS $ENV&#123;MKLROOT&#125;/lib</span><br><span class="line">    <span class="comment"># new</span></span><br><span class="line">    PATHS /opt/intel/oneapi/mkl/<span class="number">2022.2</span>.<span class="number">0</span>/lib/intel64</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
 <li><p>Could NOT find Qt5Multimedia (missing: Qt5Multimedia_DIR)</p>
-<p>This problem is easy to solve, by contrast, just execute the following.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install qtmultimedia5-dev</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Unable to find the entry address of the thread function in the phread library.Add the following to the <strong>CMakeLists.txt</strong></p>
+<p>This problem is easy to solve, by contrast, just execute the
+following.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install qtmultimedia5-dev</span><br></pre></td></tr></table></figure></li>
+<li><p>Unable to find the entry address of the thread function in the
+phread library.Add the following to the
+<strong>CMakeLists.txt</strong></p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">link_libraries(pthread)</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="Building-file-generators"><a href="#Building-file-generators" class="headerlink" title="Building file generators"></a>Building file generators</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> file_generators</span><br><span class="line"><span class="built_in">chmod</span> +x compile_cpps.sh</span><br><span class="line">./compile_cpps.sh</span><br></pre></td></tr></table></figure>
-
-<h3 id="Installing-BEM-x2F-FMM-Solver"><a href="#Installing-BEM-x2F-FMM-Solver" class="headerlink" title="Installing BEM&#x2F;FMM Solver"></a>Installing BEM&#x2F;FMM Solver</h3><p>The project solve the Helmholtz equation related to sound propagation using a direct BEM method and an accelerated version using FMM.</p>
-<h4 id="BEM-not-complete"><a href="#BEM-not-complete" class="headerlink" title="BEM(not complete)"></a>BEM(not complete)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> -b release_1.1 git://last.hit.bme.hu/toolbox/nihu.git</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> nihu</span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"></span><br><span class="line">MATLAB_PATH=/usr/local/MATLAB/R2022b</span><br><span class="line">cmake ../src -DNIHU_INSTALL_DIR=<span class="string">&quot;../bin&quot;</span> -DNIHU_MATLAB_PATH=<span class="variable">$MATLAB_PATH</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-
-<p>After installing, specify its path in <strong>pre_compute&#x2F;run_precalc_bem.sh</strong>.</p>
-<h4 id="FMM"><a href="#FMM" class="headerlink" title="FMM"></a>FMM</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/zgimbutas/fmmlib3d.git</span><br><span class="line">sudo apt-get install bison flex octave liboctave-dev mwrap</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> fmmlib3d</span><br><span class="line">make mex</span><br></pre></td></tr></table></figure>
-
-<p>Samely, specify its path in <strong>pre_compute&#x2F;run_precalc.sh</strong>.</p>
-<h3 id="Building-Bullet"><a href="#Building-Bullet" class="headerlink" title="Building Bullet"></a>Building Bullet</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> bullet3/build3</span><br><span class="line">./premake4_linux64 gmake</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> gamke</span><br><span class="line">make App_RigidBodyFromObjExampleGui</span><br></pre></td></tr></table></figure>
-
+<h3 id="building-file-generators">Building file generators</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> file_generators</span><br><span class="line"><span class="built_in">chmod</span> +x compile_cpps.sh</span><br><span class="line">./compile_cpps.sh</span><br></pre></td></tr></table></figure>
+<h3 id="installing-bemfmm-solver">Installing BEM/FMM Solver</h3>
+<p>The project solve the Helmholtz equation related to sound propagation
+using a direct BEM method and an accelerated version using FMM.</p>
+<h4 id="bemnot-complete">BEM(not complete)</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> -b release_1.1 git://last.hit.bme.hu/toolbox/nihu.git</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> nihu</span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"></span><br><span class="line">MATLAB_PATH=/usr/local/MATLAB/R2022b</span><br><span class="line">cmake ../src -DNIHU_INSTALL_DIR=<span class="string">&quot;../bin&quot;</span> -DNIHU_MATLAB_PATH=<span class="variable">$MATLAB_PATH</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p>After installing, specify its path in
+<strong>pre_compute/run_precalc_bem.sh</strong>.</p>
+<h4 id="fmm">FMM</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/zgimbutas/fmmlib3d.git</span><br><span class="line">sudo apt-get install bison flex octave liboctave-dev mwrap</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> fmmlib3d</span><br><span class="line">make mex</span><br></pre></td></tr></table></figure>
+<p>Samely, specify its path in
+<strong>pre_compute/run_precalc.sh</strong>.</p>
+<h3 id="building-bullet">Building Bullet</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> bullet3/build3</span><br><span class="line">./premake4_linux64 gmake</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> gamke</span><br><span class="line">make App_RigidBodyFromObjExampleGui</span><br></pre></td></tr></table></figure>
 
       
     </div>
