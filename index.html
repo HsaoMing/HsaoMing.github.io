@@ -284,7 +284,7 @@ min\max{L(G_{StoR,G_RtoS,D_R,D_S})}\)</span></p>
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-03-21 10:37:26" itemprop="dateModified" datetime="2023-03-21T10:37:26+08:00">2023-03-21</time>
+      <time title="Modified: 2023-03-22 21:28:43" itemprop="dateModified" datetime="2023-03-22T21:28:43+08:00">2023-03-22</time>
     </span>
 
   
@@ -329,7 +329,26 @@ c_3\}\)</span></li>
 P_L),X_R=(I_R,P_R)\},\mathcal{Y}\in\{c_1,c_2,c_3\}
 \]</span></p>
 <ul>
-<li></li>
+<li><p><span class="math inline">\(\mathcal{X}\)</span>：来自左右两摄像机的图像序列<span class="math inline">\(X_L,X_R\)</span></p></li>
+<li><p><span class="math inline">\(X\)</span>：包含了外观部分<span class="math inline">\(I\)</span>和姿势部分<span class="math inline">\(P\)</span></p></li>
+<li><p><span class="math inline">\(\mathcal{Y}\)</span>：电话相关行为的标签序列</p></li>
+</ul>
+<h5 id="networkppdbnet">NetWork(PPDBNet)</h5>
+<p><span class="math display">\[
+f=Pooling(X)=\frac{\Sigma^k_{i=1}x_i}{k}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(X =
+[x_1,\cdots,x_T]\in\mathbb{R}\)</span>：时间池化层的输入</li>
+</ul>
+<p><img src="/2023/03/20/reading/Learning%20to%20Detect%20Phone-related%20Pedestrian%20Distracted%20Behaviors%20with%20Synthetic/image-1.png" alt="image-1"> <span class="math display">\[
+Loss(\mathcal{X}, y) = -\Sigma^{n}_{j=1}y_i\log{v_j}
+\]</span></p>
+<h4 id="transfer-learning-strategies">Transfer learning strategies</h4>
+<ul>
+<li>用OpenPose将2D人体姿态从图像中提取出来</li>
+<li>用合成的2D人体姿态数据训练网络</li>
+<li>用真实的数据对网络进行微调</li>
 </ul>
 
       

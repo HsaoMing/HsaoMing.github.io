@@ -26,10 +26,12 @@
 <meta property="og:site_name" content="Autumn Adventure Tent">
 <meta property="og:description" content="Introduction 随着智能手机的普及，与手机相关的分心行为已经造成了许多交通死亡和事故。利用计算机视觉对行人分心行为的检测通常采用有监督学习的方式。本文在虚拟世界模拟出行人与手机相关的分心行为和正常行为，通过CNN的空间特征提取和基于LSTM的时间特征来实现时空特征学习。最后，使用姿势感知迁移学习将从合成数据中获得的知识转移到真实数据。 姿势感知学习策略  微调 2D人体姿势特征">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/03/20/reading/Learning%20to%20Detect%20Phone-related%20Pedestrian%20Distracted%20Behaviors%20with%20Synthetic/image-1.png">
 <meta property="article:published_time" content="2023-03-20T07:10:41.000Z">
-<meta property="article:modified_time" content="2023-03-21T02:37:26.417Z">
+<meta property="article:modified_time" content="2023-03-22T13:28:43.272Z">
 <meta property="article:author" content="HsaoMing">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/03/20/reading/Learning%20to%20Detect%20Phone-related%20Pedestrian%20Distracted%20Behaviors%20with%20Synthetic/image-1.png">
 
 
 <link rel="canonical" href="http://example.com/2023/03/20/reading/Learning%20to%20Detect%20Phone-related%20Pedestrian%20Distracted%20Behaviors%20with%20Synthetic/">
@@ -104,7 +106,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%A7%BF%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AD%A6%E4%B9%A0%E7%AD%96%E7%95%A5"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">姿势感知学习策略</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E8%B4%A1%E7%8C%AE"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">主要贡献</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#synthetic-dataset-syn-ppdb"><span class="nav-number">2.</span> <span class="nav-text">Synthetic Dataset: SYN-PPDB</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%AF%A5%E6%95%B0%E6%8D%AE%E9%9B%86%E7%94%B1unity%E7%94%9F%E6%88%90%E5%9C%BA%E6%99%AF%E5%8C%85%E5%90%AB"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">该数据集由Unity生成，场景包含</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%AF%A5%E6%95%B0%E6%8D%AE%E9%9B%86%E5%85%B1%E6%9C%89448%E4%B8%AA%E8%A7%86%E9%A2%91"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">该数据集共有448个视频</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#method"><span class="nav-number">3.</span> <span class="nav-text">Method</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%A7%BF%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AD%A6%E4%B9%A0%E7%AD%96%E7%95%A5"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">姿势感知学习策略</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E8%B4%A1%E7%8C%AE"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">主要贡献</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#synthetic-dataset-syn-ppdb"><span class="nav-number">2.</span> <span class="nav-text">Synthetic Dataset: SYN-PPDB</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%AF%A5%E6%95%B0%E6%8D%AE%E9%9B%86%E7%94%B1unity%E7%94%9F%E6%88%90%E5%9C%BA%E6%99%AF%E5%8C%85%E5%90%AB"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">该数据集由Unity生成，场景包含</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%AF%A5%E6%95%B0%E6%8D%AE%E9%9B%86%E5%85%B1%E6%9C%89448%E4%B8%AA%E8%A7%86%E9%A2%91"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">该数据集共有448个视频</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#method"><span class="nav-number">3.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#networkppdbnet"><span class="nav-number">3.0.1.</span> <span class="nav-text">NetWork(PPDBNet)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#transfer-learning-strategies"><span class="nav-number">3.1.</span> <span class="nav-text">Transfer learning strategies</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -191,7 +193,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-03-21 10:37:26" itemprop="dateModified" datetime="2023-03-21T10:37:26+08:00">2023-03-21</time>
+      <time title="Modified: 2023-03-22 21:28:43" itemprop="dateModified" datetime="2023-03-22T21:28:43+08:00">2023-03-22</time>
     </span>
 
   
@@ -236,7 +238,26 @@ c_3\}\)</span></li>
 P_L),X_R=(I_R,P_R)\},\mathcal{Y}\in\{c_1,c_2,c_3\}
 \]</span></p>
 <ul>
-<li></li>
+<li><p><span class="math inline">\(\mathcal{X}\)</span>：来自左右两摄像机的图像序列<span class="math inline">\(X_L,X_R\)</span></p></li>
+<li><p><span class="math inline">\(X\)</span>：包含了外观部分<span class="math inline">\(I\)</span>和姿势部分<span class="math inline">\(P\)</span></p></li>
+<li><p><span class="math inline">\(\mathcal{Y}\)</span>：电话相关行为的标签序列</p></li>
+</ul>
+<h5 id="networkppdbnet">NetWork(PPDBNet)</h5>
+<p><span class="math display">\[
+f=Pooling(X)=\frac{\Sigma^k_{i=1}x_i}{k}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(X =
+[x_1,\cdots,x_T]\in\mathbb{R}\)</span>：时间池化层的输入</li>
+</ul>
+<p><img src="/2023/03/20/reading/Learning%20to%20Detect%20Phone-related%20Pedestrian%20Distracted%20Behaviors%20with%20Synthetic/image-1.png" alt="image-1"> <span class="math display">\[
+Loss(\mathcal{X}, y) = -\Sigma^{n}_{j=1}y_i\log{v_j}
+\]</span></p>
+<h4 id="transfer-learning-strategies">Transfer learning strategies</h4>
+<ul>
+<li>用OpenPose将2D人体姿态从图像中提取出来</li>
+<li>用合成的2D人体姿态数据训练网络</li>
+<li>用真实的数据对网络进行微调</li>
 </ul>
 
     </div>
