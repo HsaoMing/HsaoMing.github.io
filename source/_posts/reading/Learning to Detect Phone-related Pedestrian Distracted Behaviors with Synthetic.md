@@ -38,4 +38,26 @@ $$
 \mathcal{X} = \{X_L=(I_L, P_L),X_R=(I_R,P_R)\},\mathcal{Y}\in\{c_1,c_2,c_3\}
 $$
 
-- 
+- $\mathcal{X}$：来自左右两摄像机的图像序列$X_L,X_R$
+
+- $X$：包含了外观部分$I$和姿势部分$P$
+- $\mathcal{Y}$：电话相关行为的标签序列
+
+##### NetWork(PPDBNet)
+
+$$
+f=Pooling(X)=\frac{\Sigma^k_{i=1}x_i}{k}
+$$
+
+- $X = [x_1,\cdots,x_T]\in\mathbb{R}$：时间池化层的输入
+
+![image-1](./Learning to Detect Phone-related Pedestrian Distracted Behaviors with Synthetic/image-1.png)
+$$
+Loss(\mathcal{X}, y) = -\Sigma^{n}_{j=1}y_i\log{v_j}
+$$
+
+#### Transfer learning strategies
+
+- 用OpenPose将2D人体姿态从图像中提取出来
+- 用合成的2D人体姿态数据训练网络
+- 用真实的数据对网络进行微调
