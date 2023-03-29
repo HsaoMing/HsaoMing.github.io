@@ -13,9 +13,7 @@ tags:
 手工制作的方法过度依赖先验信息，模型将仅限于特定场景，缺乏泛化能力。深度学习的发展推动了行人轨迹预测的研究，此类方法需要重复采样每个可能的未来轨迹。
 
 ### Our Method
-
-![image-1](./Social Interpretable Tree for Pedestrian Trajectory Prediction/image-1.png)
-
+![Image-1](Social%20Interpretable%20Tree%20for%20Pedestrian%20Trajectory%20Prediction/image-1.png)
 #### Problem Formulation
 
 基于已观测的轨迹$X$以及相互作用影响$S$预测未来的轨迹$Y$，选择最接近$\hat{Y}$预测结果
