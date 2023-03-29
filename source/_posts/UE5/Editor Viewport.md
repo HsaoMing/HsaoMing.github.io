@@ -21,7 +21,7 @@ tags:
 - Static Meshes：对象的静态网格
 - Collision：对象的控制轮廓以有效的进行物理计算
 
-### ![View Modes](Editor%20Viewport/View%20Modes.png)
+### ![View Modes](Editor%20Viewport/View%20Modes.png)<left>
 - Lit：一切正常，照明影响环境
 - Ulit：界面明亮，没有阴影，照明不影响环境
 - Wireframe：以线框的形式展示物体的几何形状
