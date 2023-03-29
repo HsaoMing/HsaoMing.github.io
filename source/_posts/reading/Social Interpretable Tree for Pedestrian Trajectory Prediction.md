@@ -39,7 +39,7 @@ tags:
 
 用MLP将$F_s$与$f*$融合得到$Y'$，依据$\mathcal{L}_{coarse}=\mathcal{L}_{reg}(Y',\hat{Y}_{coarse})$进行贪婪优化。
 
-**Trajectory Refining**将$Y'$细化成 $Y_{fine}$，$\mathcal{L}_{ref}=\mathcal{L}_{reg}(Y_{coarse},Y)$
+**Trajectory Refining**将$Y'$ 细化成 $Y_{fine}，\mathcal{L}_{ref}=\mathcal{L}_{reg}(Y_{coarse},Y)$
 
 - $\mathcal{L}=\lambda_1\mathcal{L}_{coarse}+\lambda_2\mathcal{L}_{clf}+\lambda_3\mathcal{L}_{ref}$
 
