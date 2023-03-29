@@ -2,14 +2,14 @@
 title: Editor Viewport
 math: true
 date: 2023-03-23 19:33:42
-categories
+categories:
 - UE
 tags:
 ---
 ### shortcuts
 - CTRL+NUM：设置书签，事实上是记录相机位置
+- SHIFT+NUM：设置编辑模式
 - G：进入游戏视图
-- 
 
 ### viewport
 - 按住鼠标左键可将视角前后启动
