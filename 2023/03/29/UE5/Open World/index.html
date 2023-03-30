@@ -26,10 +26,13 @@
 <meta property="og:site_name" content="Autumn Adventure Tent">
 <meta property="og:description" content="一个大世界通常被分成多个小地图，当角色穿过某一小地图边界时，引擎将加载另一张地图，然而这些操作需要进行大量的管理工作。UE5引入了一个新的工作流程以更好的实现大世界，UE5的开放世界系统允许我们拥有一张大地图，引擎将大世界分为几个区域，只加载角色周围的区域。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/03/29/UE5/Open%20World/Sky.png">
+<meta property="og:image" content="http://example.com/2023/03/29/UE5/Open%20World/Layer%20Blend%20Details.png">
 <meta property="article:published_time" content="2023-03-29T01:46:53.000Z">
-<meta property="article:modified_time" content="2023-03-29T11:41:36.443Z">
+<meta property="article:modified_time" content="2023-03-30T03:10:03.827Z">
 <meta property="article:author" content="HsaoMing">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/03/29/UE5/Open%20World/Sky.png">
 
 
 <link rel="canonical" href="http://example.com/2023/03/29/UE5/Open%20World/">
@@ -111,7 +114,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#landscape"><span class="nav-number">1.</span> <span class="nav-text">Landscape</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#material"><span class="nav-number">1.</span> <span class="nav-text">Material</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#landscape"><span class="nav-number">2.</span> <span class="nav-text">Landscape</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -124,7 +127,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -190,9 +193,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2023-03-29 09:46:53 / Modified: 19:41:36" itemprop="dateCreated datePublished" datetime="2023-03-29T09:46:53+08:00">2023-03-29</time>
+      <time title="Created: 2023-03-29 09:46:53" itemprop="dateCreated datePublished" datetime="2023-03-29T09:46:53+08:00">2023-03-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-03-30 11:10:03" itemprop="dateModified" datetime="2023-03-30T11:10:03+08:00">2023-03-30</time>
     </span>
 
   
@@ -219,13 +228,20 @@ Movable：灯光可以随意更改 -
 Temperature：控制太阳的温度，在视觉效果上，温度越高越蓝、温度越低越红 -
 Sky Light：捕捉场景中的照明信息并用于场景 - Real Time
 Capture：能够控制Sky Light是否实时捕获 - Exponential Height
-Fog：根据离地面的高度模拟雾 - Volumetric
-Clouds：材料驱动的三维的动态云</p>
+Fog：根据离地面的高度模拟雾 - Volumetric Clouds：材料驱动的三维的动态云
+<img src="/2023/03/29/UE5/Open%20World/Sky.png" alt="Sky"></p>
+<h3 id="material">Material</h3>
+<p>Material通常由base color、normal、texture构成。Quixel
+Bridge提供了大量具有真实感的Material。
+如果想让Landscape拥有多种Material的混合 - 首先，在Material
+Editer中创建Landscape Layer Blend，查看Details Panel，Layer
+Name属性不能含有空格<img src="/2023/03/29/UE5/Open%20World/Layer%20Blend%20Details.png" alt="Layer Blend Details"> - 其次，将我们需要的base color拖入Material
+Editer - 同样的，我们需要制作混合的normal与texture</p>
 <h3 id="landscape">Landscape</h3>
 <p>Landscape是一个可塑造网格 - Number of
 Components：可以调节Landscape的大小 -
 Sculpt：按住鼠标左键并拖动可以对landscape雕。拥有多种雕刻模式 -
-Materials：</p>
+Paint：当Lanscape拥有混合的Material时，</p>
 
     </div>
 
@@ -244,6 +260,9 @@ Materials：</p>
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2023/03/30/UE5/Coordinates/" rel="next" title="page">
+                  page <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
