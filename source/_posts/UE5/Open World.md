@@ -20,9 +20,17 @@ tags:
   - Real Time Capture：能够控制Sky Light是否实时捕获
 - Exponential Height Fog：根据离地面的高度模拟雾
 - Volumetric Clouds：材料驱动的三维的动态云
+![Sky](Open%20World/Sky.png)
+
+### Material
+Material通常由base color、normal、texture构成。Quixel Bridge提供了大量具有真实感的Material。
+如果想让Landscape拥有多种Material的混合
+- 首先，在Material Editer中创建Landscape Layer Blend，查看Details Panel，Layer Name属性不能含有空格![Layer Blend Details](Open%20World/Layer%20Blend%20Details.png)
+- 其次，将我们需要的base color拖入Material Editer
+- 同样的，我们需要制作混合的normal与texture
 
 ### Landscape
 Landscape是一个可塑造网格
 - Number of Components：可以调节Landscape的大小
 - Sculpt：按住鼠标左键并拖动可以对landscape雕。拥有多种雕刻模式
-- Materials：
+- Paint：当Lanscape拥有混合的Material时，
