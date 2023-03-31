@@ -156,7 +156,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/30/UE5/C++%20for%20UE5/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/30/UE5/C++%20Debug%20in%20UE5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -174,7 +174,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/03/30/UE5/C++%20for%20UE5/" class="post-title-link" itemprop="url">C++ for UE5</a>
+          <a href="/2023/03/30/UE5/C++%20Debug%20in%20UE5/" class="post-title-link" itemprop="url">C++ Debug in UE5</a>
         </h2>
 
         <div class="post-meta-container">
@@ -192,7 +192,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-03-31 12:26:37" itemprop="dateModified" datetime="2023-03-31T12:26:37+08:00">2023-03-31</time>
+      <time title="Modified: 2023-03-31 20:10:52" itemprop="dateModified" datetime="2023-03-31T20:10:52+08:00">2023-03-31</time>
     </span>
 
   
@@ -207,9 +207,10 @@
     <div class="post-body" itemprop="articleBody">
           <h3 id="actor">Actor</h3>
 <p>Actor是可以任意放置的Object，在C++中，AActor是所有Actor的基类。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*When overwriting a virtual inherited function from actor, it&#x27;s a good idea to call </span></span><br><span class="line"><span class="comment">super just incase actor implements anything at the beginning of the game in the actor</span></span><br><span class="line"><span class="comment">begin play function*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Called when the game starts or when spawned</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">BeginPlay</span><span class="params">()</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Called every frame</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">Tick</span><span class="params">(<span class="type">float</span> DeltaTime)</span> <span class="keyword">override</span></span>;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/03/30/UE5/C++%20for%20UE5/#more" rel="contents">
+              <a class="btn" href="/2023/03/30/UE5/C++%20Debug%20in%20UE5/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -440,7 +441,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-03-29 20:43:50" itemprop="dateModified" datetime="2023-03-29T20:43:50+08:00">2023-03-29</time>
+      <time title="Modified: 2023-03-31 18:17:41" itemprop="dateModified" datetime="2023-03-31T18:17:41+08:00">2023-03-31</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
