@@ -33,4 +33,7 @@ Material通常由base color、normal、texture构成。Quixel Bridge提供了大
 Landscape是一个可塑造网格
 - Number of Components：可以调节Landscape的大小
 - Sculpt：按住鼠标左键并拖动可以对landscape雕。拥有多种雕刻模式
-- Paint：当Lanscape拥有混合的Material时，
+- Paint：当Lanscape拥有混合的Material时，可以使用不同的Material对Landscape作渲染
+
+### Foliage
+类似于Landscape上的Material Layers，从Quixel Bridge添加静态网格资产为Landscape添加细节。
