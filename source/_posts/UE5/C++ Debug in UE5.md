@@ -2,10 +2,13 @@
 title: C++ Debug in UE5
 math: true
 date: 2023-03-30 17:02:39
+categories:
+- UE
 tags:
 ---
-### Actor
-Actor是可以任意放置的Object，在C++中，AActor是所有Actor的基类。
+
+### Debug
+该文档在 *BeginPlay()* 中演示了如何调用 *UE_LOG* 将Debug信息输出到日志并编写了若干自定义宏来实现Actor部分信息的可视化。
 
 ```c++
 /*When overwriting a virtual inherited function from actor, it's a good idea to call 
@@ -19,8 +22,6 @@ virtual void BeginPlay() override;
 virtual void Tick(float DeltaTime) override;
 ```
 <!--more-->
-
-### Debug
 ```c++
 void MyActor::BeginPlay {
     Super::BeginPlay();
@@ -48,15 +49,15 @@ void MyActor::Tick(float DeltaTime) {
 ### Drawing Debug
 
 创建一个DebugShpere，引擎会在指定位置绘制线框,使用UE5的BluePrint功能我们可以轻易的实现上述功能
-<span class="inline-left">![DebugShpere](C++%20for%20UE5/DebugShpere.png)</span><span class="inline-left">![Alt text](C++%20for%20UE5/BP_DebugShpere.png)</span>
+<span class="inline-left">![DebugShpere](C++%20Debug%20in%20UE5/DebugShpere.png)</span><span class="inline-left">![BP_DebugShpere](C++%20Debug%20in%20UE5/BP_DebugShpere.png)</span>
 
 我们也可以通过下面的C++代码实现这个功能
 
 ```c++
-UWorld* pworld = GetWorld();
-FVector location = GetActorLocation();
-if (pworld) {
-    DrawDebugSphere(pworld, location, 25.f, 12, Fcolor::Red, true);
+UWorld* pWorld = GetWorld();
+FVector Location = GetActorLocation();
+if (pWorld) {
+    DrawDebugSphere(pWorld, Location, 25.f, 12, Fcolor::Red, true);
 }
 ```
 
@@ -65,27 +66,59 @@ if (pworld) {
 ```c++
 #define _DRAW_DEBUG_ENABLE_ false
 // Sphere
-#define DRAW_SPHERE(location) if(GetWorld()) DrawDebugSphere(GetWorld(), location, 25.f, 12, FColor::Red, _DRAW_DEBUG_ENABLE_)
+#define DRAW_SPHERE(Location) if(GetWorld()) DrawDebugSphere(GetWorld(), Location, 25.f, 12, FColor::Red, _DRAW_DEBUG_ENABLE_)
 // Line
-#define DRAW_LINE(startLocation, endLocation) if (GetWorld()) DrawDebugLine(GetWorld(), startLocation, endLocation, FColor::Red, _DRAW_DEBUG_ENABLE_)
+#define DRAW_LINE(StartLocation, EndLocation) if (GetWorld()) DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red, _DRAW_DEBUG_ENABLE_)
 // Point
 #define DRAW_POINT(location) if (GetWorld()) DrawDebugPoint(GetWorld(), location, 5.f, FColor::Red, _DRAW_DEBUG_ENABLE_)
 
 // call
-FVector location = GetActorLocation();
-FVector forward = GetActorForwardVector();
-DRAW_SHPERE(location);
-DRAW_LINE(location, location + forward * 50);
-DRAW_POINT(location + forward * 50);
+FVector Location = GetActorLocation();
+FVector Forward = GetActorForwardVector();
+DRAW_SHPERE(Location);
+DRAW_LINE(Location, Location + Forward * 50);
+DRAW_POINT(Location + Forward * 50);
 ```
 
-如果把Point当作Vector的结束点，那么通过DRAW_LINE和DRAW_POINT可以绘制出Vector，我们也可以直接定义一个宏DRAW_VECTOR(startLocation, endLocation)
+如果把Point当作Vector的结束点，那么通过DRAW_LINE和DRAW_POINT可以绘制出Vector，我们也可以直接定义一个宏DRAW_VECTOR(StartLocation, EndLocation)
 
 ```c++
 // Implementing multi-line macro definitions using a backslash
-#define DRAW_VECTOR(startLocation, endLocation) if (GetWorld()) { \
-	DrawDebugLine(GetWorld(), startLocation, endLocation, FColor::Red, _DRAW_DEBUG_ENABLE_); \
-	DrawDebugPoint(GetWorld(), endLocation, 5.f, FColor::Red, _DRAW_DEBUG_ENABLE_); \
+#define DRAW_VECTOR(StartLocation, EndLocation) if (GetWorld()) { \
+	DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red, _DRAW_DEBUG_ENABLE_); \
+	DrawDebugPoint(GetWorld(), EndLocation, 5.f, FColor::Red, _DRAW_DEBUG_ENABLE_); \
 }
 ```
 
+最后，我们可以将自定义的宏放入一个专用的头文件中，我们还可以不断增加或者修改这宏来满足不同的需求。
+```c++
+#pragma once
+
+#define DRAW_SPHERE(Location) if(GetWorld()) DrawDebugSphere(GetWorld(), location, 25.f, 12, FColor::Red, true)
+#define DRAW_SPHERE_SINGLEFRAME(Location) if(GetWorld()) DrawDebugSphere(GetWorld(), location, 25.f, 12, FColor::Red, false, -1.f)
+
+#define DRAW_LINE(StartLocation, EndLocation) if (GetWorld()) DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red, true)
+#define DRAW_LINE_SINGLEFRAME(StartLocation, EndLocation) if (GetWorld()) DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red, false, -1.f, 0, 0.f)
+
+#define DRAW_POINT(Location) if (GetWorld()) DrawDebugPoint(GetWorld(), location, 5.f, FColor::Red, true)
+#define DRAW_POINT_SINGLEFRAME(Location) if (GetWorld()) DrawDebugPoint(GetWorld(), location, 5.f, FColor::Red, false, -1.f, 0)
+
+#define DRAW_VECTOR(StartLocation, EndLocation) if (GetWorld()) { \
+	DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red, true); \
+	DrawDebugPoint(GetWorld(), EndLocation, 5.f, FColor::Red, true); \
+}
+#define DRAW_VECTOR_SINGLEFRAME(StartLocation, EndLocation) if (GetWorld()) { \
+	DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red, false, -1.f, 0, 0.f); \
+	DrawDebugPoint(GetWorld(), EndLocation, 5.f, FColor::Red, false, -1.f, 0); \
+}
+
+#define DRAW_CIRCLE_XY(Location, Radius) if (GetWorld()) { \
+	DrawDebugCircle(GetWorld(), Location, Radius, 48, FColor::Green, true, -1.f, 0, 0.f, FVector(1.f, 0.f, 0.f), FVector(0.f, 1.f, 0.f), false); \
+}
+#define DRAW_CIRCLE_XZ(Location, Radius) if (GetWorld()) { \
+	DrawDebugCircle(GetWorld(), Location, Radius, 48, FColor::Green, true, -1.f, 0, 0.f, FVector(1.f, 0.f, 0.f), FVector(0.f, 0.f, 1.f), false); \
+}
+#define DRAW_CIRCLE_YZ(Location, Radius) if (GetWorld()) { \
+	DrawDebugCircle(GetWorld(), Location, Radius, 48, FColor::Green, true, -1.f, 0, 0.f, FVector(0.f, 1.f, 0.f), FVector(0.f, 0.f, 1.f), false); \
+}
+```
