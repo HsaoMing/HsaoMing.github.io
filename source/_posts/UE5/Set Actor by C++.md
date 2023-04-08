@@ -20,7 +20,7 @@ SetActorRotation(FRotator(90.f, 0.f, 0.f));
 这两个方法时直接修改Actor的Location和Rotation，如果需要逐帧修改Actor的Location和Rotation以实现一个连续的运动，我们可以使用 *AddActorWorldOffset()* 和 *AddActorWorldRotation()* 来实现。
 <!--more-->
 ```c++
-void AItem::Tick(float DeltaTime) {
+void AMyActor::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
 	FVector Location = GetActorLocation();
 	FVector Forward = GetActorForwardVector();
@@ -72,7 +72,7 @@ AddActorWorldOffset(FVector(0.f, 0.f, DeltaZ));
 UFUNCTION(BlueprintPure)
 float TransformedSin();
 
-float MyActor::TransformedSin() {
+float AMyActor::TransformedSin() {
 	return Amplitude * FMath::Sin(RunningTime * TimeConstant);
 }
 ```
@@ -87,10 +87,18 @@ float MyActor::TransformedSin() {
 Static Mesh Component是最常见的Component，我们可以将Component附加到Root Component上，能够保持两个Component之间的相对移动。
 
 在BluePrint中添加Component十分容易，以下代码是用C++添加Static Mesh Component的示例。
+
 ```c++
+//Header
+class UStaticMeshComponent;
+
+UPROPERTY(VisibleAnywhere)
 UStaticMeshComponent* ItemMesh;
+// Cpp
+AMyActor::AMyActor() {
+	UStaticMeshComponent* ItemMesh;
+	ItemMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ItemMeshComponet"));
+	RootComponent = ItemMesh;
+}
 
-ItemMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ItemMeshComponet"));
-
-RootComponent = ItemMesh;
 ```
