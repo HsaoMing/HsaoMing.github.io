@@ -192,7 +192,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-04-08 20:15:06" itemprop="dateModified" datetime="2023-04-08T20:15:06+08:00">2023-04-08</time>
+      <time title="Modified: 2023-04-10 10:51:03" itemprop="dateModified" datetime="2023-04-10T10:51:03+08:00">2023-04-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -214,8 +214,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="pawn">Pawn</h3>
-<p>Pawn是可由玩家或AI控制的所有Actor的基类。Pawn不仅决定了玩家或AI实体的外观效果，还决定了它们如何与场景进行碰撞以及其他物理交互。</p>
+          <h3 id="Pawn"><a href="#Pawn" class="headerlink" title="Pawn"></a>Pawn</h3><p>Pawn是可由玩家或AI控制的所有Actor的基类。Pawn不仅决定了玩家或AI实体的外观效果，还决定了它们如何与场景进行碰撞以及其他物理交互。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/04/02/UE5/Pawn%20Creation/#more" rel="contents">
@@ -307,16 +306,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="actor">Actor</h3>
-<p>所有可以放入关卡的对象都是Actor，比如Camera, static mesh, player
-start
-location。Actor支持三维变换，例如平移、旋转和缩放。你可以通过游戏逻辑代码（C++或BluePrint）创建（生成）或销毁Actor。在C++中，AActor是所有Actor的基类。
-通过 <em>SetActorLocation()</em> 和 <em>SetActorRotation()</em>
-可以分别设置Actor的Location和Rotation（Actor不直接保存Tranform）。</p>
+          <h3 id="Actor"><a href="#Actor" class="headerlink" title="Actor"></a>Actor</h3><p>所有可以放入关卡的对象都是Actor，比如Camera, static mesh, player start location。Actor支持三维变换，例如平移、旋转和缩放。你可以通过游戏逻辑代码（C++或BluePrint）创建（生成）或销毁Actor。在C++中，AActor是所有Actor的基类。<br>通过 <em>SetActorLocation()</em> 和 <em>SetActorRotation()</em> 可以分别设置Actor的Location和Rotation（Actor不直接保存Tranform）。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// example</span></span><br><span class="line"><span class="built_in">SetActorLocation</span>(<span class="built_in">FVector</span>(<span class="number">0.f</span>, <span class="number">0.f</span>, <span class="number">25.f</span>));</span><br><span class="line"><span class="built_in">SetActorRotation</span>(<span class="built_in">FRotator</span>(<span class="number">90.f</span>, <span class="number">0.f</span>, <span class="number">0.f</span>));</span><br></pre></td></tr></table></figure>
-<p>这两个方法时直接修改Actor的Location和Rotation，如果需要逐帧修改Actor的Location和Rotation以实现一个连续的运动，我们可以使用
-<em>AddActorWorldOffset()</em> 和 <em>AddActorWorldRotation()</em>
-来实现。</p>
+<p>这两个方法时直接修改Actor的Location和Rotation，如果需要逐帧修改Actor的Location和Rotation以实现一个连续的运动，我们可以使用 <em>AddActorWorldOffset()</em> 和 <em>AddActorWorldRotation()</em> 来实现。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/03/31/UE5/Set%20Actor%20by%20C++/#more" rel="contents">
@@ -408,9 +400,7 @@ location。Actor支持三维变换，例如平移、旋转和缩放。你可以�
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="debug">Debug</h3>
-<p>该文档在 <em>BeginPlay()</em> 中演示了如何调用 <em>UE_LOG</em>
-将Debug信息输出到日志并编写了若干自定义宏来实现Actor部分信息的可视化。</p>
+          <h3 id="Debug"><a href="#Debug" class="headerlink" title="Debug"></a>Debug</h3><p>该文档在 <em>BeginPlay()</em> 中演示了如何调用 <em>UE_LOG</em> 将Debug信息输出到日志并编写了若干自定义宏来实现Actor部分信息的可视化。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*When overwriting a virtual inherited function from actor, it&#x27;s a good idea to call </span></span><br><span class="line"><span class="comment">super just incase actor implements anything at the beginning of the game in the actor</span></span><br><span class="line"><span class="comment">begin play function*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Called when the game starts or when spawned</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">BeginPlay</span><span class="params">()</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Called every frame</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">Tick</span><span class="params">(<span class="type">float</span> DeltaTime)</span> <span class="keyword">override</span></span>;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
@@ -503,13 +493,8 @@ location。Actor支持三维变换，例如平移、旋转和缩放。你可以�
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="coordinates">Coordinates</h3>
-<figure>
-<img src="/2023/03/30/UE5/Coordinates/Coordinates.png" alt="Coordinates">
-<figcaption aria-hidden="true">Coordinates</figcaption>
-</figure>
-<h3 id="vectors">Vectors</h3>
-
+          <h3 id="Coordinates"><a href="#Coordinates" class="headerlink" title="Coordinates"></a>Coordinates</h3><p><img src="/2023/03/30/UE5/Coordinates/Coordinates.png" alt="Coordinates"></p>
+<h3 id="Vectors"><a href="#Vectors" class="headerlink" title="Vectors"></a>Vectors</h3>
       
     </div>
 
@@ -685,8 +670,7 @@ location。Actor支持三维变换，例如平移、旋转和缩放。你可以�
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="shortcuts">shortcuts</h3>
-<ul>
+          <h3 id="shortcuts"><a href="#shortcuts" class="headerlink" title="shortcuts"></a>shortcuts</h3><ul>
 <li>CTRL+NUM：设置书签，事实上是记录相机位置</li>
 <li>SHIFT+NUM：设置编辑模式</li>
 <li>G：进入游戏视图</li></ul>
@@ -772,8 +756,7 @@ location。Actor支持三维变换，例如平移、旋转和缩放。你可以�
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="introduction">Introduction</h3>
-<p>神经网络强大的学习能力提升了异常检测的能力，但异常事件很少出现在现实世界中。本文在GTA5中人工设计异常事件并记录，采用C3DGAN消除两个领域之间的差异。</p>
+          <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>神经网络强大的学习能力提升了异常检测的能力，但异常事件很少出现在现实世界中。本文在GTA5中人工设计异常事件并记录，采用C3DGAN消除两个领域之间的差异。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/03/21/reading/Learning%20to%20detect%20anomaly%20events%20in%20crowd%20scenes%20from%20synthetic%20data/#more" rel="contents">
@@ -856,8 +839,7 @@ location。Actor支持三维变换，例如平移、旋转和缩放。你可以�
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="introduction">Introduction</h3>
-<p>随着智能手机的普及，与手机相关的分心行为已经造成了许多交通死亡和事故。利用计算机视觉对行人分心行为的检测通常采用有监督学习的方式。本文在虚拟世界模拟出行人与手机相关的分心行为和正常行为，通过<strong>CNN</strong>的空间特征提取和基于<strong>LSTM</strong>的时间特征来实现时空特征学习。最后，使用姿势感知迁移学习将<strong>从合成数据中获得的知识转移到真实数据</strong>。</p>
+          <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>随着智能手机的普及，与手机相关的分心行为已经造成了许多交通死亡和事故。利用计算机视觉对行人分心行为的检测通常采用有监督学习的方式。本文在虚拟世界模拟出行人与手机相关的分心行为和正常行为，通过<strong>CNN</strong>的空间特征提取和基于<strong>LSTM</strong>的时间特征来实现时空特征学习。最后，使用姿势感知迁移学习将<strong>从合成数据中获得的知识转移到真实数据</strong>。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/03/20/reading/Learning%20to%20Detect%20Phone-related%20Pedestrian%20Distracted%20Behaviors%20with%20Synthetic/#more" rel="contents">
@@ -940,8 +922,7 @@ location。Actor支持三维变换，例如平移、旋转和缩放。你可以�
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="introduction">Introduction</h3>
-<p>由于行人移动的随机性，本文提出了名为SIT的方法。以树的形式推断行人未来可能的轨迹，然而树的复杂程度随着深度呈指数增长，因此又引入了CTT。该方法将高阶速度是做后续的移动方向，并增加了路径分割的时间。</p>
+          <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>由于行人移动的随机性，本文提出了名为SIT的方法。以树的形式推断行人未来可能的轨迹，然而树的复杂程度随着深度呈指数增长，因此又引入了CTT。该方法将高阶速度是做后续的移动方向，并增加了路径分割的时间。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/03/15/reading/Social%20Interpretable%20Tree%20for%20Pedestrian%20Trajectory%20Prediction/#more" rel="contents">
@@ -1033,10 +1014,9 @@ location。Actor支持三维变换，例如平移、旋转和缩放。你可以�
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="oh-my-zsh"><a target="_blank" rel="noopener" href="https://ohmyz.sh/">Oh-my-zsh</a></h3>
-<p>Before installing Oh-my-zsh, make sure zsh has been install. If not,
-tpye the following command.</p>
+          <h3 id="Oh-my-zsh"><a href="#Oh-my-zsh" class="headerlink" title="Oh-my-zsh"></a><a target="_blank" rel="noopener" href="https://ohmyz.sh/">Oh-my-zsh</a></h3><p>Before installing Oh-my-zsh, make sure zsh has been install. If not, tpye the following command.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># locate shell</span></span><br><span class="line"><span class="built_in">cat</span> /etc/shells</span><br><span class="line"></span><br><span class="line">sudo apt install zsh</span><br></pre></td></tr></table></figure>
+
 <p>Then, download and run install script.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh</span><br><span class="line"></span><br><span class="line"><span class="built_in">chmod</span> +x install.sh</span><br><span class="line">./install.sh</span><br></pre></td></tr></table></figure>
 
