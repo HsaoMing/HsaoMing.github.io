@@ -10,6 +10,7 @@ tags:
 ### Pawn
 Pawn是可由玩家或AI控制的所有Actor的基类。Pawn不仅决定了玩家或AI实体的外观效果，还决定了它们如何与场景进行碰撞以及其他物理交互。
 <!--more-->
+
 ### Capsule Component
 游戏中的Mesh都是由多边形网格组成的，因为直接计算多边形网格之间的碰撞是一项十分昂贵的操作，所以通常会使用比较基本的形状来进行碰撞检测。
 
@@ -57,7 +58,9 @@ Input Mapping Contexts是输入动作的集合，表示玩家可以处于特定�
 ```c#
 PublicDependencyModuleNames.AddRange(new string[] { "EnhancedInput" });
 ```
-下面是通过C++实现Pawn水平移动的示例，注意：想要实现Controller对Pawn的控制，需要添加FloatingPawnMovement。
+下面是通过C++实现Pawn水平移动的示例，值得注意的是，想要实现Controller对Pawn的控制，需要添加FloatingPawnMovement，并且在BluePrint中添加C++公开的变量。
+
+![Input](Pawn%20Creation/Input.png)
 ```c++
 // Header
 #include "InputActionValue.h"
