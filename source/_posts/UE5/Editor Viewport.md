@@ -36,7 +36,7 @@ tags:
 ### Object Manipulation
 - <span class="inline-left">![Opitions](Editor%20Viewport/Opitions.png)</span>
   - 选中
-  - 移动、旋转、缩放：对应transform、Location、Rotation、Scale
+  - 移动、旋转、缩放：对应 transform、Location、Rotation、Scale
 
 - <span class="inline-left">![Snapping](Editor%20Viewport/Snapping.png)</span>可以将移动、旋转、缩放操作离散化（增量捕捉）
 - <span class="inline-left">![Surfaces](Editor%20Viewport/Surfaces.png)</span>拖入静态网格对象时，具有吸附的功能

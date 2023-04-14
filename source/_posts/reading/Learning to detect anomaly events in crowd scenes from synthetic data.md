@@ -2,7 +2,9 @@
 title: Learning to detect anomaly events in crowwd scenes from synthetic data
 math: true
 date: 2023-03-21 19:22:08
-tags: reading
+categories: 
+- reading
+tags:
 ---
 
 ### Introduction

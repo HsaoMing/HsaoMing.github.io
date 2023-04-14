@@ -9,15 +9,15 @@ tags:
 
 ### Actor
 
-所有可以放入关卡的对象都是Actor，比如Camera, static mesh, player start location。Actor支持三维变换，例如平移、旋转和缩放。你可以通过游戏逻辑代码（C++或BluePrint）创建（生成）或销毁Actor。在C++中，AActor是所有Actor的基类。
-通过 *SetActorLocation()* 和 *SetActorRotation()* 可以分别设置Actor的Location和Rotation（Actor不直接保存Tranform）。
+所有可以放入关卡的对象都是 Actor，比如 Camera, static mesh, player start location。Actor 支持三维变换，例如平移、旋转和缩放。你可以通过游戏逻辑代码（C++ 或 BluePrint）创建（生成）或销毁 Actor。在 C++ 中，AActor 是所有 Actor 的基类。
+通过 *SetActorLocation()* 和 *SetActorRotation()* 可以分别设置 Actor的 Location 和 Rotation（Actor 不直接保存 Tranform）。
 
 ```c++
 // example
 SetActorLocation(FVector(0.f, 0.f, 25.f));
 SetActorRotation(FRotator(90.f, 0.f, 0.f));
 ```
-这两个方法时直接修改Actor的Location和Rotation，如果需要逐帧修改Actor的Location和Rotation以实现一个连续的运动，我们可以使用 *AddActorWorldOffset()* 和 *AddActorWorldRotation()* 来实现。
+这两个方法时直接修改 Actor 的 Location 和 Rotation，如果需要逐帧修改 Actor 的 Location 和 Rotation 以实现一个连续的运动，我们可以使用 *AddActorWorldOffset()* 和 *AddActorWorldRotation()* 来实现。
 <!--more-->
 ```c++
 void AMyActor::Tick(float DeltaTime) {
@@ -45,7 +45,7 @@ AddActorWorldRotation(FRotator(MovementRate * DeltaTime, 0.f, 0.f));
 ```
 
 ### Reflection System
-*UPROPERTY()* 能够将变量暴露给BluePrint以便调整，下面以正弦函数实现对象的周期运动为例，简单展示了如何将蓝图与C++结合。
+*UPROPERTY()* 能够将变量暴露给 BluePrint 以便调整，下面以正弦函数实现对象的周期运动为例，简单展示了如何将蓝图与 C++ 结合。
 
 ```c++
 // Header file
@@ -66,7 +66,7 @@ float DeltaZ = Amplitude * FMath::Sin(RunningTime * TimeConstant);
 AddActorWorldOffset(FVector(0.f, 0.f, DeltaZ));
 ```
 
-同样的，我们也可以将C++中的函数公开给BluePrint。不同的是，在BluePrint中，仅返回一个值的函数被称为BluePrint Pure Function（显示为绿色）。
+同样的，我们也可以将 C++ 中的函数公开给 BluePrint。不同的是，在 BluePrint 中，仅返回一个值的函数被称为BluePrint Pure Function（显示为绿色）。
 
 ```c++
 UFUNCTION(BlueprintPure)
@@ -78,15 +78,15 @@ float AMyActor::TransformedSin() {
 ```
 
 ### Components
-每个Actor都至少有一个Component，在BluePrint中会有DefaultSceneRoot组件。
+每个 Actor 都至少有一个 Component，在 BluePrint 中会有 DefaultSceneRoot组件。
 
 ![BP_Componets](Set%20Actor%20by%20C++/BP_Componets.png)
 
-在C++中，它被称为Root Component，类型为USceneComponent，前面使用的*GetActorLocation()* 实际上就是返回Root Component的位置。
+在 C++ 中，它被称为 Root Component，类型为 USceneComponent，前面使用的*GetActorLocation()* 实际上就是返回 Root Component 的位置。
 
-Static Mesh Component是最常见的Component，我们可以将Component附加到Root Component上，能够保持两个Component之间的相对移动。
+Static Mesh Component 是最常见的 Component，我们可以将 Component 附加到 Root Component上，能够保持两个 Component 之间的相对移动。
 
-在BluePrint中添加Component十分容易，以下代码是用C++添加Static Mesh Component的示例。
+在 BluePrint 中添加 Component 十分容易，以下代码是用C++添加 Static Mesh Component 的示例。
 
 ```c++
 //Header

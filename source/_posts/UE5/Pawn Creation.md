@@ -8,14 +8,14 @@ tags:
 ---
 
 ### Pawn
-Pawn是可由玩家或AI控制的所有Actor的基类。Pawn不仅决定了玩家或AI实体的外观效果，还决定了它们如何与场景进行碰撞以及其他物理交互。
+Pawn 是可由玩家或 AI 控制的所有 Actor 的基类。Pawn 不仅决定了玩家或 AI 实体的外观效果，还决定了它们如何与场景进行碰撞以及其他物理交互。
 <!--more-->
 
 ### Capsule Component
-游戏中的Mesh都是由多边形网格组成的，因为直接计算多边形网格之间的碰撞是一项十分昂贵的操作，所以通常会使用比较基本的形状来进行碰撞检测。
+游戏中的 Mesh 都是由多边形网格组成的，因为直接计算多边形网格之间的碰撞是一项十分昂贵的操作，所以通常会使用比较基本的形状来进行碰撞检测。
 
 ### Skeletal Mesh Component
-与Static Mesh Component不同，Skeletal Mesh Component是一种可以存在动画的Mesh，下面是用C++在BluePrint中创建Skeletal Mesh Component并将其附加到Root Component的示例。
+与 Static Mesh Component 不同，Skeletal Mesh Component 是一种可以存在动画的 Mesh，下面是用 C++ 在 BluePrint 中创建 Skeletal Mesh Component 并将其附加到 Root Component的示例。
 
 ```c++
 // Header
@@ -33,32 +33,32 @@ APawn::Apawn() {
 ```
 
 ### Controlling Pawns
-Controller是一种可以控制Pawn（或Pawn的派生类，例如Character），从而控制其动作的非实体Actor。人类玩家使用PlayerController控制Pawn，而AIController则对它们控制的Pawn实加人工智能效果。控制器用Possess函数控制Pawn，用Unpossess函数放弃控制Pawn。
+Controller 是一种可以控制 Pawn（或 Pawn 的派生类，例如 Character），从而控制其动作的非实体 Actor。人类玩家使用 PlayerController 控制 Pawn，而 AIController 则对它们控制的 Pawn 实加人工智能效果。控制器用 Possess 函数控制 Pawn，用 Unpossess 函数放弃控制 Pawn。
 
 ```c++
 AutoPossessPlayer = EAutoReceiveInput::Player0;
 ```
 
-控制器会接收其控制的Pawn所发生诸多事件的通知。因此控制器可借机实现响应此事件的行为，拦截事件并接替Pawn的默认行为。可以让控制器在给定的Pawn之前运行，从而从而最大限度减少输入处理与Pawn移动之间的延迟。
+控制器会接收其控制的 Pawn 所发生诸多事件的通知。因此控制器可借机实现响应此事件的行为，拦截事件并接替 Pawn 的默认行为。可以让控制器在给定的 Pawn 之前运行，从而从而最大限度减少输入处理与 Pawn 移动之间的延迟。
 
 ### Movement Component
-通过添加Movement Component能够实现对Pawn的控制
+通过添加 Movement Component 能够实现对 Pawn 的控制
 
 ### Enhanced Input
-Enhanced Input能够满足更加复杂的是输入功能，在运行时重新映射控件。
+Enhanced Input 能够满足更加复杂的是输入功能，在运行时重新映射控件。
 #### Input Action
-Input Action是Enhanced Input System与项目代码之间的通信链接。
+Input Action 是 Enhanced Input System 与项目代码之间的通信链接。
 #### Input Mapping Contexts
-Input Mapping Contexts是输入动作的集合，表示玩家可以处于特定的上下文，描述了关于什么会触发给定输入动作的规则。
+Input Mapping Contexts 是输入动作的集合，表示玩家可以处于特定的上下文，描述了关于什么会触发给定输入动作的规则。
 
-以下是BluePrint实现控制器链接Input Action的例子
+以下是BluePrint实现控制器链接 Input Action 的例子
 ![BP_EnhancedInput](Pawn%20Creation/BP_EnhancedInput.png)
 
-如果想使用C++ EnhancedInput，需要添加EnhancedInput Module，在XX.Build.cs中修改
+如果想使用 C++ EnhancedInput，需要添加 EnhancedInput Module，在 XX.Build.cs 中修改
 ```c#
 PublicDependencyModuleNames.AddRange(new string[] { "EnhancedInput" });
 ```
-下面是通过C++实现Pawn水平移动的示例，值得注意的是，想要实现Controller对Pawn的控制，需要添加FloatingPawnMovement，并且在BluePrint中添加C++公开的变量。
+下面是通过 C++ 实现 Pawn 水平移动的示例，值得注意的是，想要实现 Controller 对 Pawn 的控制，需要添加 FloatingPawnMovement，并且在 BluePrint 中添加 C++ 公开的变量。
 
 ![Input](Pawn%20Creation/Input.png)
 ```c++
@@ -117,10 +117,10 @@ void AMyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) {
 	}
 }
 ```
-我们可以在console输入showdebug enhancedinput来查看相关信息。
+我们可以在 console 输入 showdebug enhancedinput 来查看相关信息。
 
 ### Camera Component
-当我们把AutoPossessPlayer绑定到Pawn上，虽然视野能够随者Pawn一起移动，但是视觉效果很差。这时，我们可以通过添加Camera Component来实现自定义相机的位置，Camera Component通常连接到Spring Arm上。
+当我们把 AutoPossessPlayer 绑定到 Pawn 上，虽然视野能够随者 Pawn 一起移动，但是视觉效果很差。这时，我们可以通过添加 Camera Component 来实现自定义相机的位置，Camera Component 通常连接到 Spring Arm 上。
 
 ![Camera Component](Pawn%20Creation/Camera%20Component.png)
 

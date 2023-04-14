@@ -1,7 +1,9 @@
 ---
 title: Social Interpretable Tree for Pedestrian Trajectory Prediction
 date: 2023-03-15 09:46:23
-tags:
+categories: 
+- reading
+tags: 
 ---
 
 ### Introduction
