@@ -19,16 +19,16 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Introduction由于行人移动的随机性，本文提出了名为SIT的方法。以树的形式推断行人未来可能的轨迹，然而树的复杂程度随着深度呈指数增长，因此又引入了CTT。该方法将高阶速度是做后续的移动方向，并增加了路径分割的时间。">
+    <meta name="description" content="Introduction 由于行人移动的随机性，本文提出了名为SIT的方法。以树的形式推断行人未来可能的轨迹，然而树的复杂程度随着深度呈指数增长，因此又引入了CTT。该方法将高阶速度是做后续的移动方向，并增加了路径分割的时间。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Social Interpretable Tree for Pedestrian Trajectory Prediction">
 <meta property="og:url" content="http://example.com/2023/03/15/reading/Social%20Interpretable%20Tree%20for%20Pedestrian%20Trajectory%20Prediction/index.html">
 <meta property="og:site_name" content="Autumn Adventure Tent">
-<meta property="og:description" content="Introduction由于行人移动的随机性，本文提出了名为SIT的方法。以树的形式推断行人未来可能的轨迹，然而树的复杂程度随着深度呈指数增长，因此又引入了CTT。该方法将高阶速度是做后续的移动方向，并增加了路径分割的时间。">
+<meta property="og:description" content="Introduction 由于行人移动的随机性，本文提出了名为SIT的方法。以树的形式推断行人未来可能的轨迹，然而树的复杂程度随着深度呈指数增长，因此又引入了CTT。该方法将高阶速度是做后续的移动方向，并增加了路径分割的时间。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2023/03/15/reading/Social%20Interpretable%20Tree%20for%20Pedestrian%20Trajectory%20Prediction/image-1.png">
 <meta property="article:published_time" content="2023-03-15T01:46:23.000Z">
-<meta property="article:modified_time" content="2023-03-29T14:01:07.228Z">
+<meta property="article:modified_time" content="2023-04-12T02:24:47.953Z">
 <meta property="article:author" content="HsaoMing">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2023/03/15/reading/Social%20Interpretable%20Tree%20for%20Pedestrian%20Trajectory%20Prediction/image-1.png">
@@ -113,7 +113,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Related-Work"><span class="nav-number">2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Our-Method"><span class="nav-number">3.</span> <span class="nav-text">Our Method</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem-Formulation"><span class="nav-number">3.1.</span> <span class="nav-text">Problem Formulation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Trajectory-Prediction-with-Tree"><span class="nav-number">3.2.</span> <span class="nav-text">Trajectory Prediction with Tree</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Experimental-Analysis"><span class="nav-number">4.</span> <span class="nav-text">Experimental Analysis</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#our-method"><span class="nav-number">2.</span> <span class="nav-text">Our Method</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#trajectory-prediction-with-tree"><span class="nav-number">2.1.</span> <span class="nav-text">Trajectory Prediction with
+Tree</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#experimental-analysis"><span class="nav-number">3.</span> <span class="nav-text">Experimental Analysis</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -126,18 +127,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -200,7 +201,16 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-03-29 22:01:07" itemprop="dateModified" datetime="2023-03-29T22:01:07+08:00">2023-03-29</time>
+      <time title="Modified: 2023-04-12 10:24:47" itemprop="dateModified" datetime="2023-04-12T10:24:47+08:00">2023-04-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/reading/" itemprop="url" rel="index"><span itemprop="name">reading</span></a>
+        </span>
     </span>
 
   
@@ -213,33 +223,46 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>由于行人移动的随机性，本文提出了名为SIT的方法。以树的形式推断行人未来可能的轨迹，然而树的复杂程度随着深度呈指数增长，因此又引入了CTT。该方法将高阶速度是做后续的移动方向，并增加了路径分割的时间。</p>
-<span id="more"></span>
-<h3 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h3><p>手工制作的方法过度依赖先验信息，模型将仅限于特定场景，缺乏泛化能力。深度学习的发展推动了行人轨迹预测的研究，此类方法需要重复采样每个可能的未来轨迹。</p>
-<h3 id="Our-Method"><a href="#Our-Method" class="headerlink" title="Our Method"></a>Our Method</h3><p><img src="/2023/03/15/reading/Social%20Interpretable%20Tree%20for%20Pedestrian%20Trajectory%20Prediction/image-1.png" alt="Image-1"></p>
-<h4 id="Problem-Formulation"><a href="#Problem-Formulation" class="headerlink" title="Problem Formulation"></a>Problem Formulation</h4><p>基于已观测的轨迹$X$以及相互作用影响$S$预测未来的轨迹$Y$，选择最接近$\hat{Y}$预测结果</p>
+        <h3 id="introduction">Introduction</h3>
+<p>由于行人移动的随机性，本文提出了名为SIT的方法。以树的形式推断行人未来可能的轨迹，然而树的复杂程度随着深度呈指数增长，因此又引入了CTT。该方法将高阶速度是做后续的移动方向，并增加了路径分割的时间。
+<span id="more"></span> ### Related Work</p>
+<p>手工制作的方法过度依赖先验信息，模型将仅限于特定场景，缺乏泛化能力。深度学习的发展推动了行人轨迹预测的研究，此类方法需要重复采样每个可能的未来轨迹。</p>
+<h3 id="our-method">Our Method</h3>
+<p><img src="/2023/03/15/reading/Social%20Interpretable%20Tree%20for%20Pedestrian%20Trajectory%20Prediction/image-1.png" alt="Image-1"> #### Problem Formulation</p>
+<p>基于已观测的轨迹<span class="math inline">\(X\)</span>以及相互作用影响<span class="math inline">\(S\)</span>预测未来的轨迹<span class="math inline">\(Y\)</span>，选择最接近<span class="math inline">\(\hat{Y}\)</span>预测结果</p>
 <ul>
-<li>$x^t_i$：时间步长$t$，行人$i$的坐标</li>
-<li>$\textbf{X} &#x3D; {X_i}^N_{i&#x3D;1},X_i&#x3D;{x^t_i}^{T_{obs}}_{t&#x3D;1}$：观察轨迹</li>
-<li>$\textbf{Y} &#x3D; {Y_j}^K_{j&#x3D;1}$：$K$个可接受的未来轨迹</li>
-<li>$\hat{Y} &#x3D; {y_i}^N_{i&#x3D;1},y_i &#x3D; {x^t_i}^{T_{pred}}<em>{t&#x3D;T</em>{obs}+1}$：真实轨迹（ground truth）</li>
-<li>$S &#x3D; {s_t}^{T_{obs}}_{t&#x3D;1}$：行人之间在每个时间步长$t$的相互作用影响</li>
-<li>$p(\hat{Y}|X,S)&#x3D;\sum_{Y\in\textbf{Y}}{p(Y|X,S)p(|\hat{Y}|Y,X,S)}$</li>
+<li><span class="math inline">\(x^t_i\)</span>：时间步长<span class="math inline">\(t\)</span>，行人<span class="math inline">\(i\)</span>的坐标</li>
+<li><span class="math inline">\(\textbf{X} =
+\{X_i\}^N_{i=1},X_i=\{x^t_i\}^{T_{obs}}_{t=1}\)</span>：观察轨迹</li>
+<li><span class="math inline">\(\textbf{Y} =
+\{Y_j\}^K_{j=1}\)</span>：<span class="math inline">\(K\)</span>个可接受的未来轨迹</li>
+<li><span class="math inline">\(\hat{Y} = \{y_i\}^N_{i=1},y_i =
+\{x^t_i\}^{T_{pred}}_{t=T_{obs}+1}\)</span>：真实轨迹（ground
+truth）</li>
+<li><span class="math inline">\(S =
+\{s_t\}^{T_{obs}}_{t=1}\)</span>：行人之间在每个时间步长<span class="math inline">\(t\)</span>的相互作用影响</li>
+<li><span class="math inline">\(p(\hat{Y}|X,S)=\sum_{Y\in\textbf{Y}}{p(Y|X,S)p(|\hat{Y}|Y,X,S)}\)</span></li>
 </ul>
-<h4 id="Trajectory-Prediction-with-Tree"><a href="#Trajectory-Prediction-with-Tree" class="headerlink" title="Trajectory Prediction with Tree"></a>Trajectory Prediction with Tree</h4><p><strong>Coarse Trajectory Tree</strong>是为了平衡树的复杂性与覆盖范围。</p>
-<p><strong>Trajectory Encoding</strong> 一个MLP将$X$编码成$F_x$，另一个MLP将$Y_{coarse}$编码成$F_{tree}&#x3D;{f_i}^M_{i&#x3D;1}$，采用GCN交互编码成$F_s$</p>
-<p>对$Y_{coarse}$中的数据进行评分并选择具有高置信度的对象优化</p>
+<h4 id="trajectory-prediction-with-tree">Trajectory Prediction with
+Tree</h4>
+<p><strong>Coarse Trajectory
+Tree</strong>是为了平衡树的复杂性与覆盖范围。</p>
+<p><strong>Trajectory Encoding</strong> 一个MLP将<span class="math inline">\(X\)</span>编码成<span class="math inline">\(F_x\)</span>，另一个MLP将<span class="math inline">\(Y_{coarse}\)</span>编码成<span class="math inline">\(F_{tree}=\{f_i\}^M_{i=1}\)</span>，采用GCN交互编码成<span class="math inline">\(F_s\)</span></p>
+<p>对<span class="math inline">\(Y_{coarse}\)</span>中的数据进行评分并选择具有高置信度的对象优化</p>
 <ul>
-<li>$p &#x3D; Softmax(\phi(F_S)\psi(F_{tree})^T)$</li>
-<li>$q$是最接近真实轨迹的标签</li>
-<li>$\mathcal{L}<em>{clf}&#x3D;\mathcal{L}</em>{CE}(p,q)$，$\mathcal{L}_{CE}$为交叉熵损失</li>
+<li><span class="math inline">\(p =
+Softmax(\phi(F_S)\psi(F_{tree})^T)\)</span></li>
+<li><span class="math inline">\(q\)</span>是最接近真实轨迹的标签</li>
+<li><span class="math inline">\(\mathcal{L}_{clf}=\mathcal{L}_{CE}(p,q)\)</span>，<span class="math inline">\(\mathcal{L}_{CE}\)</span>为交叉熵损失</li>
 </ul>
-<p>用MLP将$F_s$与$f*$融合得到$Y’$，依据$\mathcal{L}<em>{coarse}&#x3D;\mathcal{L}</em>{reg}(Y’,\hat{Y}_{coarse})$进行贪婪优化。</p>
-<p><strong>Trajectory Refining</strong>将$Y’$ 细化成 $Y_{fine}，\mathcal{L}<em>{ref}&#x3D;\mathcal{L}</em>{reg}(Y_{coarse},Y)$</p>
+<p>用MLP将<span class="math inline">\(F_s\)</span>与<span class="math inline">\(f*\)</span>融合得到<span class="math inline">\(Y&#39;\)</span>，依据<span class="math inline">\(\mathcal{L}_{coarse}=\mathcal{L}_{reg}(Y&#39;,\hat{Y}_{coarse})\)</span>进行贪婪优化。</p>
+<p><strong>Trajectory Refining</strong>将<span class="math inline">\(Y&#39;\)</span> 细化成 <span class="math inline">\(Y_{fine}，\mathcal{L}_{ref}=\mathcal{L}_{reg}(Y_{coarse},Y)\)</span></p>
 <ul>
-<li>$\mathcal{L}&#x3D;\lambda_1\mathcal{L}<em>{coarse}+\lambda_2\mathcal{L}</em>{clf}+\lambda_3\mathcal{L}_{ref}$</li>
+<li><span class="math inline">\(\mathcal{L}=\lambda_1\mathcal{L}_{coarse}+\lambda_2\mathcal{L}_{clf}+\lambda_3\mathcal{L}_{ref}\)</span></li>
 </ul>
-<h3 id="Experimental-Analysis"><a href="#Experimental-Analysis" class="headerlink" title="Experimental Analysis"></a>Experimental Analysis</h3><p>用ADE（Average Displacement Error）与FDE（Final Displacement Error）来评估轨迹预测的性能。</p>
+<h3 id="experimental-analysis">Experimental Analysis</h3>
+<p>用ADE（Average Displacement Error）与FDE（Final Displacement
+Error）来评估轨迹预测的性能。</p>
 
     </div>
 

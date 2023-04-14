@@ -19,17 +19,17 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="一个大世界通常被分成多个小地图，当角色穿过某一小地图边界时，引擎将加载另一张地图，然而这些操作需要进行大量的管理工作。UE5引入了一个新的工作流程以更好的实现大世界，UE5的开放世界系统允许我们拥有一张大地图，引擎将大世界分为几个区域，只加载角色周围的区域。">
+    <meta name="description" content="一个大世界通常被分成多个小地图，当角色穿过某一小地图边界时，引擎将加载另一张地图，然而这些操作需要进行大量的管理工作。UE5 引入了一个新的工作流程以更好的实现大世界，UE5 的开放世界系统允许我们拥有一张大地图，引擎将大世界分为几个区域，只加载角色周围的区域。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Open World">
 <meta property="og:url" content="http://example.com/2023/03/29/UE5/Open%20World/index.html">
 <meta property="og:site_name" content="Autumn Adventure Tent">
-<meta property="og:description" content="一个大世界通常被分成多个小地图，当角色穿过某一小地图边界时，引擎将加载另一张地图，然而这些操作需要进行大量的管理工作。UE5引入了一个新的工作流程以更好的实现大世界，UE5的开放世界系统允许我们拥有一张大地图，引擎将大世界分为几个区域，只加载角色周围的区域。">
+<meta property="og:description" content="一个大世界通常被分成多个小地图，当角色穿过某一小地图边界时，引擎将加载另一张地图，然而这些操作需要进行大量的管理工作。UE5 引入了一个新的工作流程以更好的实现大世界，UE5 的开放世界系统允许我们拥有一张大地图，引擎将大世界分为几个区域，只加载角色周围的区域。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2023/03/29/UE5/Open%20World/Sky.png">
 <meta property="og:image" content="http://example.com/2023/03/29/UE5/Open%20World/Layer%20Blend%20Details.png">
 <meta property="article:published_time" content="2023-03-29T01:46:53.000Z">
-<meta property="article:modified_time" content="2023-04-02T11:55:22.865Z">
+<meta property="article:modified_time" content="2023-04-13T02:13:26.488Z">
 <meta property="article:author" content="HsaoMing">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2023/03/29/UE5/Open%20World/Sky.png">
@@ -114,7 +114,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Lighting-and-Atmosphere"><span class="nav-number">1.</span> <span class="nav-text">Lighting and Atmosphere</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Material"><span class="nav-number">2.</span> <span class="nav-text">Material</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Landscape"><span class="nav-number">3.</span> <span class="nav-text">Landscape</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Foliage"><span class="nav-number">4.</span> <span class="nav-text">Foliage</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#material"><span class="nav-number">1.</span> <span class="nav-text">Material</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#landscape"><span class="nav-number">2.</span> <span class="nav-text">Landscape</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#foliage"><span class="nav-number">3.</span> <span class="nav-text">Foliage</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -127,18 +127,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -201,7 +201,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-04-02 19:55:22" itemprop="dateModified" datetime="2023-04-02T19:55:22+08:00">2023-04-02</time>
+      <time title="Modified: 2023-04-13 10:13:26" itemprop="dateModified" datetime="2023-04-13T10:13:26+08:00">2023-04-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -223,42 +223,37 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>一个大世界通常被分成多个小地图，当角色穿过某一小地图边界时，引擎将加载另一张地图，然而这些操作需要进行大量的管理工作。UE5引入了一个新的工作流程以更好的实现大世界，UE5的开放世界系统允许我们拥有一张大地图，引擎将大世界分为几个区域，只加载角色周围的区域。</p>
-<span id="more"></span>
-<h3 id="Lighting-and-Atmosphere"><a href="#Lighting-and-Atmosphere" class="headerlink" title="Lighting and Atmosphere"></a>Lighting and Atmosphere</h3><ul>
-<li>Sky Atmosphere：类似与大气层的散射光</li>
-<li>Directional Light：模拟无限远的光源（太阳光）<ul>
-<li>CTRL+L：可以调节第一个太阳的位置，当存在两个Directional Light时，第一个太阳会出现gimbal lock的现象（Bug）</li>
-<li>CTRL+SHIFT+L：可以调节第二个太阳的位置</li>
-<li>Mobility决定了灯光在游戏中的行为方式<ul>
-<li>Static：灯光的照明无法在游戏中更改，计算速度最快</li>
-<li>Stationary：可以改变灯光的颜色和强度，但是不能改变灯光位置</li>
-<li>Movable：灯光可以随意更改</li>
-</ul>
-</li>
-<li>Temperature：控制太阳的温度，在视觉效果上，温度越高越蓝、温度越低越红</li>
-</ul>
-</li>
-<li>Sky Light：捕捉场景中的照明信息并用于场景<ul>
-<li>Real Time Capture：能够控制Sky Light是否实时捕获</li>
-</ul>
-</li>
-<li>Exponential Height Fog：根据离地面的高度模拟雾</li>
-<li>Volumetric Clouds：材料驱动的三维的动态云<br><img src="/2023/03/29/UE5/Open%20World/Sky.png" alt="Sky"></li>
-</ul>
-<h3 id="Material"><a href="#Material" class="headerlink" title="Material"></a>Material</h3><p>Material通常由base color、normal、texture构成。Quixel Bridge提供了大量具有真实感的Material。<br>如果想让Landscape拥有多种Material的混合</p>
-<ul>
-<li>首先，在Material Editer中创建Landscape Layer Blend，查看Details Panel，Layer Name属性不能含有空格<img src="/2023/03/29/UE5/Open%20World/Layer%20Blend%20Details.png" alt="Layer Blend Details"></li>
-<li>其次，将我们需要的base color拖入Material Editer</li>
-<li>同样的，我们需要制作混合的normal与texture</li>
-</ul>
-<h3 id="Landscape"><a href="#Landscape" class="headerlink" title="Landscape"></a>Landscape</h3><p>Landscape是一个可塑造网格</p>
-<ul>
-<li>Number of Components：可以调节Landscape的大小</li>
-<li>Sculpt：按住鼠标左键并拖动可以对landscape雕。拥有多种雕刻模式</li>
-<li>Paint：当Lanscape拥有混合的Material时，可以使用不同的Material对Landscape作渲染</li>
-</ul>
-<h3 id="Foliage"><a href="#Foliage" class="headerlink" title="Foliage"></a>Foliage</h3><p>类似于Landscape上的Material Layers，从Quixel Bridge添加静态网格资产为Landscape添加细节。</p>
+        <p>一个大世界通常被分成多个小地图，当角色穿过某一小地图边界时，引擎将加载另一张地图，然而这些操作需要进行大量的管理工作。UE5
+引入了一个新的工作流程以更好的实现大世界，UE5
+的开放世界系统允许我们拥有一张大地图，引擎将大世界分为几个区域，只加载角色周围的区域。
+<span id="more"></span> ### Lighting and Atmosphere - Sky
+Atmosphere：类似与大气层的散射光 - Directional
+Light：模拟无限远的光源（太阳光） -
+CTRL+L：可以调节第一个太阳的位置，当存在两个Directional
+Light时，第一个太阳会出现 gimbal lock 的现象（Bug） -
+CTRL+SHIFT+L：可以调节第二个太阳的位置 -
+Mobility决定了灯光在游戏中的行为方式 -
+Static：灯光的照明无法在游戏中更改，计算速度最快 -
+Stationary：可以改变灯光的颜色和强度，但是不能改变灯光位置 -
+Movable：灯光可以随意更改 -
+Temperature：控制太阳的温度，在视觉效果上，温度越高越蓝、温度越低越红 -
+Sky Light：捕捉场景中的照明信息并用于场景 - Real Time Capture：能够控制
+Sky Light 是否实时捕获 - Exponential Height Fog：根据离地面的高度模拟雾
+- Volumetric Clouds：材料驱动的三维的动态云 <img src="/2023/03/29/UE5/Open%20World/Sky.png" alt="Sky"></p>
+<h3 id="material">Material</h3>
+<p>Material 通常由 base color、normal、texture 构成。Quixel Bridge
+提供了大量具有真实感的 Material。 如果想让 Landscape 拥有多种 Material
+的混合 - 首先，在 Material Editer 中创建 Landscape Layer Blend，查看
+Details Panel，Layer Name 属性不能含有空格<img src="/2023/03/29/UE5/Open%20World/Layer%20Blend%20Details.png" alt="Layer Blend Details"> - 其次，将我们需要的 base color 拖入
+Material Editer - 同样的，我们需要制作混合的 normal 与 texture</p>
+<h3 id="landscape">Landscape</h3>
+<p>Landscape 是一个可塑造网格 - Number of Components：可以调节 Landscape
+的大小 - Sculpt：按住鼠标左键并拖动可以对 landscape
+雕刻。拥有多种雕刻模式 - Paint：当 Lanscape 拥有混合的 Material
+时，可以使用不同的 Material 对 Landscape 作渲染</p>
+<h3 id="foliage">Foliage</h3>
+<p>类似于 Landscape 上的 Material Layers，从 Quixel Bridge
+添加静态网格资产为 Landscape 添加细节。</p>
 
     </div>
 
