@@ -192,7 +192,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-04-18 13:39:15" itemprop="dateModified" datetime="2023-04-18T13:39:15+08:00">2023-04-18</time>
+      <time title="Modified: 2023-04-19 14:51:06" itemprop="dateModified" datetime="2023-04-19T14:51:06+08:00">2023-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -217,17 +217,23 @@
           <h3 id="collision">Collision</h3>
 <p>Static Mesh 是 Actor 派生来的，其默认拥有 Static Mesh Component，修改
 Collision Presets 组件满足不同的碰撞需求 Collision Presets-&gt;Collision
-Enabled - No Collision - Query Only(No Physics Collision) - Physics Only
-- Collision Enabled</p>
+Enabled</p>
+<ul>
+<li>No Collision</li>
+<li>Query Only(No Physics Collision)</li>
+<li>Physics Only</li>
+<li>Collision Enabled</li>
+</ul>
 <p>Collision Presets-&gt;Collision Responses 修改 Collision Responses
 可以忽略对某一类对象的碰撞检测达到预期的碰撞效果。</p>
-<h3 id="overlap">Overlap</h3>
-<p>如果我们想让 Character 去获取场景中的道具，首先需要判断道具是否在
-Character 的拾取范围中。我们可以对 Static Mesh 添加
-SphereComponent，并检测 Character 与 SphereComponent 的 overlap
-事件，将自定义函数绑定到回调函数上。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Header</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">USphereComponent</span></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="comment">// Queried in PrimitiveComponent.h</span></span><br><span class="line">    <span class="built_in">UFUNCTION</span>()</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">OnSphereBeginOverlap</span><span class="params">(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, <span class="type">bool</span> bFromSweep, <span class="type">const</span> FHitResult&amp; SweepResult)</span></span>;</span><br><span class="line">    <span class="built_in">UFUNCTION</span>()</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">OnSphereEndOverlap</span><span class="params">(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">UPROPERTY</span>(VisibleAnywhere)</span><br><span class="line">    UStaticMeshComponent* ItemMesh;</span><br><span class="line">    <span class="built_in">UPROPERTY</span>(VisibleAnywhere)</span><br><span class="line">    USphereComponent* SphereComponent;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Cpp</span></span><br><span class="line"></span><br><span class="line">AMyActor::<span class="built_in">AMyActor</span>() &#123;</span><br><span class="line">    PrimaryActorTick.bCanEverTick = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    SphereComponent = <span class="built_in">CreateDefaultSubobject</span>&lt;USphereComponent&gt;(<span class="built_in">TEXT</span>(<span class="string">&quot;SphereComponent&quot;</span>));</span><br><span class="line">    SphereComponent-&gt;<span class="built_in">SetupAttachment</span>(<span class="built_in">GetRootComponent</span>());</span><br><span class="line">    SphereComponent-&gt;<span class="built_in">SetSphereRadius</span>(<span class="number">80.f</span>, <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">AMyActor::BeginPlay</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Super::<span class="built_in">BeginPlay</span>();</span><br><span class="line">    <span class="comment">// Bind to recall</span></span><br><span class="line">    SphereComponent-&gt;OnComponentBeginOverlap.<span class="built_in">AddDynamic</span>(<span class="keyword">this</span>, &amp;AMyActor::OnSphereBeginOverlap);</span><br><span class="line">    SphereComponent-&gt;OnComponentEndOverlap.<span class="built_in">AddDynamic</span>(<span class="keyword">this</span>, &amp;AMyActor::OnSphereEndOverlap);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">AMyActor::OnSphereBeginOverlap</span><span class="params">(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, <span class="type">bool</span> bFromSweep, <span class="type">const</span> FHitResult&amp; SweepResult)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (GEngine) &#123;</span><br><span class="line">        <span class="type">const</span> FString ActorName = OtherActor-&gt;<span class="built_in">GetName</span>();</span><br><span class="line">        GEngine-&gt;<span class="built_in">AddOnScreenDebugMessage</span>(<span class="number">1</span>, <span class="number">2.f</span>, FColor::Cyan, ActorName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">AMyActor::OnSphereEndOverlap</span><span class="params">(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (GEngine) &#123;</span><br><span class="line">        <span class="type">const</span> FString ActorName = OtherActor-&gt;<span class="built_in">GetName</span>();</span><br><span class="line">        GEngine-&gt;<span class="built_in">AddOnScreenDebugMessage</span>(<span class="number">1</span>, <span class="number">2.f</span>, FColor::Red, ActorName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/04/16/UE5/Collision/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
