@@ -67,10 +67,5 @@ AMyCharacter::AMyCharacter() {
 ```
 我们还可以根据自己的喜好修改 GroomComponent 的 Materials。
 
-### Animation
-我们可以使用 Animation BluePrint 实现 Character 的动作，在 AnimGraph ViewPort，将 Asset 链接到 Output Pose 以驱动角色动画。
-
-![Animation](Character%20Class/Animation.png)
-
-为了实现较为复杂的动画组，可以采用 State Machine，在 AnimGraph ViewPort 为不同的动画状态添加转换的条件，使得 Character 的动画合理其逼真。
-
+### Socket
+我们的 Character 拥有与环境交互的能力，比如捡起场景中的武器，我们能够通过 Socket 来实现。编辑 Character 的 Skeletal Mesh Asset，可以在任意骨骼中添加 Socket，Socket可以添加 Static Mesh Asset 并且会随着关联的骨骼一起变换。

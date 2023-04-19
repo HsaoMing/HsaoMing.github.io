@@ -13,7 +13,6 @@ tags:
 通过 *SetActorLocation()* 和 *SetActorRotation()* 可以分别设置 Actor的 Location 和 Rotation（Actor 不直接保存 Tranform）。
 
 ```c++
-// example
 SetActorLocation(FVector(0.f, 0.f, 25.f));
 SetActorRotation(FRotator(90.f, 0.f, 0.f));
 ```
@@ -69,9 +68,12 @@ AddActorWorldOffset(FVector(0.f, 0.f, DeltaZ));
 同样的，我们也可以将 C++ 中的函数公开给 BluePrint。不同的是，在 BluePrint 中，仅返回一个值的函数被称为BluePrint Pure Function（显示为绿色）。
 
 ```c++
-UFUNCTION(BlueprintPure)
-float TransformedSin();
+// Header
+protected:
+	UFUNCTION(BlueprintPure)
+	float TransformedSin();
 
+// Cpp
 float AMyActor::TransformedSin() {
 	return Amplitude * FMath::Sin(RunningTime * TimeConstant);
 }
@@ -86,7 +88,7 @@ float AMyActor::TransformedSin() {
 
 Static Mesh Component 是最常见的 Component，我们可以将 Component 附加到 Root Component上，能够保持两个 Component 之间的相对移动。
 
-在 BluePrint 中添加 Component 十分容易，以下代码是用C++添加 Static Mesh Component 的示例。
+以下代码是用C++添加 Static Mesh Component 的示例。
 
 ```c++
 //Header
