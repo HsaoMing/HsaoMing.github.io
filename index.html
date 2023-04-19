@@ -119,7 +119,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -147,6 +147,103 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/16/UE5/Collision/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="HsaoMing">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Autumn Adventure Tent">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Autumn Adventure Tent">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/04/16/UE5/Collision/" class="post-title-link" itemprop="url">Collision</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-04-16 16:44:27" itemprop="dateCreated datePublished" datetime="2023-04-16T16:44:27+08:00">2023-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-04-18 13:39:15" itemprop="dateModified" datetime="2023-04-18T13:39:15+08:00">2023-04-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/UE/" itemprop="url" rel="index"><span itemprop="name">UE</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="collision">Collision</h3>
+<p>Static Mesh 是 Actor 派生来的，其默认拥有 Static Mesh Component，修改
+Collision Presets 组件满足不同的碰撞需求 Collision Presets-&gt;Collision
+Enabled - No Collision - Query Only(No Physics Collision) - Physics Only
+- Collision Enabled</p>
+<p>Collision Presets-&gt;Collision Responses 修改 Collision Responses
+可以忽略对某一类对象的碰撞检测达到预期的碰撞效果。</p>
+<h3 id="overlap">Overlap</h3>
+<p>如果我们想让 Character 去获取场景中的道具，首先需要判断道具是否在
+Character 的拾取范围中。我们可以对 Static Mesh 添加
+SphereComponent，并检测 Character 与 SphereComponent 的 overlap
+事件，将自定义函数绑定到回调函数上。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Header</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">USphereComponent</span></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="comment">// Queried in PrimitiveComponent.h</span></span><br><span class="line">    <span class="built_in">UFUNCTION</span>()</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">OnSphereBeginOverlap</span><span class="params">(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, <span class="type">bool</span> bFromSweep, <span class="type">const</span> FHitResult&amp; SweepResult)</span></span>;</span><br><span class="line">    <span class="built_in">UFUNCTION</span>()</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">OnSphereEndOverlap</span><span class="params">(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">UPROPERTY</span>(VisibleAnywhere)</span><br><span class="line">    UStaticMeshComponent* ItemMesh;</span><br><span class="line">    <span class="built_in">UPROPERTY</span>(VisibleAnywhere)</span><br><span class="line">    USphereComponent* SphereComponent;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Cpp</span></span><br><span class="line"></span><br><span class="line">AMyActor::<span class="built_in">AMyActor</span>() &#123;</span><br><span class="line">    PrimaryActorTick.bCanEverTick = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    SphereComponent = <span class="built_in">CreateDefaultSubobject</span>&lt;USphereComponent&gt;(<span class="built_in">TEXT</span>(<span class="string">&quot;SphereComponent&quot;</span>));</span><br><span class="line">    SphereComponent-&gt;<span class="built_in">SetupAttachment</span>(<span class="built_in">GetRootComponent</span>());</span><br><span class="line">    SphereComponent-&gt;<span class="built_in">SetSphereRadius</span>(<span class="number">80.f</span>, <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">AMyActor::BeginPlay</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Super::<span class="built_in">BeginPlay</span>();</span><br><span class="line">    <span class="comment">// Bind to recall</span></span><br><span class="line">    SphereComponent-&gt;OnComponentBeginOverlap.<span class="built_in">AddDynamic</span>(<span class="keyword">this</span>, &amp;AMyActor::OnSphereBeginOverlap);</span><br><span class="line">    SphereComponent-&gt;OnComponentEndOverlap.<span class="built_in">AddDynamic</span>(<span class="keyword">this</span>, &amp;AMyActor::OnSphereEndOverlap);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">AMyActor::OnSphereBeginOverlap</span><span class="params">(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, <span class="type">bool</span> bFromSweep, <span class="type">const</span> FHitResult&amp; SweepResult)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (GEngine) &#123;</span><br><span class="line">        <span class="type">const</span> FString ActorName = OtherActor-&gt;<span class="built_in">GetName</span>();</span><br><span class="line">        GEngine-&gt;<span class="built_in">AddOnScreenDebugMessage</span>(<span class="number">1</span>, <span class="number">2.f</span>, FColor::Cyan, ActorName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">AMyActor::OnSphereEndOverlap</span><span class="params">(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (GEngine) &#123;</span><br><span class="line">        <span class="type">const</span> FString ActorName = OtherActor-&gt;<span class="built_in">GetName</span>();</span><br><span class="line">        GEngine-&gt;<span class="built_in">AddOnScreenDebugMessage</span>(<span class="number">1</span>, <span class="number">2.f</span>, FColor::Red, ActorName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -184,9 +281,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2023-04-14 15:59:24 / Modified: 16:03:21" itemprop="dateCreated datePublished" datetime="2023-04-14T15:59:24+08:00">2023-04-14</time>
+      <time title="Created: 2023-04-14 15:59:24" itemprop="dateCreated datePublished" datetime="2023-04-14T15:59:24+08:00">2023-04-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-04-19 10:39:44" itemprop="dateModified" datetime="2023-04-19T10:39:44+08:00">2023-04-19</time>
     </span>
 
   
@@ -207,15 +310,55 @@ ViewPort，将 Asset 链接到 Output Pose 以驱动角色动画。</p>
 <figcaption aria-hidden="true">Animation</figcaption>
 </figure>
 <p>为了实现较为复杂的动画组，可以采用 State Machine，在 AnimGraph
-ViewPort 为不同的动画状态添加转换的条件，使得 Character
-的动画合理其逼真。与此同时，在 Event Graph ViewPort 中计算逻辑并获取
-State Machine 需要的相关变量。</p>
+ViewPort 为不同的动画状态添加转换的条件，用多个 State
+与多个状态转变的条件使得 Character 的动画合理其逼真。与此同时，在 Event
+Graph ViewPort 中计算逻辑并获取 State Machine 需要的相关变量。</p>
 <figure>
 <img src="/2023/04/14/UE5/Animation/Animation%20Control.png" alt="Animation Control">
 <figcaption aria-hidden="true">Animation Control</figcaption>
 </figure>
 <p>Animation BluePrint 有一个 C++ 父类 Anim Instance，那么可以通过 C++
-来实现上述逻辑，并让 Animation BluePrint 继承 Anim Instance。</p>
+来实现上述逻辑，并让 Animation BluePrint 继承 Anim Instance (在Class
+Settings中)。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Header</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">NativeInitializeAnimation</span><span class="params">()</span> <span class="keyword">override</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">NativeUpdateAnimation</span><span class="params">(<span class="type">float</span> DeltaTime)</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">UPROPERTY</span>(BlueprintReadOnly)</span><br><span class="line">AMyCharacter* MyCharacter;</span><br><span class="line"><span class="built_in">UPROPERTY</span>(BlueprintReadOnly, Category = Movement)</span><br><span class="line">UCharacterMovementComponent* MyCharacterMovement;</span><br><span class="line"><span class="built_in">UPROPERTY</span>(BlueprintReadOnly, Category = Movement)</span><br><span class="line"><span class="type">float</span> GroundSpeed;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Cpp</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Characters/MyCharacter.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;GameFramework/CharacterMovementComponent.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Kismet/KismetMathLibrary.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">UMyAnimInstance::NativeInitializeAnimation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Super::<span class="built_in">NativeInitializeAnimation</span>();</span><br><span class="line">    </span><br><span class="line">    MyCharacter = <span class="built_in">Cast</span>&lt;AMyCharacter&gt;(<span class="built_in">TryGetPawnOwner</span>());</span><br><span class="line">    <span class="keyword">if</span> (MyCharacter) &#123;</span><br><span class="line">        MyCharacterMovement = MyCharacter-&gt;<span class="built_in">GetCharacterMovement</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">UMyAnimInstance::NativeUpdateAnimation</span><span class="params">(<span class="type">float</span> DeltaTime)</span> </span>&#123;</span><br><span class="line">    Super::<span class="built_in">NativeUpdateAnimation</span>(DeltaTime);</span><br><span class="line">    <span class="keyword">if</span> (MyCharacterMovement) &#123;</span><br><span class="line">        GroundSpeed = UKismetMathLibrary::<span class="built_in">VSizeXY</span>(MyCharacterMovement-&gt;Velocity);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="inverse-kinematics">Inverse Kinematics</h3>
+<p>Inverse Kinematics 通过解方程的方法来移动特定的骨骼。 - Sphere trace
+from feet to ground</p>
+<p><img src="/2023/04/14/UE5/Animation/1.png" alt="1"> - Interpolate smoothly toward
+offset targets</p>
+<p><img src="/2023/04/14/UE5/Animation/2.png" alt="2"> - Use the lowest foot offset to
+prevent overextension</p>
+<p><img src="/2023/04/14/UE5/Animation/3.png" alt="3"> - Add the interpolated offsets
+to the IK foot bones. This will move them up or down</p>
+<p><img src="/2023/04/14/UE5/Animation/4.png" alt="4"> - Use full body IK node to
+solve IK, and use the IK foot bones as the effector targets for each
+foot</p>
+<figure>
+<img src="/2023/04/14/UE5/Animation/5.png" alt="5">
+<figcaption aria-hidden="true">5</figcaption>
+</figure>
+<p>通过上述步骤，我们实现了关于脚的 IK 动画，接下来需要在 AnimGraph
+ViewPort 控制动画输出的状态与逻辑。</p>
+<figure>
+<img src="/2023/04/14/UE5/Animation/Animation%20Control%20with%20Control%20Rig.png" alt="Animation Control with Control Rig">
+<figcaption aria-hidden="true">Animation Control with Control
+Rig</figcaption>
+</figure>
+<h3 id="ik-rig">IK Rig</h3>
+<p><a target="_blank" rel="noopener" href="https://www.mixamo.com/">Mixamo</a> 中有许多基于 X_Bot
+骨骼的动画，我们可以通过 IK Rig 实现 Animation 迁移。让不同骨骼的
+Character 拥有相同的 Animation。 - 下载 Animation 与 X_Bot - 创建 IK Rig
+选择 X_Bot Skeletal Mesh 并重定位 Skeleton</p>
+<figure>
+<img src="/2023/04/14/UE5/Animation/IK%20Rig.png" alt="IK Rig">
+<figcaption aria-hidden="true">IK Rig</figcaption>
+</figure>
+<ul>
+<li>创建 IK Rig 选择目标 Skeletal Mesh 并重定位
+Skeleton（与上图相同）</li>
+<li>创建 IK Retargeter 并调整 Pose 使得 Animation 较为流畅</li>
+<li>导出 Animation</li>
+</ul>
 
       
     </div>
@@ -347,7 +490,7 @@ State Machine 需要的相关变量。</p>
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-04-14 13:18:34" itemprop="dateModified" datetime="2023-04-14T13:18:34+08:00">2023-04-14</time>
+      <time title="Modified: 2023-04-18 20:32:31" itemprop="dateModified" datetime="2023-04-18T20:32:31+08:00">2023-04-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -534,7 +677,7 @@ AI 实体的外观效果，还决定了它们如何与场景进行碰撞以及�
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-04-13 10:19:00" itemprop="dateModified" datetime="2023-04-13T10:19:00+08:00">2023-04-13</time>
+      <time title="Modified: 2023-04-19 09:42:03" itemprop="dateModified" datetime="2023-04-19T09:42:03+08:00">2023-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -564,7 +707,7 @@ BluePrint）创建（生成）或销毁 Actor。在 C++ 中，AActor 是所有 A
 的基类。 通过 <em>SetActorLocation()</em> 和 <em>SetActorRotation()</em>
 可以分别设置 Actor的 Location 和 Rotation（Actor 不直接保存
 Tranform）。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// example</span></span><br><span class="line"><span class="built_in">SetActorLocation</span>(<span class="built_in">FVector</span>(<span class="number">0.f</span>, <span class="number">0.f</span>, <span class="number">25.f</span>));</span><br><span class="line"><span class="built_in">SetActorRotation</span>(<span class="built_in">FRotator</span>(<span class="number">90.f</span>, <span class="number">0.f</span>, <span class="number">0.f</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">SetActorLocation</span>(<span class="built_in">FVector</span>(<span class="number">0.f</span>, <span class="number">0.f</span>, <span class="number">25.f</span>));</span><br><span class="line"><span class="built_in">SetActorRotation</span>(<span class="built_in">FRotator</span>(<span class="number">90.f</span>, <span class="number">0.f</span>, <span class="number">0.f</span>));</span><br></pre></td></tr></table></figure>
 <p>这两个方法时直接修改 Actor 的 Location 和 Rotation，如果需要逐帧修改
 Actor 的 Location 和 Rotation 以实现一个连续的运动，我们可以使用
 <em>AddActorWorldOffset()</em> 和 <em>AddActorWorldRotation()</em>
@@ -976,99 +1119,6 @@ M(\theta) = \begin{bmatrix}\cos\theta&amp;
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/03/23/UE5/Editor%20Viewport/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/21/reading/Learning%20to%20detect%20anomaly%20events%20in%20crowd%20scenes%20from%20synthetic%20data/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="HsaoMing">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Autumn Adventure Tent">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Autumn Adventure Tent">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/03/21/reading/Learning%20to%20detect%20anomaly%20events%20in%20crowd%20scenes%20from%20synthetic%20data/" class="post-title-link" itemprop="url">Learning to detect anomaly events in crowwd scenes from synthetic data</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-03-21 19:22:08" itemprop="dateCreated datePublished" datetime="2023-03-21T19:22:08+08:00">2023-03-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-04-12 10:24:54" itemprop="dateModified" datetime="2023-04-12T10:24:54+08:00">2023-04-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/reading/" itemprop="url" rel="index"><span itemprop="name">reading</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="introduction">Introduction</h3>
-<p>神经网络强大的学习能力提升了异常检测的能力，但异常事件很少出现在现实世界中。本文在GTA5中人工设计异常事件并记录，采用C3DGAN消除两个领域之间的差异。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/03/21/reading/Learning%20to%20detect%20anomaly%20events%20in%20crowd%20scenes%20from%20synthetic%20data/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>

@@ -19,17 +19,24 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Animation 我们可以使用 Animation BluePrint 实现 Character 的动作，在 AnimGraph ViewPort，将 Asset 链接到 Output Pose 以驱动角色动画。   Animation  为了实现较为复杂的动画组，可以采用 State Machine，在 AnimGraph ViewPort 为不同的动画状态添加转换的条件，使得">
+    <meta name="description" content="Animation 我们可以使用 Animation BluePrint 实现 Character 的动作，在 AnimGraph ViewPort，将 Asset 链接到 Output Pose 以驱动角色动画。   Animation  为了实现较为复杂的动画组，可以采用 State Machine，在 AnimGraph ViewPort 为不同的动画状态添加转换的条件，用多">
 <meta property="og:type" content="article">
 <meta property="og:title" content="page">
 <meta property="og:url" content="http://example.com/2023/04/14/UE5/Animation/index.html">
 <meta property="og:site_name" content="Autumn Adventure Tent">
-<meta property="og:description" content="Animation 我们可以使用 Animation BluePrint 实现 Character 的动作，在 AnimGraph ViewPort，将 Asset 链接到 Output Pose 以驱动角色动画。   Animation  为了实现较为复杂的动画组，可以采用 State Machine，在 AnimGraph ViewPort 为不同的动画状态添加转换的条件，使得">
+<meta property="og:description" content="Animation 我们可以使用 Animation BluePrint 实现 Character 的动作，在 AnimGraph ViewPort，将 Asset 链接到 Output Pose 以驱动角色动画。   Animation  为了实现较为复杂的动画组，可以采用 State Machine，在 AnimGraph ViewPort 为不同的动画状态添加转换的条件，用多">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2023/04/14/UE5/Animation/Animation.png">
 <meta property="og:image" content="http://example.com/2023/04/14/UE5/Animation/Animation%20Control.png">
+<meta property="og:image" content="http://example.com/2023/04/14/UE5/Animation/1.png">
+<meta property="og:image" content="http://example.com/2023/04/14/UE5/Animation/2.png">
+<meta property="og:image" content="http://example.com/2023/04/14/UE5/Animation/3.png">
+<meta property="og:image" content="http://example.com/2023/04/14/UE5/Animation/4.png">
+<meta property="og:image" content="http://example.com/2023/04/14/UE5/Animation/5.png">
+<meta property="og:image" content="http://example.com/2023/04/14/UE5/Animation/Animation%20Control%20with%20Control%20Rig.png">
+<meta property="og:image" content="http://example.com/2023/04/14/UE5/Animation/IK%20Rig.png">
 <meta property="article:published_time" content="2023-04-14T07:59:24.000Z">
-<meta property="article:modified_time" content="2023-04-14T08:03:21.154Z">
+<meta property="article:modified_time" content="2023-04-19T02:39:44.983Z">
 <meta property="article:author" content="HsaoMing">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2023/04/14/UE5/Animation/Animation.png">
@@ -114,7 +121,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#animation"><span class="nav-number">1.</span> <span class="nav-text">Animation</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#animation"><span class="nav-number">1.</span> <span class="nav-text">Animation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inverse-kinematics"><span class="nav-number">2.</span> <span class="nav-text">Inverse Kinematics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ik-rig"><span class="nav-number">3.</span> <span class="nav-text">IK Rig</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -127,7 +134,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -193,9 +200,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2023-04-14 15:59:24 / Modified: 16:03:21" itemprop="dateCreated datePublished" datetime="2023-04-14T15:59:24+08:00">2023-04-14</time>
+      <time title="Created: 2023-04-14 15:59:24" itemprop="dateCreated datePublished" datetime="2023-04-14T15:59:24+08:00">2023-04-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-04-19 10:39:44" itemprop="dateModified" datetime="2023-04-19T10:39:44+08:00">2023-04-19</time>
     </span>
 
   
@@ -216,15 +229,55 @@ ViewPort，将 Asset 链接到 Output Pose 以驱动角色动画。</p>
 <figcaption aria-hidden="true">Animation</figcaption>
 </figure>
 <p>为了实现较为复杂的动画组，可以采用 State Machine，在 AnimGraph
-ViewPort 为不同的动画状态添加转换的条件，使得 Character
-的动画合理其逼真。与此同时，在 Event Graph ViewPort 中计算逻辑并获取
-State Machine 需要的相关变量。</p>
+ViewPort 为不同的动画状态添加转换的条件，用多个 State
+与多个状态转变的条件使得 Character 的动画合理其逼真。与此同时，在 Event
+Graph ViewPort 中计算逻辑并获取 State Machine 需要的相关变量。</p>
 <figure>
 <img src="/2023/04/14/UE5/Animation/Animation%20Control.png" alt="Animation Control">
 <figcaption aria-hidden="true">Animation Control</figcaption>
 </figure>
 <p>Animation BluePrint 有一个 C++ 父类 Anim Instance，那么可以通过 C++
-来实现上述逻辑，并让 Animation BluePrint 继承 Anim Instance。</p>
+来实现上述逻辑，并让 Animation BluePrint 继承 Anim Instance (在Class
+Settings中)。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Header</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">NativeInitializeAnimation</span><span class="params">()</span> <span class="keyword">override</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">NativeUpdateAnimation</span><span class="params">(<span class="type">float</span> DeltaTime)</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">UPROPERTY</span>(BlueprintReadOnly)</span><br><span class="line">AMyCharacter* MyCharacter;</span><br><span class="line"><span class="built_in">UPROPERTY</span>(BlueprintReadOnly, Category = Movement)</span><br><span class="line">UCharacterMovementComponent* MyCharacterMovement;</span><br><span class="line"><span class="built_in">UPROPERTY</span>(BlueprintReadOnly, Category = Movement)</span><br><span class="line"><span class="type">float</span> GroundSpeed;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Cpp</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Characters/MyCharacter.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;GameFramework/CharacterMovementComponent.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Kismet/KismetMathLibrary.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">UMyAnimInstance::NativeInitializeAnimation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Super::<span class="built_in">NativeInitializeAnimation</span>();</span><br><span class="line">    </span><br><span class="line">    MyCharacter = <span class="built_in">Cast</span>&lt;AMyCharacter&gt;(<span class="built_in">TryGetPawnOwner</span>());</span><br><span class="line">    <span class="keyword">if</span> (MyCharacter) &#123;</span><br><span class="line">        MyCharacterMovement = MyCharacter-&gt;<span class="built_in">GetCharacterMovement</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">UMyAnimInstance::NativeUpdateAnimation</span><span class="params">(<span class="type">float</span> DeltaTime)</span> </span>&#123;</span><br><span class="line">    Super::<span class="built_in">NativeUpdateAnimation</span>(DeltaTime);</span><br><span class="line">    <span class="keyword">if</span> (MyCharacterMovement) &#123;</span><br><span class="line">        GroundSpeed = UKismetMathLibrary::<span class="built_in">VSizeXY</span>(MyCharacterMovement-&gt;Velocity);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="inverse-kinematics">Inverse Kinematics</h3>
+<p>Inverse Kinematics 通过解方程的方法来移动特定的骨骼。 - Sphere trace
+from feet to ground</p>
+<p><img src="/2023/04/14/UE5/Animation/1.png" alt="1"> - Interpolate smoothly toward
+offset targets</p>
+<p><img src="/2023/04/14/UE5/Animation/2.png" alt="2"> - Use the lowest foot offset to
+prevent overextension</p>
+<p><img src="/2023/04/14/UE5/Animation/3.png" alt="3"> - Add the interpolated offsets
+to the IK foot bones. This will move them up or down</p>
+<p><img src="/2023/04/14/UE5/Animation/4.png" alt="4"> - Use full body IK node to
+solve IK, and use the IK foot bones as the effector targets for each
+foot</p>
+<figure>
+<img src="/2023/04/14/UE5/Animation/5.png" alt="5">
+<figcaption aria-hidden="true">5</figcaption>
+</figure>
+<p>通过上述步骤，我们实现了关于脚的 IK 动画，接下来需要在 AnimGraph
+ViewPort 控制动画输出的状态与逻辑。</p>
+<figure>
+<img src="/2023/04/14/UE5/Animation/Animation%20Control%20with%20Control%20Rig.png" alt="Animation Control with Control Rig">
+<figcaption aria-hidden="true">Animation Control with Control
+Rig</figcaption>
+</figure>
+<h3 id="ik-rig">IK Rig</h3>
+<p><a target="_blank" rel="noopener" href="https://www.mixamo.com/">Mixamo</a> 中有许多基于 X_Bot
+骨骼的动画，我们可以通过 IK Rig 实现 Animation 迁移。让不同骨骼的
+Character 拥有相同的 Animation。 - 下载 Animation 与 X_Bot - 创建 IK Rig
+选择 X_Bot Skeletal Mesh 并重定位 Skeleton</p>
+<figure>
+<img src="/2023/04/14/UE5/Animation/IK%20Rig.png" alt="IK Rig">
+<figcaption aria-hidden="true">IK Rig</figcaption>
+</figure>
+<ul>
+<li>创建 IK Rig 选择目标 Skeletal Mesh 并重定位
+Skeleton（与上图相同）</li>
+<li>创建 IK Retargeter 并调整 Pose 使得 Animation 较为流畅</li>
+<li>导出 Animation</li>
+</ul>
 
     </div>
 
@@ -243,6 +296,9 @@ State Machine 需要的相关变量。</p>
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2023/04/16/UE5/Collision/" rel="next" title="Collision">
+                  Collision <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
