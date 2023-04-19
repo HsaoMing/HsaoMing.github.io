@@ -10,6 +10,7 @@ tags:
 ### Collision
 Static Mesh 是 Actor 派生来的，其默认拥有 Static Mesh Component，修改 Collision Presets 组件满足不同的碰撞需求 
 Collision Presets->Collision Enabled
+
 - No Collision
 - Query Only(No Physics Collision)
 - Physics Only
@@ -18,6 +19,7 @@ Collision Presets->Collision Enabled
 Collision Presets->Collision Responses
 修改 Collision Responses 可以忽略对某一类对象的碰撞检测达到预期的碰撞效果。
 
+<!--more-->
 ### Overlap
 如果我们想让 Character 去获取场景中的道具，首先需要判断道具是否在 Character 的拾取范围中。我们可以对 Static Mesh 添加 SphereComponent，并检测 Character 与 SphereComponent 的 overlap 事件，将自定义函数绑定到回调函数上。
 
