@@ -27,7 +27,7 @@
 <meta property="og:description" content="class Character 继承 class Pawn, 我已经在 Pawn Creation 中已经实现对 Pawn 简单操作。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-04-11T05:31:09.000Z">
-<meta property="article:modified_time" content="2023-04-18T12:32:31.127Z">
+<meta property="article:modified_time" content="2023-04-19T07:29:23.275Z">
 <meta property="article:author" content="HsaoMing">
 <meta name="twitter:card" content="summary">
 
@@ -111,7 +111,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#character-class"><span class="nav-number">1.</span> <span class="nav-text">Character Class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#camera-and-spring-arm"><span class="nav-number">2.</span> <span class="nav-text">Camera And Spring Arm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#groomcomponent"><span class="nav-number">3.</span> <span class="nav-text">GroomComponent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#socket"><span class="nav-number">4.</span> <span class="nav-text">Socket</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#character-class"><span class="nav-number">1.</span> <span class="nav-text">Character Class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#camera-and-spring-arm"><span class="nav-number">2.</span> <span class="nav-text">Camera And Spring Arm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#groomcomponent"><span class="nav-number">3.</span> <span class="nav-text">GroomComponent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#socket"><span class="nav-number">4.</span> <span class="nav-text">Socket</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pick-up-item"><span class="nav-number">5.</span> <span class="nav-text">Pick Up Item</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -198,7 +198,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-04-18 20:32:31" itemprop="dateModified" datetime="2023-04-18T20:32:31+08:00">2023-04-18</time>
+      <time title="Modified: 2023-04-19 15:29:23" itemprop="dateModified" datetime="2023-04-19T15:29:23+08:00">2023-04-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -249,6 +249,11 @@ Character 转向的速度。值得注意的是，要将 Controller 的相关 Rot
 来实现。编辑 Character 的 Skeletal Mesh Asset，可以在任意骨骼中添加
 Socket，Socket可以添加 Static Mesh Asset
 并且会随着关联的骨骼一起变换。</p>
+<h3 id="pick-up-item">Pick Up Item</h3>
+<p>为了实现 Character 与 Item 之间的交互，我们可以通过
+<em>OnComponentBeginOverlap()</em> 实现 Overlap 事件的回调，并通过
+Socket 将 Item 与 Character 关联。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">AItem::BeginPlay</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Super::<span class="built_in">BeginPlay</span>();</span><br><span class="line">    </span><br><span class="line">    SphereComponent-&gt;OnComponentBeginOverlap.<span class="built_in">AddDynamic</span>(<span class="keyword">this</span>, &amp;AItem::OnSphereBeginOverlap);</span><br><span class="line">    SphereComponent-&gt;OnComponentEndOverlap.<span class="built_in">AddDynamic</span>(<span class="keyword">this</span>, &amp;AItem::OnSphereEndOverlap);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
     </div>
 
