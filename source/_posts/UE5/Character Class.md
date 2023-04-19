@@ -69,3 +69,17 @@ AMyCharacter::AMyCharacter() {
 
 ### Socket
 我们的 Character 拥有与环境交互的能力，比如捡起场景中的武器，我们能够通过 Socket 来实现。编辑 Character 的 Skeletal Mesh Asset，可以在任意骨骼中添加 Socket，Socket可以添加 Static Mesh Asset 并且会随着关联的骨骼一起变换。
+
+
+### Pick Up Item
+为了实现 Character 与 Item 之间的交互，我们可以通过 *OnComponentBeginOverlap()* 实现 Overlap 事件的回调，并通过 Socket 将 Item 与 Character 关联。
+
+```c++
+void AItem::BeginPlay() {
+	Super::BeginPlay();
+	
+	SphereComponent->OnComponentBeginOverlap.AddDynamic(this, &AItem::OnSphereBeginOverlap);
+	SphereComponent->OnComponentEndOverlap.AddDynamic(this, &AItem::OnSphereEndOverlap);
+}
+
+```
