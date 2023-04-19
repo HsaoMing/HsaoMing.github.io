@@ -1,5 +1,5 @@
 ---
-title: page
+title: Animation
 math: true
 date: 2023-04-14 15:59:24
 tags:
@@ -82,3 +82,5 @@ Inverse Kinematics 通过解方程的方法来移动特定的骨骼。
 - 创建 IK Rig 选择目标 Skeletal Mesh 并重定位 Skeleton（与上图相同）
 - 创建 IK Retargeter 并调整 Pose 使得 Animation 较为流畅
 - 导出 Animation
+
+
