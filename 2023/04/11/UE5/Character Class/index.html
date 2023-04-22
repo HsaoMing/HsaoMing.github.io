@@ -26,10 +26,12 @@
 <meta property="og:site_name" content="Autumn Adventure Tent">
 <meta property="og:description" content="class Character 继承 class Pawn, 我已经在 Pawn Creation 中已经实现对 Pawn 简单操作。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2023/04/11/UE5/Character%20Class/Animation%20State.png">
 <meta property="article:published_time" content="2023-04-11T05:31:09.000Z">
-<meta property="article:modified_time" content="2023-04-19T07:29:23.275Z">
+<meta property="article:modified_time" content="2023-04-22T11:54:37.333Z">
 <meta property="article:author" content="HsaoMing">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/04/11/UE5/Character%20Class/Animation%20State.png">
 
 
 <link rel="canonical" href="http://example.com/2023/04/11/UE5/Character%20Class/">
@@ -111,7 +113,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#character-class"><span class="nav-number">1.</span> <span class="nav-text">Character Class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#camera-and-spring-arm"><span class="nav-number">2.</span> <span class="nav-text">Camera And Spring Arm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#groomcomponent"><span class="nav-number">3.</span> <span class="nav-text">GroomComponent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#socket"><span class="nav-number">4.</span> <span class="nav-text">Socket</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pick-up-item"><span class="nav-number">5.</span> <span class="nav-text">Pick Up Item</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#character-class"><span class="nav-number">1.</span> <span class="nav-text">Character Class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#camera-and-spring-arm"><span class="nav-number">2.</span> <span class="nav-text">Camera And Spring Arm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#groomcomponent"><span class="nav-number">3.</span> <span class="nav-text">GroomComponent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#socket"><span class="nav-number">4.</span> <span class="nav-text">Socket</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pick-up-item"><span class="nav-number">5.</span> <span class="nav-text">Pick Up Item</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#character-state"><span class="nav-number">6.</span> <span class="nav-text">Character State</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -198,7 +200,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-04-19 15:29:23" itemprop="dateModified" datetime="2023-04-19T15:29:23+08:00">2023-04-19</time>
+      <time title="Modified: 2023-04-22 19:54:37" itemprop="dateModified" datetime="2023-04-22T19:54:37+08:00">2023-04-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -251,9 +253,41 @@ Socket，Socket可以添加 Static Mesh Asset
 并且会随着关联的骨骼一起变换。</p>
 <h3 id="pick-up-item">Pick Up Item</h3>
 <p>为了实现 Character 与 Item 之间的交互，我们可以通过
-<em>OnComponentBeginOverlap()</em> 实现 Overlap 事件的回调，并通过
-Socket 将 Item 与 Character 关联。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">AItem::BeginPlay</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Super::<span class="built_in">BeginPlay</span>();</span><br><span class="line">    </span><br><span class="line">    SphereComponent-&gt;OnComponentBeginOverlap.<span class="built_in">AddDynamic</span>(<span class="keyword">this</span>, &amp;AItem::OnSphereBeginOverlap);</span><br><span class="line">    SphereComponent-&gt;OnComponentEndOverlap.<span class="built_in">AddDynamic</span>(<span class="keyword">this</span>, &amp;AItem::OnSphereEndOverlap);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<em>OnComponentBeginOverlap()</em> 实现 Overlap 事件的回调(<a target="_blank" rel="noopener" href="https://hsaoming.github.io/2023/04/16/UE5/Collision/#overlap">example</a>)。</p>
+<p>修改 <em>OnSphereBeginOverlap()</em>
+能够实现许多有趣的功能。此外，Character 还需要具有选择是否拾取 Item
+的能力。</p>
+<ul>
+<li>首先需要进行操作映射，参照 <a target="_blank" rel="noopener" href="https://hsaoming.github.io/2023/04/02/UE5/Pawn%20Creation/#enhanced-input">EnhancedInput</a>。</li>
+<li>在 Character 的类中，创建 Item 的类来保存 Item</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Header</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Item class name</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AItem</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="comment">// Execute when E key down</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">EKeyPressed</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">UPROPERTY</span>(VisibleInstanceOnly)</span><br><span class="line">    AItem* OverlappingItem;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// Set value in overlap event</span></span><br><span class="line">    <span class="function">FORCEINLINE <span class="type">void</span> <span class="title">SetOverlappingItem</span><span class="params">(AItem* Item)</span> </span>&#123; OverlappingItem = Item; &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在 <em>OnSphereBeginOverlap()</em> 与 <em>OnSphereEndOverlap()</em>
+中，对 Item 赋值</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">AItem::OnSphereBeginOverlap</span><span class="params">(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, <span class="type">bool</span> bFromSweep, <span class="type">const</span> FHitResult&amp; SweepResult)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (AMyCharacter* MyCharacter = <span class="built_in">Cast</span>&lt;AMyCharacter&gt;(OtherActor)) &#123;</span><br><span class="line">        MyCharacter-&gt;<span class="built_in">SetOverlappingItem</span>(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">AItem::OnSphereEndOverlap</span><span class="params">(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (AMyCharacter* MyCharacter = <span class="built_in">Cast</span>&lt;AMyCharacter&gt;(OtherActor)) &#123;</span><br><span class="line">        MyCharacter-&gt;<span class="built_in">SetOverlappingItem</span>(<span class="literal">nullptr</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>实现按下 E 拾取 Item 的功能（即实现 <em>EKeyPressed()</em>）</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">AMyCharacter::EKeyPressed</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (AWeapon* OverlappingWeapon = <span class="built_in">Cast</span>&lt;AWeapon&gt;(OverlappingItem)) &#123;</span><br><span class="line">        OverlappingWeapon-&gt;<span class="built_in">Equip</span>(<span class="built_in">GetMesh</span>(), <span class="built_in">FName</span>(<span class="string">&quot;right_hand_socket&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>AWeapon 继承 Item，直接调用已经实现的函数 <em>Equip()</em>，将 Item
+关联到已创建的 Socket 上，以下是 <em>Equip()</em> 的实现。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">AWeapon::Equip</span><span class="params">(USceneComponent* InParent, FName InSocketName)</span> </span>&#123;</span><br><span class="line">    <span class="function">FAttachmentTransformRules <span class="title">TransformRules</span><span class="params">(EAttachmentRule::SnapToTarget, <span class="literal">true</span>)</span></span>;</span><br><span class="line">    ItemMesh-&gt;<span class="built_in">AttachToComponent</span>(InParent, TransformRules, InSocketName);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="character-state">Character State</h3>
+<p>Character 拥有不同的状态，Character 需要依据不同的状态做出相应的
+Animation。这时我们需要一个 enum 类并将其作为一个独立的头文件，以下是
+Character 装备武器状态的示例。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UENUM</span>(BlueprintType)</span><br><span class="line"><span class="keyword">enum class</span> <span class="title class_">ECharacterState</span> : uint8 &#123;</span><br><span class="line">    <span class="comment">// ECS meams CharacterState</span></span><br><span class="line">    <span class="function">ECS_Unequipped <span class="title">UMETA</span><span class="params">(DisplayName = <span class="string">&quot;Unequipped&quot;</span>)</span>,</span></span><br><span class="line"><span class="function">    ECS_EquippedOneHandedWeapon <span class="title">UMETA</span><span class="params">(DisplayName = <span class="string">&quot;Equipped One-Hand Weapon&quot;</span>)</span>,</span></span><br><span class="line"><span class="function">    ECS_EquippedTwoHandedWeapon <span class="title">UMETA</span><span class="params">(DisplayName = <span class="string">&quot;Equipped Two-Hand Weapon&quot;</span>)</span></span></span><br><span class="line"><span class="function">&#125;</span>;</span><br></pre></td></tr></table></figure>
+<p>为 Character 添加状态后，在 AnimGraph ViewPort
+中可以根据不同的状态输出对应的 Pose。Blend Time 为 Animation
+过度的时间。</p>
+<figure>
+<img src="/2023/04/11/UE5/Character%20Class/Animation%20State.png" alt="Animation State">
+<figcaption aria-hidden="true">Animation State</figcaption>
+</figure>
+<p>Character 在攻击时是禁止移动的，在对 Character
+操作之前应该先对其状态进行判断 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">AMyCharacter::Move</span><span class="params">(<span class="type">const</span> FInputActionValue&amp; Value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ActionState == EActionState::EAS_Attacking) <span class="keyword">return</span>;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
     </div>
 
