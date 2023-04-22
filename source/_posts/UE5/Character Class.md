@@ -72,14 +72,90 @@ AMyCharacter::AMyCharacter() {
 
 
 ### Pick Up Item
-为了实现 Character 与 Item 之间的交互，我们可以通过 *OnComponentBeginOverlap()* 实现 Overlap 事件的回调，并通过 Socket 将 Item 与 Character 关联。
+为了实现 Character 与 Item 之间的交互，我们可以通过 *OnComponentBeginOverlap()* 实现 Overlap 事件的回调([example](https://hsaoming.github.io/2023/04/16/UE5/Collision/#overlap))。
+
+修改 *OnSphereBeginOverlap()* 能够实现许多有趣的功能。此外，Character 还需要具有选择是否拾取 Item 的能力。
+
+- 首先需要进行操作映射，参照 [EnhancedInput](https://hsaoming.github.io/2023/04/02/UE5/Pawn%20Creation/#enhanced-input)。
+- 在 Character 的类中，创建 Item 的类来保存 Item
 
 ```c++
-void AItem::BeginPlay() {
-	Super::BeginPlay();
-	
-	SphereComponent->OnComponentBeginOverlap.AddDynamic(this, &AItem::OnSphereBeginOverlap);
-	SphereComponent->OnComponentEndOverlap.AddDynamic(this, &AItem::OnSphereEndOverlap);
+// Header
+
+// Item class name
+class AItem;
+
+protected:
+	// Execute when E key down
+	void EKeyPressed();
+
+private:
+	UPROPERTY(VisibleInstanceOnly)
+	AItem* OverlappingItem;
+
+public:
+    // Set value in overlap event
+	FORCEINLINE void SetOverlappingItem(AItem* Item) { OverlappingItem = Item; }
+```
+
+- 在 *OnSphereBeginOverlap()* 与 *OnSphereEndOverlap()* 中，对 Item 赋值
+
+```c++
+void AItem::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) {
+	if (AMyCharacter* MyCharacter = Cast<AMyCharacter>(OtherActor)) {
+		MyCharacter->SetOverlappingItem(this);
+	}
 }
 
+void AItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex) {
+	if (AMyCharacter* MyCharacter = Cast<AMyCharacter>(OtherActor)) {
+		MyCharacter->SetOverlappingItem(nullptr);
+	}
+}
+
+
+```
+- 实现按下 E 拾取 Item 的功能（即实现 *EKeyPressed()*）
+
+
+```c++
+void AMyCharacter::EKeyPressed() {
+	if (AWeapon* OverlappingWeapon = Cast<AWeapon>(OverlappingItem)) {
+		OverlappingWeapon->Equip(GetMesh(), FName("right_hand_socket"));
+	}
+}
+```
+AWeapon 继承 Item，直接调用已经实现的函数 *Equip()*，将 Item 关联到已创建的 Socket 上，以下是 *Equip()* 的实现。
+
+```c++
+void AWeapon::Equip(USceneComponent* InParent, FName InSocketName) {
+	FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, true);
+	ItemMesh->AttachToComponent(InParent, TransformRules, InSocketName);
+}
+```
+
+### Character State
+Character 拥有不同的状态，Character 需要依据不同的状态做出相应的 Animation。这时我们需要一个 enum 类并将其作为一个独立的头文件，以下是 Character 装备武器状态的示例。
+
+```c++
+UENUM(BlueprintType)
+enum class ECharacterState : uint8 {
+	// ECS meams CharacterState
+	ECS_Unequipped UMETA(DisplayName = "Unequipped"),
+	ECS_EquippedOneHandedWeapon UMETA(DisplayName = "Equipped One-Hand Weapon"),
+	ECS_EquippedTwoHandedWeapon UMETA(DisplayName = "Equipped Two-Hand Weapon")
+};
+```
+为 Character 添加状态后，在 AnimGraph ViewPort 中可以根据不同的状态输出对应的 Pose。Blend Time 为 Animation 过度的时间。
+
+![Animation State](Character%20Class/Animation%20State.png)
+
+Character 在攻击时是禁止移动的，在对 Character 操作之前应该先对其状态进行判断
+```c++
+void AMyCharacter::Move(const FInputActionValue& Value) {
+	if (ActionState == EActionState::EAS_Attacking) return;
+	/*
+	
+	*/
+}
 ```

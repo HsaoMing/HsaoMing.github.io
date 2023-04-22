@@ -19,7 +19,7 @@ SetActorRotation(FRotator(90.f, 0.f, 0.f));
 这两个方法时直接修改 Actor 的 Location 和 Rotation，如果需要逐帧修改 Actor 的 Location 和 Rotation 以实现一个连续的运动，我们可以使用 *AddActorWorldOffset()* 和 *AddActorWorldRotation()* 来实现。
 <!--more-->
 ```c++
-void AMyActor::Tick(float DeltaTime) {
+void AItem::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
 	FVector Location = GetActorLocation();
 	FVector Forward = GetActorForwardVector();
@@ -74,7 +74,7 @@ protected:
 	float TransformedSin();
 
 // Cpp
-float AMyActor::TransformedSin() {
+float AItem::TransformedSin() {
 	return Amplitude * FMath::Sin(RunningTime * TimeConstant);
 }
 ```
@@ -97,10 +97,47 @@ class UStaticMeshComponent;
 UPROPERTY(VisibleAnywhere)
 UStaticMeshComponent* ItemMesh;
 // Cpp
-AMyActor::AMyActor() {
+AItem::AItem() {
 	UStaticMeshComponent* ItemMesh;
 	ItemMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ItemMeshComponet"));
 	RootComponent = ItemMesh;
 }
 
+```
+
+### Item State
+当 Character 与 Item 交互时， Item 的状态将发生变化，比如 Item 被捡起。假设 Item 是场景中可以被 Character 拾取的道具，那么在被拾取之间，Item 会随着时间上下飘动，被拾取之后则是固定到 [Socket](https://hsaoming.github.io/2023/04/11/UE5/Character%20Class/#socket) 中。
+
+- 首先需要添加 Item State。
+```c++
+enum class EItemState : uint8 {
+	EIS_Hovering,
+	EIS_Equipped
+};
+
+EItemState ItemState = EItemState::EIS_Hovering;
+```
+
+- 在 Character 获得 Item 的时候，修改 ItemState。
+
+```c++
+// The Weapon class inherits from the Item class
+void AWeapon::Equip(USceneComponent* InParent, FName InSocketName) {
+	FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, true);
+	ItemMesh->AttachToComponent(InParent, TransformRules, InSocketName);
+	ItemState = EItemState::EIS_Equipped;
+}
+```
+
+- 对 Item 操作之前先判断其状态
+
+```c++
+void AItem::Tick(float DeltaTime) {
+	Super::Tick(DeltaTime);
+	RunningTime += DeltaTime;
+	const float Z = TransformedSin();
+	if (ItemState == EItemState::EIS_Hovering) {
+		AddActorWorldOffset(FVector(0.f, 0.f, Z));
+	}
+}
 ```

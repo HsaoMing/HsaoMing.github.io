@@ -12,6 +12,8 @@ tags:
 
 为了实现较为复杂的动画组，可以采用 State Machine，在 AnimGraph ViewPort 为不同的动画状态添加转换的条件，用多个 State 与多个状态转变的条件使得 Character 的动画合理其逼真。与此同时，在 Event Graph ViewPort 中计算逻辑并获取 State Machine 需要的相关变量。
 
+<!--more-->
+
 ![Animation Control](Animation/Animation%20Control.png)
 
 Animation BluePrint 有一个 C++ 父类 Anim Instance，那么可以通过 C++ 来实现上述逻辑，并让 Animation BluePrint 继承 Anim Instance (在Class Settings中)。
@@ -83,4 +85,75 @@ Inverse Kinematics 通过解方程的方法来移动特定的骨骼。
 - 创建 IK Retargeter 并调整 Pose 使得 Animation 较为流畅
 - 导出 Animation
 
+### Animation Montages
+上面的 Animation 是通过 State Machine 实现的，通过判断条件变换 Animation 的状态。那么对于一次性的多种状态的组合，可以使用 Animation Montage 实现。
 
+![Montage](Animation/Montage.png)
+
+在设置了 Montage 后，我们可以通过 C++ 将 Animation 与 EnhancedInput 进行绑定，新增一个 enum 类表示 Character 的攻击状态。
+
+```c++
+// Attack State
+UENUM(BlueprintType)
+enum class EActionState : uint8 {
+	EAS_Unoccupied UMETA(DisplayName = "Unoccupied"),
+	EAS_Attacking UMETA(DisplayName = "Attacking")
+};
+```
+
+```c++
+// Header
+EActionState ActionState = EActionState::EAS_Unoccupied;
+
+// Select Animation Montage Asset in BluePrint
+UPROPERTY(EditDefaultsOnly, Category = Montages)
+UAnimMontage* AttackMontage;
+void PlayAttackMontage();
+
+void Attack();
+void AttackEnd();
+void CanAttack();
+
+// Cpp
+void AMyCharacter::Attack() {
+	if (CanAttack) {
+		PlayAttackMontage();
+		ActionState = EActionState::EAS_Attacking;
+	}
+}
+
+void AMyCharacter::PlayAttackMontage() {
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+
+	if (AnimInstance && AttackMontage) {
+		AnimInstance->Montage_Play(AttackMontage);
+		const int32 Selection = FMath::RandRange(0, 1);
+
+		FName SectionName = FName();
+
+		switch (Selection) {
+		case 0:
+			SectionName = FName("Attack1");
+			break;
+		case 1:
+			SectionName = FName("Attack2");
+			break;
+		default:
+			break;
+		}
+		AnimInstance->Montage_JumpToSection(SectionName, AttackMontage);
+	}
+}
+
+void AMyCharacter::AttackEnd() {
+	ActionState = EActionState::EAS_Unoccupied;
+}
+bool AMyCharacter::CanAttack() {
+	return ActionState == EActionState::EAS_Unoccupied &&
+		CharacterState != ECharacterState::ECS_Unequipped;
+}
+
+```
+实现上述 C++ 代码后，我们还需要再 Animation Montage 中设置 Notify，在 Blueprint 中重置 Character 的攻击状态。
+
+![Attack End](Animation/Attack%20End.png)
