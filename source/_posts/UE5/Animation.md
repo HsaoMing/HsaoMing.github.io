@@ -157,3 +157,9 @@ bool AMyCharacter::CanAttack() {
 实现上述 C++ 代码后，我们还需要再 Animation Montage 中设置 Notify，在 Blueprint 中重置 Character 的攻击状态。
 
 ![Attack End](Animation/Attack%20End.png)
+
+### Meta Sounds
+为了让 Animation 更加逼真，我们可以添加 Meta Sound。创建了 Meta Sound 后，在 Animation 界面可以添加 Play Sound Notify 在对应的时间播放声音。
+
+![Meta Sound](Animation/Meta%20Sound.png)
+
