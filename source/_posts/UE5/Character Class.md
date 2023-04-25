@@ -159,3 +159,74 @@ void AMyCharacter::Move(const FInputActionValue& Value) {
 	*/
 }
 ```
+
+### Character Action In Item
+Character 对特定的 Item 可以执行多种不同的操作。例如武器，Character 可以将在场景拾取的武器背在背上，也可以将背上的武器取下并装备。
+
+- 为特定的骨骼添加 Socket， 在执行将武器背起的操作时，将 Static Mesh 关联到 Socket。
+- 我们需要在制作的 Montage 动画中添加合适的 Notify，设计装备武器与卸下武器的 C++ 函数并公开给蓝图。
+
+![Notify](Character%20Class/Notify.png)
+```c++
+// Header
+UFUNCTION(BlueprintCallable)
+void Disarm();
+UFUNCTION(BlueprintCallable)
+void Arm();
+
+// Cpp
+void AMyCharacter::Disarm() {
+	if (EquippedWeapon) {
+		EquippedWeapon->AttachMeshToAocket(GetMesh(), FName("spine_socket"));
+	}
+}
+
+void AMyCharacter::Arm() {
+	if (EquippedWeapon) {
+		EquippedWeapon->AttachMeshToAocket(GetMesh(), FName("right_hand_socket"));
+	}
+}
+```
+ 我们还可以为这些 Animation 绑定输入，并且想用拾取 Item 相同的输入。那么需要在播放 Animation 之前需要判断当前的状态是否能够播放 Animation。
+
+ ```c++
+ void AMyCharacter::EKeyPressed() {
+	AWeapon* OverlappingWeapon = Cast<AWeapon>(OverlappingItem);
+	
+	if (OverlappingWeapon) {
+		OverlappingWeapon->Equip(GetMesh(), FName("right_hand_socket"));
+		CharacterState = ECharacterState::ECS_EquippedOneHandedWeapon;
+		EquippedWeapon = OverlappingWeapon;
+
+		SetOverlappingItem(nullptr);
+	} else {
+
+		if (CanDisarm()) {
+			PlayEquipMontage(FName("Unequip"));
+			CharacterState = ECharacterState::ECS_Unequipped;
+			ActionState = EActionState::EAS_EquippingWeapon;
+
+		} else if (CanArm()) {
+			PlayEquipMontage(FName("Equip"));
+			CharacterState = ECharacterState::ECS_EquippedOneHandedWeapon;
+			ActionState = EActionState::EAS_EquippingWeapon;
+		}
+	}
+}
+
+bool AMyCharacter::CanDisarm() {
+	return ActionState == EActionState::EAS_Unoccupied && 
+		CharacterState != ECharacterState::ECS_Unequipped && 
+		EquipMontage;
+}
+
+// When Character pick up Weapon, EquippedWeapon will be assigned
+bool AMyCharacter::CanArm() {
+	return ActionState == EActionState::EAS_Unoccupied &&
+		CharacterState == ECharacterState::ECS_Unequipped &&
+		EquippedWeapon && EquipMontage;
+}
+
+ ```
+
+ 上述有关 Montage 的函数可以参考该链接 [How to play Montage](https://hsaoming.github.io/2023/04/14/UE5/Animation/#animation-montages)。

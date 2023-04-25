@@ -41,7 +41,7 @@ private:
 
 // Cpp
 
-AMyActor::AMyActor() {
+AItem::AItem() {
 	PrimaryActorTick.bCanEverTick = true;
 
 	SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
@@ -49,24 +49,79 @@ AMyActor::AMyActor() {
 	SphereComponent->SetSphereRadius(80.f, false);
 }
 
-void AMyActor::BeginPlay() {
+void AItem::BeginPlay() {
 	Super::BeginPlay();
 	// Bind to recall
-	SphereComponent->OnComponentBeginOverlap.AddDynamic(this, &AMyActor::OnSphereBeginOverlap);
-	SphereComponent->OnComponentEndOverlap.AddDynamic(this, &AMyActor::OnSphereEndOverlap);
+	SphereComponent->OnComponentBeginOverlap.AddDynamic(this, &AItem::OnSphereBeginOverlap);
+	SphereComponent->OnComponentEndOverlap.AddDynamic(this, &AItem::OnSphereEndOverlap);
 }
 
-void AMyActor::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) {
+void AItem::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) {
 	if (GEngine) {
 		const FString ActorName = OtherActor->GetName();
 		GEngine->AddOnScreenDebugMessage(1, 2.f, FColor::Cyan, ActorName);
 	}
 }
 
-void AMyActor::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex) {
-	if (GEngine) {
-		const FString ActorName = OtherActor->GetName();
-		GEngine->AddOnScreenDebugMessage(1, 2.f, FColor::Red, ActorName);
-	}
+void AItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex) {
+
 }
 ```
+
+### Trace
+在发生 Overlap 事件时，我们希望能够得到一个较为准确的向量来描述发生碰撞的点。我们能够对添加 Trace，当 Trace 命中物体时会返回一个结果。在 Collision Presets 需要设置对应的碰撞属性。
+通过 Character 持有一把武器进行攻击作为例子，检测出武器攻击到的准确位置。
+
+ ```c++
+UPROPERTY(VisibleAnywhere, Category = "Weapon Properties")
+UBoxComponent* WeaponBox;
+
+// Add Secen for Trace
+UPROPERTY(VisibleAnywhere)
+USceneComponent* BoxTraceStart;
+UPROPERTY(VisibleAnywhere)
+USceneComponent* BoxTraceEnd;
+
+AWeapon::AWeapon() {
+	WeaponBox = CreateDefaultSubobject<UBoxComponent>(TEXT("Weapon Box"));
+	WeaponBox->SetupAttachment(GetRootComponent());
+
+	// Set Collision Presets
+	WeaponBox->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	WeaponBox->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Overlap);
+	WeaponBox->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Ignore);
+
+	BoxTraceStart = CreateDefaultSubobject<USceneComponent>(TEXT("Box Trace Start"));
+	BoxTraceStart->SetupAttachment(GetRootComponent());
+	BoxTraceEnd = CreateDefaultSubobject<USceneComponent>(TEXT("Box Trace End"));
+	BoxTraceEnd->SetupAttachment(GetRootComponent());
+}
+ ```
+
+ 在 UBoxComponent 的 Overlap 事件的回调函数中来实现 Trace。
+
+ ```c++
+void AWeapon::OnBoxOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) {
+	// Global location
+	const FVector Start = BoxTraceStart->GetComponentLocation();
+	const FVector End = BoxTraceEnd->GetComponentLocation();
+
+	TArray<AActor*> ActorsToIgnore;
+	ActorsToIgnore.Add(this);
+	FHitResult BoxHit;
+
+	UKismetSystemLibrary::BoxTraceSingle(
+		this,
+		Start,
+		End,
+		FVector(5.f, 5.f, 5.f),
+		BoxTraceStart->GetComponentRotation(),
+		ETraceTypeQuery::TraceTypeQuery1,
+		false,
+		ActorsToIgnore,
+		EDrawDebugTrace::ForDuration,
+		BoxHit,
+		true
+	);
+}
+ ```
