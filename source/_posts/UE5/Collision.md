@@ -101,6 +101,7 @@ AWeapon::AWeapon() {
  在 UBoxComponent 的 Overlap 事件的回调函数中来实现 Trace。为了 *UKismetSystemLibrary::BoxTraceSingle(）* 能够检测到碰撞的准确位置需要将 Collision Responses 下的 Visibility 选项设置为 Block。
 
 ```c++
+// Set Visibility
 GetMesh()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Visibility, ECollisionResponse::ECR_Block);
 ```
 

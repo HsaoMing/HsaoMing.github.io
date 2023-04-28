@@ -6,7 +6,7 @@ tags:
 ---
 
 ### Animation
-我们可以使用 Animation BluePrint 实现 Character 的动作，在 AnimGraph ViewPort，将 Asset 链接到 Output Pose 以驱动角色动画。
+我们可以使用 Animation BluePrint 实现 Character 的动作，在 AnimGraph ViewPort，将 Asset 链接到 Output Pose 以驱动角色动画。启用 Details 中的 Loop Animation 循环播放。
 
 ![Animation](Animation/Animation.png)
 
@@ -163,3 +163,5 @@ bool AMyCharacter::CanAttack() {
 
 ![Meta Sound](Animation/Meta%20Sound.png)
 
+### Root Motion Animations
+上述实现的动画都是动作形的（没有相对位移）。实现 Root Motion Animations，需要在 Blender 中为 Skeleton 添加 Root。[Converter](https://github.com/enziop/mixamo_converter) 是十分好用的 Blender 插件。此外还需要在 Asset Details->Root Motion 中启用 EnableRootMotion。
