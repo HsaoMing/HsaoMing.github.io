@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Coordinates   Coordinates  Vectors Euler Angle Unreal Editer 使用 Euler Angle 来描述对象的旋转，旋转的计算过程为 Yaw[Z]→Pitch[Y]→Roll[X]。 Rotation Matrix \(\vec{AB}\) 通过旋转得到 \(\vec{AC}\)，其中点 \(B\) 的坐标为 \((x, y">
+    <meta name="description" content="Coordinates VectorsEuler AngleUnreal Editer 使用 Euler Angle 来描述对象的旋转，旋转的计算过程为 Yaw[Z]→Pitch[Y]→Roll[X]。 Rotation Matrix$\vec{AB}$ 通过旋转得到 $\vec{AC}$，其中点 $B$ 的坐标为 $(x, y)$ 通过三角函数可以计算点 $C$ 的坐标为 $(\cos(\alp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Coordinates">
 <meta property="og:url" content="http://example.com/2023/03/30/UE5/Coordinates/index.html">
 <meta property="og:site_name" content="Autumn Adventure Tent">
-<meta property="og:description" content="Coordinates   Coordinates  Vectors Euler Angle Unreal Editer 使用 Euler Angle 来描述对象的旋转，旋转的计算过程为 Yaw[Z]→Pitch[Y]→Roll[X]。 Rotation Matrix \(\vec{AB}\) 通过旋转得到 \(\vec{AC}\)，其中点 \(B\) 的坐标为 \((x, y">
+<meta property="og:description" content="Coordinates VectorsEuler AngleUnreal Editer 使用 Euler Angle 来描述对象的旋转，旋转的计算过程为 Yaw[Z]→Pitch[Y]→Roll[X]。 Rotation Matrix$\vec{AB}$ 通过旋转得到 $\vec{AC}$，其中点 $B$ 的坐标为 $(x, y)$ 通过三角函数可以计算点 $C$ 的坐标为 $(\cos(\alp">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2023/03/30/UE5/Coordinates/Coordinates.png">
 <meta property="og:image" content="http://example.com/2023/03/30/UE5/Coordinates/2D%20Rotation.png">
@@ -114,7 +114,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#coordinates"><span class="nav-number">1.</span> <span class="nav-text">Coordinates</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vectors"><span class="nav-number">2.</span> <span class="nav-text">Vectors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#euler-angle"><span class="nav-number">3.</span> <span class="nav-text">Euler Angle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rotation-matrix"><span class="nav-number">4.</span> <span class="nav-text">Rotation Matrix</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Coordinates"><span class="nav-number">1.</span> <span class="nav-text">Coordinates</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vectors"><span class="nav-number">2.</span> <span class="nav-text">Vectors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Euler-Angle"><span class="nav-number">3.</span> <span class="nav-text">Euler Angle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rotation-Matrix"><span class="nav-number">4.</span> <span class="nav-text">Rotation Matrix</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -127,7 +127,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -223,40 +223,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="coordinates">Coordinates</h3>
-<figure>
-<img src="/2023/03/30/UE5/Coordinates/Coordinates.png" alt="Coordinates">
-<figcaption aria-hidden="true">Coordinates</figcaption>
-</figure>
-<h3 id="vectors">Vectors</h3>
-<h3 id="euler-angle">Euler Angle</h3>
-<p>Unreal Editer 使用 Euler Angle 来描述对象的旋转，旋转的计算过程为
-Yaw[Z]→Pitch[Y]→Roll[X]。</p>
-<h3 id="rotation-matrix">Rotation Matrix</h3>
-<p><span class="math inline">\(\vec{AB}\)</span> 通过旋转得到 <span class="math inline">\(\vec{AC}\)</span>，其中点 <span class="math inline">\(B\)</span> 的坐标为 <span class="math inline">\((x, y)\)</span> 通过三角函数可以计算点 <span class="math inline">\(C\)</span> 的坐标为 <span class="math inline">\((\cos(\alpha+\beta),
-\sin(\alpha+\beta))\)</span>，即 <span class="math inline">\((x\cos\beta-y\sin\beta,
-y\cos\beta+x\sin\beta)\)</span></p>
-<figure>
-<img src="/2023/03/30/UE5/Coordinates/2D%20Rotation.png" alt="2D Rotation">
-<figcaption aria-hidden="true">2D Rotation</figcaption>
-</figure>
-<p>在二维空间中，旋转通常用单一的角 <span class="math inline">\(\theta\)</span>
-来定义，约定逆时针方向旋转为正，旋转矩阵为 <span class="math display">\[
-M(\theta) = \begin{bmatrix}\cos\theta&amp;
--\sin\theta\\\sin\theta&amp;\cos\theta\\
-\end{bmatrix} = \cos\theta\begin{bmatrix}1&amp;0\\0&amp; 1
-\\\end{bmatrix} +
-\sin\theta\begin{bmatrix}0&amp;-1\\1&amp;0\\\end{bmatrix} =
-\exp(\theta\begin{bmatrix}0&amp;-1\\1&amp;0\\\end{bmatrix})
-\]</span></p>
-<p>通过二维向量的旋转规则直接给出三维空间中的旋转矩阵 - <span class="math inline">\({\mathcal{R}}_{x}(\theta_{x})={\begin{bmatrix}1&amp;0&amp;0\\0&amp;\cos
-{\theta_{x}}&amp;-\sin{\theta_{x}}\\0&amp;\sin {\theta_{x}}&amp;\cos
-{\theta_{x}}\end{bmatrix}}=\exp\left(\theta_{x}{\begin{bmatrix}0&amp;0&amp;0\\0&amp;0&amp;-1\\0&amp;1&amp;0\end{bmatrix}}\right)\)</span></p>
+        <h3 id="Coordinates"><a href="#Coordinates" class="headerlink" title="Coordinates"></a>Coordinates</h3><p><img src="/2023/03/30/UE5/Coordinates/Coordinates.png" alt="Coordinates"></p>
+<h3 id="Vectors"><a href="#Vectors" class="headerlink" title="Vectors"></a>Vectors</h3><h3 id="Euler-Angle"><a href="#Euler-Angle" class="headerlink" title="Euler Angle"></a>Euler Angle</h3><p>Unreal Editer 使用 Euler Angle 来描述对象的旋转，旋转的计算过程为 Yaw[Z]→Pitch[Y]→Roll[X]。</p>
+<h3 id="Rotation-Matrix"><a href="#Rotation-Matrix" class="headerlink" title="Rotation Matrix"></a>Rotation Matrix</h3><p>$\vec{AB}$ 通过旋转得到 $\vec{AC}$，其中点 $B$ 的坐标为 $(x, y)$ 通过三角函数可以计算点 $C$ 的坐标为 $(\cos(\alpha+\beta), \sin(\alpha+\beta))$，即 $(x\cos\beta-y\sin\beta, y\cos\beta+x\sin\beta)$</p>
+<p><img src="/2023/03/30/UE5/Coordinates/2D%20Rotation.png" alt="2D Rotation"></p>
+<p>在二维空间中，旋转通常用单一的角 $\theta$ 来定义，约定逆时针方向旋转为正，旋转矩阵为<br>$$<br>M(\theta) &#x3D; \begin{bmatrix}\cos\theta&amp; -\sin\theta\\sin\theta&amp;\cos\theta\<br>\end{bmatrix} &#x3D; \cos\theta\begin{bmatrix}1&amp;0\0&amp; 1 \\end{bmatrix} + \sin\theta\begin{bmatrix}0&amp;-1\1&amp;0\\end{bmatrix} &#x3D; \exp(\theta\begin{bmatrix}0&amp;-1\1&amp;0\\end{bmatrix})<br>$$</p>
+<p>通过二维向量的旋转规则直接给出三维空间中的旋转矩阵</p>
 <ul>
-<li><p><span class="math inline">\({\mathcal{R}}_{y}(\theta_{y})={\begin{bmatrix}\cos{\theta_{y}}&amp;0&amp;\sin{\theta_{y}}\\0&amp;1&amp;0\\-\sin
-{\theta_{y}}&amp;0&amp;\cos{\theta_{y}}\end{bmatrix}}=\exp\left(\theta_{y}{\begin{bmatrix}0&amp;0&amp;1\\0&amp;0&amp;0\\-1&amp;0&amp;0\end{bmatrix}}\right)\)</span></p></li>
-<li><p><span class="math inline">\({\mathcal{R}}_{z}(\theta_{z})={\begin{bmatrix}\cos
-{\theta_{z}}&amp;-\sin{\theta_{z}}&amp;0\\\sin{\theta_{z}}&amp;\cos{\theta_{z}}&amp;0\\0&amp;0&amp;1\end{bmatrix}}=\exp\left(\theta_{z}{\begin{bmatrix}0&amp;-1&amp;0\\1&amp;0&amp;0\\0&amp;0&amp;0\end{bmatrix}}\right)\)</span></p></li>
+<li><p>${\mathcal{R}}<em>{x}(\theta</em>{x})&#x3D;{\begin{bmatrix}1&amp;0&amp;0\0&amp;\cos {\theta_{x}}&amp;-\sin{\theta_{x}}\0&amp;\sin {\theta_{x}}&amp;\cos {\theta_{x}}\end{bmatrix}}&#x3D;\exp\left(\theta_{x}{\begin{bmatrix}0&amp;0&amp;0\0&amp;0&amp;-1\0&amp;1&amp;0\end{bmatrix}}\right)$</p>
+</li>
+<li><p>${\mathcal{R}}<em>{y}(\theta</em>{y})&#x3D;{\begin{bmatrix}\cos{\theta_{y}}&amp;0&amp;\sin{\theta_{y}}\0&amp;1&amp;0\-\sin {\theta_{y}}&amp;0&amp;\cos{\theta_{y}}\end{bmatrix}}&#x3D;\exp\left(\theta_{y}{\begin{bmatrix}0&amp;0&amp;1\0&amp;0&amp;0\-1&amp;0&amp;0\end{bmatrix}}\right)$</p>
+</li>
+<li><p>${\mathcal{R}}<em>{z}(\theta</em>{z})&#x3D;{\begin{bmatrix}\cos {\theta_{z}}&amp;-\sin{\theta_{z}}&amp;0\\sin{\theta_{z}}&amp;\cos{\theta_{z}}&amp;0\0&amp;0&amp;1\end{bmatrix}}&#x3D;\exp\left(\theta_{z}{\begin{bmatrix}0&amp;-1&amp;0\1&amp;0&amp;0\0&amp;0&amp;0\end{bmatrix}}\right)$</p>
+</li>
 </ul>
 
     </div>
