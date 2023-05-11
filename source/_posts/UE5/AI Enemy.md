@@ -153,4 +153,10 @@ void ABreakableActor::BeginPlay() {
 void ABreakableActor::OnGeometryCollectionBreak(const FChaosBreakEvent& BreakEvent) {
 	SetLifeSpan(3.f);
 }
+
+void ABreakableActor::GetHit_Implementation(const FVector& ImpactPoint) {
+	if (bBroken) return;
+	bBroken = true;
+}
+
 ```
