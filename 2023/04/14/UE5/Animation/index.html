@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Animation我们可以使用 Animation BluePrint 实现 Character 的动作，在 AnimGraph ViewPort，将 Asset 链接到 Output Pose 以驱动角色动画。启用 Details 中的 Loop Animation 循环播放。  为了实现较为复杂的动画组，可以采用 State Machine，在 AnimGraph ViewPort 为不同的动">
+    <meta name="description" content="Animation 我们可以使用 Animation BluePrint 实现 Character 的动作，在 AnimGraph ViewPort，将 Asset 链接到 Output Pose 以驱动角色动画。启用 Details 中的 Loop Animation 循环播放。   Animation  为了实现较为复杂的动画组，可以采用 State Machine，在 Ani">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Animation">
 <meta property="og:url" content="http://example.com/2023/04/14/UE5/Animation/index.html">
 <meta property="og:site_name" content="Autumn Adventure Tent">
-<meta property="og:description" content="Animation我们可以使用 Animation BluePrint 实现 Character 的动作，在 AnimGraph ViewPort，将 Asset 链接到 Output Pose 以驱动角色动画。启用 Details 中的 Loop Animation 循环播放。  为了实现较为复杂的动画组，可以采用 State Machine，在 AnimGraph ViewPort 为不同的动">
+<meta property="og:description" content="Animation 我们可以使用 Animation BluePrint 实现 Character 的动作，在 AnimGraph ViewPort，将 Asset 链接到 Output Pose 以驱动角色动画。启用 Details 中的 Loop Animation 循环播放。   Animation  为了实现较为复杂的动画组，可以采用 State Machine，在 Ani">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2023/04/14/UE5/Animation/Animation.png">
 <meta property="og:image" content="http://example.com/2023/04/14/UE5/Animation/Animation%20Control.png">
@@ -124,7 +124,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Animation"><span class="nav-number">1.</span> <span class="nav-text">Animation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inverse-Kinematics"><span class="nav-number">2.</span> <span class="nav-text">Inverse Kinematics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IK-Rig"><span class="nav-number">3.</span> <span class="nav-text">IK Rig</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Animation-Montages"><span class="nav-number">4.</span> <span class="nav-text">Animation Montages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Meta-Sounds"><span class="nav-number">5.</span> <span class="nav-text">Meta Sounds</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Root-Motion-Animations"><span class="nav-number">6.</span> <span class="nav-text">Root Motion Animations</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#animation"><span class="nav-number">1.</span> <span class="nav-text">Animation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inverse-kinematics"><span class="nav-number">2.</span> <span class="nav-text">Inverse Kinematics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ik-rig"><span class="nav-number">3.</span> <span class="nav-text">IK Rig</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#animation-montages"><span class="nav-number">4.</span> <span class="nav-text">Animation Montages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#meta-sounds"><span class="nav-number">5.</span> <span class="nav-text">Meta Sounds</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#root-motion-animations"><span class="nav-number">6.</span> <span class="nav-text">Root Motion Animations</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -137,7 +137,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -148,7 +148,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -224,60 +224,96 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="Animation"><a href="#Animation" class="headerlink" title="Animation"></a>Animation</h3><p>我们可以使用 Animation BluePrint 实现 Character 的动作，在 AnimGraph ViewPort，将 Asset 链接到 Output Pose 以驱动角色动画。启用 Details 中的 Loop Animation 循环播放。</p>
-<p><img src="/2023/04/14/UE5/Animation/Animation.png" alt="Animation"></p>
-<p>为了实现较为复杂的动画组，可以采用 State Machine，在 AnimGraph ViewPort 为不同的动画状态添加转换的条件，用多个 State 与多个状态转变的条件使得 Character 的动画合理其逼真。与此同时，在 Event Graph ViewPort 中计算逻辑并获取 State Machine 需要的相关变量。</p>
+        <h3 id="animation">Animation</h3>
+<p>我们可以使用 Animation BluePrint 实现 Character 的动作，在 AnimGraph
+ViewPort，将 Asset 链接到 Output Pose 以驱动角色动画。启用 Details 中的
+Loop Animation 循环播放。</p>
+<figure>
+<img src="/2023/04/14/UE5/Animation/Animation.png" alt="Animation">
+<figcaption aria-hidden="true">Animation</figcaption>
+</figure>
+<p>为了实现较为复杂的动画组，可以采用 State Machine，在 AnimGraph
+ViewPort 为不同的动画状态添加转换的条件，用多个 State
+与多个状态转变的条件使得 Character 的动画合理其逼真。与此同时，在 Event
+Graph ViewPort 中计算逻辑并获取 State Machine 需要的相关变量。</p>
 <span id="more"></span>
-
-<p><img src="/2023/04/14/UE5/Animation/Animation%20Control.png" alt="Animation Control"></p>
-<p>Animation BluePrint 有一个 C++ 父类 Anim Instance，那么可以通过 C++ 来实现上述逻辑，并让 Animation BluePrint 继承 Anim Instance (在Class Settings中)。</p>
+<figure>
+<img src="/2023/04/14/UE5/Animation/Animation%20Control.png" alt="Animation Control">
+<figcaption aria-hidden="true">Animation Control</figcaption>
+</figure>
+<p>Animation BluePrint 有一个 C++ 父类 Anim Instance，那么可以通过 C++
+来实现上述逻辑，并让 Animation BluePrint 继承 Anim Instance (在Class
+Settings中)。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Header</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">NativeInitializeAnimation</span><span class="params">()</span> <span class="keyword">override</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">NativeUpdateAnimation</span><span class="params">(<span class="type">float</span> DeltaTime)</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">UPROPERTY</span>(BlueprintReadOnly)</span><br><span class="line">AMyCharacter* MyCharacter;</span><br><span class="line"><span class="built_in">UPROPERTY</span>(BlueprintReadOnly, Category = Movement)</span><br><span class="line">UCharacterMovementComponent* MyCharacterMovement;</span><br><span class="line"><span class="built_in">UPROPERTY</span>(BlueprintReadOnly, Category = Movement)</span><br><span class="line"><span class="type">float</span> GroundSpeed;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Cpp</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Characters/MyCharacter.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;GameFramework/CharacterMovementComponent.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Kismet/KismetMathLibrary.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">UMyAnimInstance::NativeInitializeAnimation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Super::<span class="built_in">NativeInitializeAnimation</span>();</span><br><span class="line">    </span><br><span class="line">    MyCharacter = <span class="built_in">Cast</span>&lt;AMyCharacter&gt;(<span class="built_in">TryGetPawnOwner</span>());</span><br><span class="line">    <span class="keyword">if</span> (MyCharacter) &#123;</span><br><span class="line">        MyCharacterMovement = MyCharacter-&gt;<span class="built_in">GetCharacterMovement</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">UMyAnimInstance::NativeUpdateAnimation</span><span class="params">(<span class="type">float</span> DeltaTime)</span> </span>&#123;</span><br><span class="line">    Super::<span class="built_in">NativeUpdateAnimation</span>(DeltaTime);</span><br><span class="line">    <span class="keyword">if</span> (MyCharacterMovement) &#123;</span><br><span class="line">        GroundSpeed = UKismetMathLibrary::<span class="built_in">VSizeXY</span>(MyCharacterMovement-&gt;Velocity);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Inverse-Kinematics"><a href="#Inverse-Kinematics" class="headerlink" title="Inverse Kinematics"></a>Inverse Kinematics</h3><p>Inverse Kinematics 通过解方程的方法来移动特定的骨骼。</p>
+<h3 id="inverse-kinematics">Inverse Kinematics</h3>
+<p>Inverse Kinematics 通过解方程的方法来移动特定的骨骼。 - Sphere trace
+from feet to ground</p>
+<p><img src="/2023/04/14/UE5/Animation/1.png" alt="1"> - Interpolate smoothly toward
+offset targets</p>
+<p><img src="/2023/04/14/UE5/Animation/2.png" alt="2"> - Use the lowest foot offset to
+prevent overextension</p>
+<p><img src="/2023/04/14/UE5/Animation/3.png" alt="3"> - Add the interpolated offsets
+to the IK foot bones. This will move them up or down</p>
+<p><img src="/2023/04/14/UE5/Animation/4.png" alt="4"> - Use full body IK node to
+solve IK, and use the IK foot bones as the effector targets for each
+foot</p>
+<figure>
+<img src="/2023/04/14/UE5/Animation/5.png" alt="5">
+<figcaption aria-hidden="true">5</figcaption>
+</figure>
+<p>通过上述步骤，我们实现了关于脚的 IK 动画，接下来需要在 AnimGraph
+ViewPort 控制动画输出的状态与逻辑。</p>
+<figure>
+<img src="/2023/04/14/UE5/Animation/Animation%20Control%20with%20Control%20Rig.png" alt="Animation Control with Control Rig">
+<figcaption aria-hidden="true">Animation Control with Control
+Rig</figcaption>
+</figure>
+<h3 id="ik-rig">IK Rig</h3>
+<p><a target="_blank" rel="noopener" href="https://www.mixamo.com/">Mixamo</a> 中有许多基于 X_Bot
+骨骼的动画，我们可以通过 IK Rig 实现 Animation 迁移。让不同骨骼的
+Character 拥有相同的 Animation。 - 下载 Animation 与 X_Bot - 创建 IK Rig
+选择 X_Bot Skeletal Mesh 并重定位 Skeleton</p>
+<figure>
+<img src="/2023/04/14/UE5/Animation/IK%20Rig.png" alt="IK Rig">
+<figcaption aria-hidden="true">IK Rig</figcaption>
+</figure>
 <ul>
-<li>Sphere trace from feet to ground</li>
-</ul>
-<p><img src="/2023/04/14/UE5/Animation/1.png" alt="1"></p>
-<ul>
-<li>Interpolate smoothly toward offset targets</li>
-</ul>
-<p><img src="/2023/04/14/UE5/Animation/2.png" alt="2"></p>
-<ul>
-<li>Use the lowest foot offset to prevent overextension</li>
-</ul>
-<p><img src="/2023/04/14/UE5/Animation/3.png" alt="3"></p>
-<ul>
-<li>Add the interpolated offsets to the IK foot bones. This will move them up or down</li>
-</ul>
-<p><img src="/2023/04/14/UE5/Animation/4.png" alt="4"></p>
-<ul>
-<li>Use full body IK node to solve IK, and use the IK foot bones as the effector targets for each foot</li>
-</ul>
-<p><img src="/2023/04/14/UE5/Animation/5.png" alt="5"></p>
-<p>通过上述步骤，我们实现了关于脚的 IK 动画，接下来需要在 AnimGraph ViewPort 控制动画输出的状态与逻辑。</p>
-<p><img src="/2023/04/14/UE5/Animation/Animation%20Control%20with%20Control%20Rig.png" alt="Animation Control with Control Rig"></p>
-<h3 id="IK-Rig"><a href="#IK-Rig" class="headerlink" title="IK Rig"></a>IK Rig</h3><p><a target="_blank" rel="noopener" href="https://www.mixamo.com/">Mixamo</a> 中有许多基于 X_Bot 骨骼的动画，我们可以通过 IK Rig 实现 Animation 迁移。让不同骨骼的 Character 拥有相同的 Animation。</p>
-<ul>
-<li>下载 Animation 与 X_Bot</li>
-<li>创建 IK Rig 选择 X_Bot Skeletal Mesh 并重定位 Skeleton</li>
-</ul>
-<p><img src="/2023/04/14/UE5/Animation/IK%20Rig.png" alt="IK Rig"></p>
-<ul>
-<li>创建 IK Rig 选择目标 Skeletal Mesh 并重定位 Skeleton（与上图相同）</li>
+<li>创建 IK Rig 选择目标 Skeletal Mesh 并重定位
+Skeleton（与上图相同）</li>
 <li>创建 IK Retargeter 并调整 Pose 使得 Animation 较为流畅</li>
 <li>导出 Animation</li>
 </ul>
-<h3 id="Animation-Montages"><a href="#Animation-Montages" class="headerlink" title="Animation Montages"></a>Animation Montages</h3><p>上面的 Animation 是通过 State Machine 实现的，通过判断条件变换 Animation 的状态。那么对于一次性的多种状态的组合，可以使用 Animation Montage 实现。</p>
-<p><img src="/2023/04/14/UE5/Animation/Montage.png" alt="Montage"></p>
-<p>在设置了 Montage 后，我们可以通过 C++ 将 Animation 与 EnhancedInput 进行绑定，新增一个 enum 类表示 Character 的攻击状态。</p>
+<h3 id="animation-montages">Animation Montages</h3>
+<p>上面的 Animation 是通过 State Machine 实现的，通过判断条件变换
+Animation 的状态。那么对于一次性的多种状态的组合，可以使用 Animation
+Montage 实现。</p>
+<figure>
+<img src="/2023/04/14/UE5/Animation/Montage.png" alt="Montage">
+<figcaption aria-hidden="true">Montage</figcaption>
+</figure>
+<p>在设置了 Montage 后，我们可以通过 C++ 将 Animation 与 EnhancedInput
+进行绑定，新增一个 enum 类表示 Character 的攻击状态。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Attack State</span></span><br><span class="line"><span class="built_in">UENUM</span>(BlueprintType)</span><br><span class="line"><span class="keyword">enum class</span> <span class="title class_">EActionState</span> : uint8 &#123;</span><br><span class="line">    <span class="function">EAS_Unoccupied <span class="title">UMETA</span><span class="params">(DisplayName = <span class="string">&quot;Unoccupied&quot;</span>)</span>,</span></span><br><span class="line"><span class="function">    EAS_Attacking <span class="title">UMETA</span><span class="params">(DisplayName = <span class="string">&quot;Attacking&quot;</span>)</span></span></span><br><span class="line"><span class="function">&#125;</span>;</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Header</span></span><br><span class="line">EActionState ActionState = EActionState::EAS_Unoccupied;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Select Animation Montage Asset in BluePrint</span></span><br><span class="line"><span class="built_in">UPROPERTY</span>(EditDefaultsOnly, Category = Montages)</span><br><span class="line">UAnimMontage* AttackMontage;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">PlayAttackMontage</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Attack</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">AttackEnd</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CanAttack</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Cpp</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">AMyCharacter::Attack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (CanAttack) &#123;</span><br><span class="line">        <span class="built_in">PlayAttackMontage</span>();</span><br><span class="line">        ActionState = EActionState::EAS_Attacking;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">AMyCharacter::PlayAttackMontage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    UAnimInstance* AnimInstance = <span class="built_in">GetMesh</span>()-&gt;<span class="built_in">GetAnimInstance</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (AnimInstance &amp;&amp; AttackMontage) &#123;</span><br><span class="line">        AnimInstance-&gt;<span class="built_in">Montage_Play</span>(AttackMontage);</span><br><span class="line">        <span class="type">const</span> int32 Selection = FMath::<span class="built_in">RandRange</span>(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        FName SectionName = <span class="built_in">FName</span>();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">switch</span> (Selection) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">            SectionName = <span class="built_in">FName</span>(<span class="string">&quot;Attack1&quot;</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            SectionName = <span class="built_in">FName</span>(<span class="string">&quot;Attack2&quot;</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        AnimInstance-&gt;<span class="built_in">Montage_JumpToSection</span>(SectionName, AttackMontage);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">AMyCharacter::AttackEnd</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ActionState = EActionState::EAS_Unoccupied;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">AMyCharacter::CanAttack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ActionState == EActionState::EAS_Unoccupied &amp;&amp;</span><br><span class="line">        CharacterState != ECharacterState::ECS_Unequipped;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>实现上述 C++ 代码后，我们还需要再 Animation Montage 中设置 Notify，在 Blueprint 中重置 Character 的攻击状态。</p>
-<p><img src="/2023/04/14/UE5/Animation/Attack%20End.png" alt="Attack End"></p>
-<h3 id="Meta-Sounds"><a href="#Meta-Sounds" class="headerlink" title="Meta Sounds"></a>Meta Sounds</h3><p>为了让 Animation 更加逼真，我们可以添加 Meta Sound。创建了 Meta Sound 后，在 Animation 界面可以添加 Play Sound Notify 在对应的时间播放声音。</p>
-<p><img src="/2023/04/14/UE5/Animation/Meta%20Sound.png" alt="Meta Sound"></p>
-<h3 id="Root-Motion-Animations"><a href="#Root-Motion-Animations" class="headerlink" title="Root Motion Animations"></a>Root Motion Animations</h3><p>上述实现的动画都是动作形的（没有相对位移）。实现 Root Motion Animations，需要在 Blender 中为 Skeleton 添加 Root。<a target="_blank" rel="noopener" href="https://github.com/enziop/mixamo_converter">Converter</a> 是十分好用的 Blender 插件。此外还需要在 Asset Details-&gt;Root Motion 中启用 EnableRootMotion。</p>
+<p>实现上述 C++ 代码后，我们还需要再 Animation Montage 中设置 Notify，在
+Blueprint 中重置 Character 的攻击状态。</p>
+<figure>
+<img src="/2023/04/14/UE5/Animation/Attack%20End.png" alt="Attack End">
+<figcaption aria-hidden="true">Attack End</figcaption>
+</figure>
+<h3 id="meta-sounds">Meta Sounds</h3>
+<p>为了让 Animation 更加逼真，我们可以添加 Meta Sound。创建了 Meta Sound
+后，在 Animation 界面可以添加 Play Sound Notify
+在对应的时间播放声音。</p>
+<figure>
+<img src="/2023/04/14/UE5/Animation/Meta%20Sound.png" alt="Meta Sound">
+<figcaption aria-hidden="true">Meta Sound</figcaption>
+</figure>
+<h3 id="root-motion-animations">Root Motion Animations</h3>
+<p>上述实现的动画都是动作形的（没有相对位移）。实现 Root Motion
+Animations，需要在 Blender 中为 Skeleton 添加 Root。<a target="_blank" rel="noopener" href="https://github.com/enziop/mixamo_converter">Converter</a>
+是十分好用的 Blender 插件。此外还需要在 Asset Details-&gt;Root Motion
+中启用 EnableRootMotion。</p>
 
     </div>
 
