@@ -2,6 +2,8 @@
 title: AI Enemy
 math: true
 date: 2023-04-26 18:56:49
+categories:
+- UE
 tags:
 ---
 
@@ -18,7 +20,7 @@ AEnemy::AEnemy() {
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Camera, ECollisionResponse::ECR_Ignore);
 }
 ```
-
+<!--more-->
 ### Interfaces
 当 Enemy 被击中时会有相应的动作，然而不同的 Enemy 的回应可能不同，这时需要引入 Interface 的概念。
 - 创建 HitInterface 类与纯虚函数 *GetHit()*
