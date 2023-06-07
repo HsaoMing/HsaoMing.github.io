@@ -119,7 +119,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -147,6 +147,205 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/31/UE5/Set%20Actor%20by%20C++/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="HsaoMing">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Autumn Adventure Tent">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Autumn Adventure Tent">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/03/31/UE5/Set%20Actor%20by%20C++/" class="post-title-link" itemprop="url">Set Actor by C++</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-03-31 21:24:58" itemprop="dateCreated datePublished" datetime="2023-03-31T21:24:58+08:00">2023-03-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-04-22 19:52:19" itemprop="dateModified" datetime="2023-04-22T19:52:19+08:00">2023-04-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/UE/" itemprop="url" rel="index"><span itemprop="name">UE</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="actor">Actor</h3>
+<p>所有可以放入关卡的对象都是 Actor，比如 Camera, static mesh, player
+start location。Actor
+支持三维变换，例如平移、旋转和缩放。你可以通过游戏逻辑代码（C++ 或
+BluePrint）创建（生成）或销毁 Actor。在 C++ 中，AActor 是所有 Actor
+的基类。 通过 <em>SetActorLocation()</em> 和 <em>SetActorRotation()</em>
+可以分别设置 Actor的 Location 和 Rotation（Actor 不直接保存
+Tranform）。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">SetActorLocation</span>(<span class="built_in">FVector</span>(<span class="number">0.f</span>, <span class="number">0.f</span>, <span class="number">25.f</span>));</span><br><span class="line"><span class="built_in">SetActorRotation</span>(<span class="built_in">FRotator</span>(<span class="number">90.f</span>, <span class="number">0.f</span>, <span class="number">0.f</span>));</span><br></pre></td></tr></table></figure>
+<p>这两个方法时直接修改 Actor 的 Location 和 Rotation，如果需要逐帧修改
+Actor 的 Location 和 Rotation 以实现一个连续的运动，我们可以使用
+<em>AddActorWorldOffset()</em> 和 <em>AddActorWorldRotation()</em>
+来实现。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/03/31/UE5/Set%20Actor%20by%20C++/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/30/UE5/C++%20Debug%20in%20UE5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="HsaoMing">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Autumn Adventure Tent">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Autumn Adventure Tent">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/03/30/UE5/C++%20Debug%20in%20UE5/" class="post-title-link" itemprop="url">C++ Debug in UE5</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-03-30 17:02:39" itemprop="dateCreated datePublished" datetime="2023-03-30T17:02:39+08:00">2023-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-04-26 18:37:36" itemprop="dateModified" datetime="2023-04-26T18:37:36+08:00">2023-04-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/UE/" itemprop="url" rel="index"><span itemprop="name">UE</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="debug">Debug</h3>
+<p>该文档在 <em>BeginPlay()</em> 中演示了如何调用 <em>UE_LOG</em>
+将Debug信息输出到日志并编写了若干自定义宏来实现Actor部分信息的可视化。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*When overwriting a virtual inherited function from actor, it&#x27;s a good idea to call </span></span><br><span class="line"><span class="comment">super just incase actor implements anything at the beginning of the game in the actor</span></span><br><span class="line"><span class="comment">begin play function*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Called when the game starts or when spawned</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">BeginPlay</span><span class="params">()</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Called every frame</span></span><br><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">Tick</span><span class="params">(<span class="type">float</span> DeltaTime)</span> <span class="keyword">override</span></span>;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/03/30/UE5/C++%20Debug%20in%20UE5/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -192,7 +391,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-04-13 20:03:14" itemprop="dateModified" datetime="2023-04-13T20:03:14+08:00">2023-04-13</time>
+      <time title="Modified: 2023-06-07 10:25:19" itemprop="dateModified" datetime="2023-06-07T10:25:19+08:00">2023-06-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -219,37 +418,14 @@
 <img src="/2023/03/30/UE5/Coordinates/Coordinates.png" alt="Coordinates">
 <figcaption aria-hidden="true">Coordinates</figcaption>
 </figure>
-<h3 id="vectors">Vectors</h3>
-<h3 id="euler-angle">Euler Angle</h3>
-<p>Unreal Editer 使用 Euler Angle 来描述对象的旋转，旋转的计算过程为
-Yaw[Z]→Pitch[Y]→Roll[X]。</p>
-<h3 id="rotation-matrix">Rotation Matrix</h3>
-<p><span class="math inline">\(\vec{AB}\)</span> 通过旋转得到 <span class="math inline">\(\vec{AC}\)</span>，其中点 <span class="math inline">\(B\)</span> 的坐标为 <span class="math inline">\((x, y)\)</span> 通过三角函数可以计算点 <span class="math inline">\(C\)</span> 的坐标为 <span class="math inline">\((\cos(\alpha+\beta),
-\sin(\alpha+\beta))\)</span>，即 <span class="math inline">\((x\cos\beta-y\sin\beta,
-y\cos\beta+x\sin\beta)\)</span></p>
-<figure>
-<img src="/2023/03/30/UE5/Coordinates/2D%20Rotation.png" alt="2D Rotation">
-<figcaption aria-hidden="true">2D Rotation</figcaption>
-</figure>
-<p>在二维空间中，旋转通常用单一的角 <span class="math inline">\(\theta\)</span>
-来定义，约定逆时针方向旋转为正，旋转矩阵为 <span class="math display">\[
-M(\theta) = \begin{bmatrix}\cos\theta&amp;
--\sin\theta\\\sin\theta&amp;\cos\theta\\
-\end{bmatrix} = \cos\theta\begin{bmatrix}1&amp;0\\0&amp; 1
-\\\end{bmatrix} +
-\sin\theta\begin{bmatrix}0&amp;-1\\1&amp;0\\\end{bmatrix} =
-\exp(\theta\begin{bmatrix}0&amp;-1\\1&amp;0\\\end{bmatrix})
-\]</span></p>
-<p>通过二维向量的旋转规则直接给出三维空间中的旋转矩阵 - <span class="math inline">\({\mathcal{R}}_{x}(\theta_{x})={\begin{bmatrix}1&amp;0&amp;0\\0&amp;\cos
-{\theta_{x}}&amp;-\sin{\theta_{x}}\\0&amp;\sin {\theta_{x}}&amp;\cos
-{\theta_{x}}\end{bmatrix}}=\exp\left(\theta_{x}{\begin{bmatrix}0&amp;0&amp;0\\0&amp;0&amp;-1\\0&amp;1&amp;0\end{bmatrix}}\right)\)</span></p>
-<ul>
-<li><p><span class="math inline">\({\mathcal{R}}_{y}(\theta_{y})={\begin{bmatrix}\cos{\theta_{y}}&amp;0&amp;\sin{\theta_{y}}\\0&amp;1&amp;0\\-\sin
-{\theta_{y}}&amp;0&amp;\cos{\theta_{y}}\end{bmatrix}}=\exp\left(\theta_{y}{\begin{bmatrix}0&amp;0&amp;1\\0&amp;0&amp;0\\-1&amp;0&amp;0\end{bmatrix}}\right)\)</span></p></li>
-<li><p><span class="math inline">\({\mathcal{R}}_{z}(\theta_{z})={\begin{bmatrix}\cos
-{\theta_{z}}&amp;-\sin{\theta_{z}}&amp;0\\\sin{\theta_{z}}&amp;\cos{\theta_{z}}&amp;0\\0&amp;0&amp;1\end{bmatrix}}=\exp\left(\theta_{z}{\begin{bmatrix}0&amp;-1&amp;0\\1&amp;0&amp;0\\0&amp;0&amp;0\end{bmatrix}}\right)\)</span></p></li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/03/30/UE5/Coordinates/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -501,7 +677,7 @@ M(\theta) = \begin{bmatrix}\cos\theta&amp;
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-04-12 10:24:54" itemprop="dateModified" datetime="2023-04-12T10:24:54+08:00">2023-04-12</time>
+      <time title="Modified: 2023-05-18 18:42:00" itemprop="dateModified" datetime="2023-05-18T18:42:00+08:00">2023-05-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
