@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Introduction 高保真的交通模拟能够为虚拟城市、无人驾驶提供多样的交通情景。现有的交通仿真模型通常以反应的方式进行运动的决策而忽略了交通参与者之间的相互影响与真实互动。本文提出了一个基于力的框架、统一模拟交通参与者的行为与交互。">
+    <meta name="description" content="Introduction高保真的交通模拟能够为虚拟城市、无人驾驶提供多样的交通情景。现有的交通仿真模型通常以反应的方式进行运动的决策而忽略了交通参与者之间的相互影响与真实互动。本文提出了一个基于力的框架、统一模拟交通参与者的行为与交互。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="A Calibrated Force-Based Model for Mixed Traffic Simulation">
 <meta property="og:url" content="http://example.com/2023/05/18/reading/A%20Calibrated%20Force-Based%20Model%20for%20Mixed%20Traffic%20Simulation/index.html">
 <meta property="og:site_name" content="Autumn Adventure Tent">
-<meta property="og:description" content="Introduction 高保真的交通模拟能够为虚拟城市、无人驾驶提供多样的交通情景。现有的交通仿真模型通常以反应的方式进行运动的决策而忽略了交通参与者之间的相互影响与真实互动。本文提出了一个基于力的框架、统一模拟交通参与者的行为与交互。">
+<meta property="og:description" content="Introduction高保真的交通模拟能够为虚拟城市、无人驾驶提供多样的交通情景。现有的交通仿真模型通常以反应的方式进行运动的决策而忽略了交通参与者之间的相互影响与真实互动。本文提出了一个基于力的框架、统一模拟交通参与者的行为与交互。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2023/05/18/reading/A%20Calibrated%20Force-Based%20Model%20for%20Mixed%20Traffic%20Simulation/Repulsive%20Forces.png">
 <meta property="article:published_time" content="2023-05-18T02:32:23.000Z">
@@ -113,11 +113,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#related-work"><span class="nav-number">2.</span> <span class="nav-text">Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#crowd-simulation-methods"><span class="nav-number">2.1.</span> <span class="nav-text">Crowd Simulation Methods</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#traffic-control-models"><span class="nav-number">2.2.</span> <span class="nav-text">Traffic Control Models</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#data-driven-traffic-visualization-and-simulation"><span class="nav-number">2.3.</span> <span class="nav-text">Data-Driven
-Traffic Visualization and Simulation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#traffic-model-calibration"><span class="nav-number">2.4.</span> <span class="nav-text">Traffic Model Calibration</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#force-based-framework"><span class="nav-number">3.</span> <span class="nav-text">Force-Based Framework</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#force-for-behaviors-in-mixed-traffic"><span class="nav-number">4.</span> <span class="nav-text">Force for Behaviors in
-Mixed Traffic</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#force-based-model-for-vehicles"><span class="nav-number">4.1.</span> <span class="nav-text">Force-Based Model for
-Vehicles</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#repulsive-forces-between-vehicles"><span class="nav-number">4.1.1.</span> <span class="nav-text">Repulsive Forces Between
-Vehicles</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#force-for-lane-changing"><span class="nav-number">5.</span> <span class="nav-text">Force For Lane Changing</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Related-Work"><span class="nav-number">2.</span> <span class="nav-text">Related Work</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Crowd-Simulation-Methods"><span class="nav-number">2.1.</span> <span class="nav-text">Crowd Simulation Methods</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Traffic-Control-Models"><span class="nav-number">2.2.</span> <span class="nav-text">Traffic Control Models</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Data-Driven-Traffic-Visualization-and-Simulation"><span class="nav-number">2.3.</span> <span class="nav-text">Data-Driven Traffic Visualization and Simulation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Traffic-Model-Calibration"><span class="nav-number">2.4.</span> <span class="nav-text">Traffic Model Calibration</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Force-Based-Framework"><span class="nav-number">3.</span> <span class="nav-text">Force-Based Framework</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Force-for-Behaviors-in-Mixed-Traffic"><span class="nav-number">4.</span> <span class="nav-text">Force for Behaviors in Mixed Traffic</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Force-Based-Model-for-Vehicles"><span class="nav-number">4.1.</span> <span class="nav-text">Force-Based Model for Vehicles</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Repulsive-Forces-Between-Vehicles"><span class="nav-number">4.1.1.</span> <span class="nav-text">Repulsive Forces Between Vehicles</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Force-For-Lane-Changing"><span class="nav-number">5.</span> <span class="nav-text">Force For Lane Changing</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -130,13 +126,13 @@ Vehicles</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a 
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -217,72 +213,39 @@ Vehicles</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a 
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="introduction">Introduction</h3>
-<p>高保真的交通模拟能够为虚拟城市、无人驾驶提供多样的交通情景。现有的交通仿真模型通常以反应的方式进行运动的决策而忽略了交通参与者之间的相互影响与真实互动。本文提出了一个基于力的框架、统一模拟交通参与者的行为与交互。
-<span id="more"></span></p>
-<h3 id="related-work">Related Work</h3>
-<h4 id="crowd-simulation-methods">Crowd Simulation Methods</h4>
-<p>基于智能体的人群模拟模型分为基于速度的与基于力的。</p>
+        <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>高保真的交通模拟能够为虚拟城市、无人驾驶提供多样的交通情景。现有的交通仿真模型通常以反应的方式进行运动的决策而忽略了交通参与者之间的相互影响与真实互动。本文提出了一个基于力的框架、统一模拟交通参与者的行为与交互。</p>
+<span id="more"></span>
+
+<h3 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h3><h4 id="Crowd-Simulation-Methods"><a href="#Crowd-Simulation-Methods" class="headerlink" title="Crowd Simulation Methods"></a>Crowd Simulation Methods</h4><p>基于智能体的人群模拟模型分为基于速度的与基于力的。</p>
 <ul>
 <li>velocity-based：智能体选择损失函数最小的速度</li>
 <li>force-based：智能体之间受到社会关系产生的虚拟力</li>
 </ul>
-<h4 id="traffic-control-models">Traffic Control Models</h4>
-<p>根据交通模拟的表达程度，可以将交通模拟分为基于连续体的宏观模型和基于主体的微观模型。</p>
+<h4 id="Traffic-Control-Models"><a href="#Traffic-Control-Models" class="headerlink" title="Traffic Control Models"></a>Traffic Control Models</h4><p>根据交通模拟的表达程度，可以将交通模拟分为基于连续体的宏观模型和基于主体的微观模型。</p>
 <ul>
-<li>continuum-based macroscopic
-models：用速度、流量、密度等方面的连续体来描述交通流，宏观的模拟不适合街道级的交通</li>
-<li>agent-based microscopic
-models：基于周围车辆的瞬时状态与道路信息控制车辆行为</li>
+<li>continuum-based macroscopic models：用速度、流量、密度等方面的连续体来描述交通流，宏观的模拟不适合街道级的交通</li>
+<li>agent-based microscopic models：基于周围车辆的瞬时状态与道路信息控制车辆行为</li>
 </ul>
-<h4 id="data-driven-traffic-visualization-and-simulation">Data-Driven
-Traffic Visualization and Simulation</h4>
-<p>随着传感器技术与计算机视觉的发展，能够从真实世界中获取车辆或行人的轨迹，借助元学习、强化学习等方法来合成车辆或行人的轨迹。</p>
-<h4 id="traffic-model-calibration">Traffic Model Calibration</h4>
-<p>高保真的交通仿真模型需要设置许多参数来达到与真实世界中的场景相似，通常将模型的参数校准过程作为一个优化问题来解决。</p>
-<h3 id="force-based-framework">Force-Based Framework</h3>
-<p>假设 <span class="math inline">\(i\)</span>
-是交通混合流中的任一参与者，那么它受到的力可以由以下公式定义： <span class="math display">\[
-\mathbf{F_i}(t) = \mathbf{F_i}^0(t) + \Sigma_{j(\not
-={i})}\mathbf{F}_{ij}(t) +
-\Sigma_W\mathbf{F}_{iW}(t)+\Sigma_O\mathbf{F}_{iO}(t) + \xi_i
-\]</span></p>
-<p><span class="math inline">\(F_i(t)\)</span> 是驱动力，意为 <span class="math inline">\(i\)</span> 以某一速度前往指定目的地的意图。 <span class="math display">\[
-\mathbf{F}_i(t) = m_i\frac{\mathbf{v_i}^0(t)-\mathbf{v_i}(t)}{\tau_i} =
-m_i\frac{\mathbf{v_i}^0(t)-\mathbf{v_i}(t)}{\mathbf{v_i}^0(t)}a_i
-\]</span> 其中，<span class="math inline">\(a_i\)</span>
-是期望加速度，<span class="math inline">\(v_i^0(t)\)</span>
-是期望速度，<span class="math inline">\(m\)</span> 是质量。</p>
-<p><span class="math display">\[
-\mathbf{F}_{iW}(t)=U_ie^\frac{|r_i^W+v_i^WT_i|}{R_i}mathbf{n}_i^W
-\]</span> 其中，<span class="math inline">\(R_i\)</span> 是 <span class="math inline">\(i\)</span> 对距离的敏感系数，<span class="math inline">\(U_i\)</span> 是环境力的比例因子，<span class="math inline">\(r_i^W\)</span> 是 <span class="math inline">\(i\)</span> 到 <span class="math inline">\(W\)</span>（道路边界）的距离，<span class="math inline">\(n_i^W\)</span> 是 <span class="math inline">\(W\)</span> 距离 <span class="math inline">\(i\)</span> 最近的点指向 <span class="math inline">\(i\)</span> 的单位向量，<span class="math inline">\(v_i^W\)</span> 是方向<span class="math inline">\(n_i^W\)</span> 上的速度分量，<span class="math inline">\(T_i\)</span> 是反应时间。</p>
-<h3 id="force-for-behaviors-in-mixed-traffic">Force for Behaviors in
-Mixed Traffic</h3>
-<h4 id="force-based-model-for-vehicles">Force-Based Model for
-Vehicles</h4>
-<p>现有的微观交通模型对车辆的特定行为都是逐一建模和控制的，此外，这些方法通常侧重车辆前进方向的运动。本文提出了基于力方法，并对车辆的行驶做出如下约束：</p>
+<h4 id="Data-Driven-Traffic-Visualization-and-Simulation"><a href="#Data-Driven-Traffic-Visualization-and-Simulation" class="headerlink" title="Data-Driven Traffic Visualization and Simulation"></a>Data-Driven Traffic Visualization and Simulation</h4><p>随着传感器技术与计算机视觉的发展，能够从真实世界中获取车辆或行人的轨迹，借助元学习、强化学习等方法来合成车辆或行人的轨迹。</p>
+<h4 id="Traffic-Model-Calibration"><a href="#Traffic-Model-Calibration" class="headerlink" title="Traffic Model Calibration"></a>Traffic Model Calibration</h4><p>高保真的交通仿真模型需要设置许多参数来达到与真实世界中的场景相似，通常将模型的参数校准过程作为一个优化问题来解决。</p>
+<h3 id="Force-Based-Framework"><a href="#Force-Based-Framework" class="headerlink" title="Force-Based Framework"></a>Force-Based Framework</h3><p>假设 $i$ 是交通混合流中的任一参与者，那么它受到的力可以由以下公式定义：<br>$$<br>\mathbf{F_i}(t) &#x3D; \mathbf{F_i}^0(t) + \Sigma_{j(\not &#x3D;{i})}\mathbf{F}<em>{ij}(t) + \Sigma_W\mathbf{F}</em>{iW}(t)+\Sigma_O\mathbf{F}_{iO}(t) + \xi_i<br>$$</p>
+<p>$F_i(t)$ 是驱动力，意为 $i$ 以某一速度前往指定目的地的意图。<br>$$<br>\mathbf{F}_i(t) &#x3D; m_i\frac{\mathbf{v_i}^0(t)-\mathbf{v_i}(t)}{\tau_i} &#x3D; m_i\frac{\mathbf{v_i}^0(t)-\mathbf{v_i}(t)}{\mathbf{v_i}^0(t)}a_i<br>$$<br>其中，$a_i$ 是期望加速度，$v_i^0(t)$ 是期望速度，$m$ 是质量。</p>
+<p>$$<br>\mathbf{F}_{iW}(t)&#x3D;U_ie^\frac{|r_i^W+v_i^WT_i|}{R_i}mathbf{n}_i^W<br>$$<br>其中，$R_i$ 是 $i$ 对距离的敏感系数，$U_i$ 是环境力的比例因子，$r_i^W$ 是 $i$ 到 $W$（道路边界）的距离，$n_i^W$ 是 $W$ 距离 $i$ 最近的点指向 $i$ 的单位向量，$v_i^W$ 是方向$n_i^W$ 上的速度分量，$T_i$ 是反应时间。</p>
+<h3 id="Force-for-Behaviors-in-Mixed-Traffic"><a href="#Force-for-Behaviors-in-Mixed-Traffic" class="headerlink" title="Force for Behaviors in Mixed Traffic"></a>Force for Behaviors in Mixed Traffic</h3><h4 id="Force-Based-Model-for-Vehicles"><a href="#Force-Based-Model-for-Vehicles" class="headerlink" title="Force-Based Model for Vehicles"></a>Force-Based Model for Vehicles</h4><p>现有的微观交通模型对车辆的特定行为都是逐一建模和控制的，此外，这些方法通常侧重车辆前进方向的运动。本文提出了基于力方法，并对车辆的行驶做出如下约束：</p>
 <ul>
 <li>驾驶员主要以跟车驾驶，运动状态会受到视野中所有车辆的影响</li>
 <li>驾驶员必须保持在车道标线内行驶，并遵守交通规则</li>
 <li>驾驶员在应对必要因素或是利用车道的允许速度会倾向于改变车道</li>
 </ul>
-<h5 id="repulsive-forces-between-vehicles">Repulsive Forces Between
-Vehicles</h5>
-<p>根据交通中的车道保持规则，在不变道的情况下，相邻车道中的车辆 <span class="math inline">\(q\)</span> 对 <span class="math inline">\(c\)</span> 的作用力小于同车道中的车辆 <span class="math inline">\(p\)</span>。同车道中的车辆 <span class="math inline">\(p\)</span> 对 <span class="math inline">\(c\)</span> 的作用力采用 IDM 的制动减速项来近似。
-<img src="/2023/05/18/reading/A%20Calibrated%20Force-Based%20Model%20for%20Mixed%20Traffic%20Simulation/Repulsive%20Forces.png" alt="Repulsive Force"></p>
+<h5 id="Repulsive-Forces-Between-Vehicles"><a href="#Repulsive-Forces-Between-Vehicles" class="headerlink" title="Repulsive Forces Between Vehicles"></a>Repulsive Forces Between Vehicles</h5><p>根据交通中的车道保持规则，在不变道的情况下，相邻车道中的车辆 $q$ 对 $c$ 的作用力小于同车道中的车辆 $p$。同车道中的车辆 $p$ 对 $c$ 的作用力采用 IDM 的制动减速项来近似。<br><img src="/2023/05/18/reading/A%20Calibrated%20Force-Based%20Model%20for%20Mixed%20Traffic%20Simulation/Repulsive%20Forces.png" alt="Repulsive Force"></p>
 <ul>
-<li><p>Influence from vehicles in adjacent lanes: <span class="math display">\[
-\mathbf{F}_{cq}^n(t)=U_ce^-\frac{r_{cq}}{R_c}\mathbf{n}_{cq}
-\]</span></p></li>
-<li><p>Influence from the vehicle in the current lane: <span class="math display">\[
-\mathbf{F}_{cp}^f(t)=-b_c(\frac{s^*}{s})^2\mathbf{n}_c
-\]</span> <span class="math display">\[
-s^*=s_c^0+v_cT_c+\frac{v_c\Delta{v}}{2\sqrt}
-\]</span></p></li>
+<li><p>Influence from vehicles in adjacent lanes:<br>$$<br>\mathbf{F}<em>{cq}^n(t)&#x3D;U_ce^-\frac{r</em>{cq}}{R_c}\mathbf{n}_{cq}<br>$$</p>
+</li>
+<li><p>Influence from the vehicle in the current lane:<br>$$<br>\mathbf{F}_{cp}^f(t)&#x3D;-b_c(\frac{s^*}{s})^2\mathbf{n}_c<br>$$<br>$$<br>s^*&#x3D;s_c^0+v_cT_c+\frac{v_c\Delta{v}}{2\sqrt}<br>$$</p>
+</li>
 </ul>
-<p>其中，<span class="math inline">\(a_c\)</span> 是 <span class="math inline">\(c\)</span> 的最大加速度，<span class="math inline">\(b_c\)</span> 是 <span class="math inline">\(c\)</span> 的舒适减速度，<span class="math inline">\(s_c^0\)</span> 是阻塞间隔，<span class="math inline">\(T_c\)</span> 是期望安全行车时间，<span class="math inline">\(\mathbf{n}_c\)</span> 是 <span class="math inline">\(c\)</span> 行驶方向的单位向量。</p>
-<h3 id="force-for-lane-changing">Force For Lane Changing</h3>
-
+<p>其中，$a_c$ 是 $c$ 的最大加速度，$b_c$ 是 $c$ 的舒适减速度，$s_c^0$ 是阻塞间隔，$T_c$ 是期望安全行车时间，$\mathbf{n}_c$ 是 $c$ 行驶方向的单位向量。</p>
+<h3 id="Force-For-Lane-Changing"><a href="#Force-For-Lane-Changing" class="headerlink" title="Force For Lane Changing"></a>Force For Lane Changing</h3>
     </div>
 
     
@@ -300,6 +263,9 @@ s^*=s_c^0+v_cT_c+\frac{v_c\Delta{v}}{2\sqrt}
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2023/07/06/Computer%20Graphics/Transformation/" rel="next" title="Transformation">
+                  Transformation <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
